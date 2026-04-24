@@ -1,20 +1,28 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Agentes&Robots
 
-# Run and deploy your AI Studio app
+Portal B2B de productos y soluciones de Inteligencia Artificial empresarial.
 
-This contains everything you need to run your app locally.
+## Stack
 
-View your app in AI Studio: https://ai.studio/apps/a8fcc969-19e3-402e-ba66-826d407cbf85
+Vite + React 19 + TypeScript + Tailwind CSS 4 + Motion
 
-## Run Locally
+## Desarrollo
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+npm run dev
+```
 
+## Build
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npm run build
+```
+
+## Deploy
+
+Sitio estático. Subir el contenido de `dist/` al hosting.
+
+---
+
+*Proyecto de [agentesyrobots.com](https://agentesyrobots.com)*
