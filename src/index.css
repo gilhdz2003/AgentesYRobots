@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-display: "Space Grotesk", sans-serif;
+
+  --color-brand-accent: #38bdf8;
+  --color-brand-bg: #020617;
+  --color-brand-card: #0f172a;
+  --color-brand-text: #f8fafc;
+  --color-brand-border: #1e293b;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-brand-text font-sans antialiased selection:bg-brand-accent/30;
+  }
+}
+
+@layer utilities {
+  .enterprise-border {
+    @apply border border-brand-border;
+  }
+  .glass-premium {
+    @apply bg-brand-card/50 backdrop-blur-md border border-white/5;
+  }
+  .editorial-border {
+    @apply border border-white/10;
+  }
+  .label-tech {
+    @apply text-[10px] uppercase tracking-[0.4em] font-bold;
+  }
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+.design-backups/
+tsconfig.tsbuildinfo
+*.png
+.playwright-mcp/
