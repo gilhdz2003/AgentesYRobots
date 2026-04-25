@@ -1,0 +1,5 @@
+# Agentes&Robots - robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://agentesyrobots.com/sitemap.xml
