@@ -15,6 +15,11 @@ import FAQ from "./components/FAQ";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 import SEO, { websiteSchema } from "./components/SEO";
+import ScrollToTop from "./components/ScrollToTop";
+import ServicePage from "./pages/ServicePage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import CaseStudiesPage from "./pages/CaseStudiesPage";
 
 const ORG_JSON_LD = {
   "@context": "https://schema.org",
@@ -48,11 +53,16 @@ export default function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <div className="min-h-screen selection:bg-brand-cyan/30 flex flex-col">
           <Navbar />
           <main className="flex-grow pt-20">
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/servicios/:slug" element={<ServicePage />} />
+              <Route path="/nosotros" element={<AboutPage />} />
+              <Route path="/contacto" element={<ContactPage />} />
+              <Route path="/casos" element={<CaseStudiesPage />} />
             </Routes>
           </main>
           <Footer />

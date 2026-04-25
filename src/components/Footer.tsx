@@ -10,8 +10,9 @@ const services = [
 ];
 
 const support = [
-  { label: "Contacto", to: "/contacto" },
   { label: "Nosotros", to: "/nosotros" },
+  { label: "Casos de Estudio", to: "/casos" },
+  { label: "Contacto", to: "/contacto" },
 ];
 
 export default function Footer() {

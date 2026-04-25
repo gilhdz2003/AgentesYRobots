@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import { Quote } from "lucide-react";
+import { Quote, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const testimonials = [
   {
@@ -68,6 +69,16 @@ export default function SocialProof() {
               </div>
             </motion.article>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            to="/casos"
+            className="inline-flex items-center gap-3 text-[12px] font-bold text-white hover:text-brand-accent transition-colors"
+          >
+            VER CASOS DE ESTUDIO COMPLETOS
+            <ArrowRight size={16} />
+          </Link>
         </div>
       </div>
     </section>
