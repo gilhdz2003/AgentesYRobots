@@ -8,6 +8,10 @@ import { HelmetProvider } from "react-helmet-async";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Solutions from "./components/Solutions";
+import Process from "./components/Process";
+import Stats from "./components/Stats";
+import SocialProof from "./components/SocialProof";
+import FAQ from "./components/FAQ";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 import SEO from "./components/SEO";
@@ -31,6 +35,10 @@ function HomePage() {
       <SEO jsonLd={ORG_JSON_LD} />
       <Hero />
       <Solutions />
+      <Process />
+      <Stats />
+      <SocialProof />
+      <FAQ />
       <CTA />
     </>
   );

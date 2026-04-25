@@ -1,11 +1,29 @@
+import { Link } from "react-router-dom";
+
+const services = [
+  { label: "BB One Hardware", to: "/servicios/bb-one" },
+  { label: "Coworkers Digitales", to: "/servicios/coworkers-digitales" },
+  { label: "Voice Coworkers", to: "/servicios/voice-coworkers" },
+  { label: "Agent Pentesting", to: "/servicios/agent-pentesting" },
+  { label: "MapYourFlow.app", to: "/servicios/mapyourflow" },
+  { label: "AI Training", to: "/servicios/ai-training" },
+];
+
+const support = [
+  { label: "Contacto", to: "/contacto" },
+  { label: "Nosotros", to: "/nosotros" },
+];
+
 export default function Footer() {
   return (
     <footer className="py-24 px-6 border-t border-white/5 bg-brand-bg">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="md:col-span-2">
-          <div className="font-display text-2xl font-black text-white mb-8 tracking-tighter">
-            AGENTES<span className="text-brand-accent">&</span>ROBOTS
-          </div>
+          <Link to="/" className="inline-block mb-8">
+            <div className="font-display text-2xl font-black text-white tracking-tighter">
+              AGENTES<span className="text-brand-accent">&</span>ROBOTS
+            </div>
+          </Link>
           <p className="text-gray-400 text-sm font-medium leading-relaxed max-w-sm mb-10">
             Ingeniería de IA para la automatización empresarial. Infraestructura inteligente para la era de los agentes autónomos.
           </p>
@@ -32,24 +50,24 @@ export default function Footer() {
         <div>
           <h4 className="text-[12px] font-black text-white uppercase tracking-[0.2em] mb-8">Servicios</h4>
           <ul className="space-y-4">
-            {["BB One Hardware", "Coworkers Digitales", "Voice Coworkers", "Agent Pentesting", "MapYourFlow.app", "AI Training"].map((item) => (
-              <li key={item}>
-                <a href="#services" className="text-sm font-medium text-gray-500 hover:text-brand-accent transition-colors">
-                  {item}
-                </a>
+            {services.map((item) => (
+              <li key={item.label}>
+                <Link to={item.to} className="text-sm font-medium text-gray-500 hover:text-brand-accent transition-colors">
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
 
         <div>
-          <h4 className="text-[12px] font-black text-white uppercase tracking-[0.2em] mb-8">Soporte</h4>
+          <h4 className="text-[12px] font-black text-white uppercase tracking-[0.2em] mb-8">Empresa</h4>
           <ul className="space-y-4">
-            {["Contacto", "Documentación", "Privacidad", "Seguridad"].map((item) => (
-              <li key={item}>
-                <a href="#" className="text-sm font-medium text-gray-500 hover:text-brand-accent transition-colors">
-                  {item}
-                </a>
+            {support.map((item) => (
+              <li key={item.label}>
+                <Link to={item.to} className="text-sm font-medium text-gray-500 hover:text-brand-accent transition-colors">
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
