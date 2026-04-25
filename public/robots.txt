@@ -1,5 +1,30 @@
 # Agentes&Robots - robots.txt
+# Permitir todos los crawlers incluyendo bots de IA
+
 User-agent: *
 Allow: /
 
+# AI Crawlers - explicitamente permitidos para GEO
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Sitemap
 Sitemap: https://agentesyrobots.com/sitemap.xml

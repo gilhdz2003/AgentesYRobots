@@ -14,7 +14,7 @@ import SocialProof from "./components/SocialProof";
 import FAQ from "./components/FAQ";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
-import SEO from "./components/SEO";
+import SEO, { websiteSchema } from "./components/SEO";
 
 const ORG_JSON_LD = {
   "@context": "https://schema.org",
@@ -32,7 +32,7 @@ const ORG_JSON_LD = {
 function HomePage() {
   return (
     <>
-      <SEO jsonLd={ORG_JSON_LD} />
+      <SEO jsonLd={[ORG_JSON_LD, websiteSchema()]} />
       <Hero />
       <Solutions />
       <Process />
