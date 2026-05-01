@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 export default function CTA() {
   return (
     <section className="py-32 px-6">
-      <div className="max-w-6xl mx-auto rounded-3xl bg-gradient-to-br from-brand-accent to-blue-600 p-12 md:p-24 text-center relative overflow-hidden shadow-2xl shadow-brand-accent/20">
+      <div className="max-w-6xl mx-auto rounded-3xl bg-gradient-to-br from-brand-amber to-amber-600 p-12 md:p-24 text-center relative overflow-hidden shadow-2xl shadow-brand-amber/20">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,transparent_0%,black_40%)] opacity-20" />
 
         <motion.div

@@ -5,7 +5,6 @@ const steps = [
   {
     number: "01",
     title: "Diagnóstico",
-    duration: "2 semanas",
     description:
       "Auditoría completa de tus procesos actuales. Mapeamos flujos, identificamos cuellos de botella y cuantificamos el ROI potencial de la automatización.",
     icon: <Search className="text-brand-accent" size={20} />,
@@ -13,7 +12,6 @@ const steps = [
   {
     number: "02",
     title: "Estrategia",
-    duration: "1 semana",
     description:
       "Diseñamos la arquitectura de la solución. Seleccionamos modelos de IA, herramientas y definimos hitos con métricas claras de éxito.",
     icon: <Zap className="text-brand-accent" size={20} />,
@@ -21,7 +19,6 @@ const steps = [
   {
     number: "03",
     title: "Implementación",
-    duration: "4-8 semanas",
     description:
       "Desplegamos la infraestructura en tu entorno. Configuración, integración con sistemas existentes, pruebas rigurosas y puesta en producción.",
     icon: <Wrench className="text-brand-accent" size={20} />,
@@ -29,7 +26,6 @@ const steps = [
   {
     number: "04",
     title: "Monitoreo",
-    duration: "Continuo",
     description:
       "Seguimiento de performance, ajustes de modelo y optimización continua. Tu infraestructura de IA mejora con el tiempo, no se degrada.",
     icon: <BarChart3 className="text-brand-accent" size={20} />,
@@ -66,13 +62,10 @@ export default function Process() {
               transition={{ delay: index * 0.15 }}
               className="relative p-8 rounded-2xl enterprise-border bg-slate-900/40 group hover:border-brand-accent/50 transition-all duration-300"
             >
-              <div className="flex items-center justify-between mb-8">
+              <div className="mb-8">
                 <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform">
                   {step.icon}
                 </div>
-                <span className="text-[11px] font-black tracking-widest text-gray-600">
-                  {step.duration}
-                </span>
               </div>
 
               <span className="text-[64px] font-black leading-none text-brand-accent/10 absolute top-4 right-6">

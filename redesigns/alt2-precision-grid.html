@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alt 2: Precision Grid — Agentes&Robots</title>
+<meta name="description" content="Infraestructura de IA empresarial">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #faf7f2;
+  --bg-warm: #f3ede4;
+  --bg-card: #ece6db;
+  --text: #1a1714;
+  --text-secondary: #5c5650;
+  --text-muted: #8a837a;
+  --accent: #0d7377;
+  --accent-soft: #0d737715;
+  --accent-hover: #0a5c5f;
+  --border: #e0d9cf;
+  --font: 'Hanken Grotesk', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 24px;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.nav-cta:hover { background: var(--accent); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* ── HERO ── */
+.hero {
+  padding: clamp(10rem, 18vh, 14rem) clamp(1.5rem, 4vw, 4rem) clamp(4rem, 8vh, 6rem);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.hero-kicker {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-weight: 900;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  max-width: 900px;
+  margin-bottom: 2rem;
+}
+
+.hero h1 em {
+  font-style: normal;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 3px;
+}
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 4rem;
+  padding-top: 4rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .hero-bottom { grid-template-columns: 1fr; }
+}
+
+.hero-desc {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.hero-actions-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-primary {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 32px;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-primary:hover { background: var(--accent); }
+
+.btn-secondary {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.btn-secondary:hover { border-color: var(--text); }
+
+.hero-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* ── METRICS BAR ── */
+.metrics {
+  background: var(--text);
+  padding: 3rem clamp(1.5rem, 4vw, 4rem);
+}
+
+.metrics-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .metrics-inner { grid-template-columns: 1fr 1fr; }
+}
+
+.metric-item {
+  text-align: center;
+}
+
+.metric-value {
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--bg);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.metric-value span { color: var(--accent); }
+
+.metric-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(250, 247, 242, 0.5);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.75rem;
+}
+
+/* ── SOLUTIONS ── */
+.solutions {
+  padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.solutions h2 {
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 4rem;
+  max-width: 500px;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .solutions-grid { grid-template-columns: 1fr; }
+}
+
+.solution-card {
+  padding: 2.5rem;
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+
+.solution-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.solution-index {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.solution-title {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.solution-subtitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.25rem;
+}
+
+.solution-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.solution-link {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.2s;
+}
+
+.solution-link:hover { gap: 0.75rem; }
+
+/* ── PROCESS ── */
+.process {
+  padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 3rem;
+  border-top: 1px solid var(--border);
+  padding-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .process-grid { grid-template-columns: 1fr; }
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .process-steps { grid-template-columns: 1fr 1fr; }
+}
+
+.process-number {
+  font-weight: 900;
+  font-size: 2rem;
+  color: var(--accent);
+  opacity: 0.3;
+  margin-bottom: 1rem;
+  letter-spacing: -0.04em;
+}
+
+.process-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 0.75rem;
+}
+
+.process-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── CTA ── */
+.cta {
+  margin: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--accent);
+  padding: clamp(4rem, 8vh, 6rem) clamp(2rem, 5vw, 5rem);
+}
+
+.cta-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .cta-inner { grid-template-columns: 1fr; }
+}
+
+.cta h2 {
+  font-weight: 900;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  letter-spacing: -0.03em;
+  color: #fff;
+  line-height: 1.15;
+}
+
+.cta p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  margin-top: 1rem;
+  max-width: 480px;
+}
+
+.cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn-white {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 16px 36px;
+  background: #fff;
+  color: var(--accent);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-outline-white {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 16px 36px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+  text-align: center;
+}
+
+/* ── FOOTER ── */
+.footer {
+  padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1280px;
+  margin: 0 auto;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+}
+
+@media (max-width: 768px) {
+  .footer-inner { grid-template-columns: 1fr; }
+}
+
+.footer-brand {
+  font-weight: 900;
+  font-size: 18px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-brand span { color: var(--accent); }
+
+.footer-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 320px;
+}
+
+.footer-heading {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.footer a {
+  display: block;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+  transition: color 0.15s;
+}
+
+.footer a:hover { color: var(--accent); }
+
+.footer-copy {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── ALT LABEL ── */
+.alt-label {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 200;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 6px 12px;
+}
+</style>
+</head>
+<body>
+
+<div class="alt-label">ALT 2: PRECISION GRID</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Agentes<span>&</span>Robots</a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#contacto" class="nav-cta">Comenzar</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-kicker">Infraestructura de IA empresarial</div>
+  <h1>Automatizacion<br>que <em>funciona</em>,<br>no que promete</h1>
+
+  <div class="hero-bottom">
+    <p class="hero-desc">Diseñamos y desplegamos sistemas de IA que procesan datos reales, automatizan operaciones complejas y generan resultados medibles. Sin presentaciones motivacionales, sin demos humo.</p>
+    <div class="hero-actions">
+      <div class="hero-actions-row">
+        <button class="btn-primary">Explorar soluciones</button>
+        <button class="btn-secondary">Solicitar diagnostico</button>
+      </div>
+      <span class="hero-note">Diagnostico gratuito de 30 minutos</span>
+    </div>
+  </div>
+</section>
+
+<section class="metrics">
+  <div class="metrics-inner">
+    <div class="metric-item">
+      <div class="metric-value">6<span>+</span></div>
+      <div class="metric-label">Productos desplegados</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-value">29<span>K</span></div>
+      <div class="metric-label">Registros procesados</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-value">7</div>
+      <div class="metric-label">Bots RPA activos</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-value">60<span>%</span></div>
+      <div class="metric-label">Reduccion operativa</div>
+    </div>
+  </div>
+</section>
+
+<section class="solutions" id="servicios">
+  <div class="section-label">Soluciones</div>
+  <h2>Un ecosistema completo de herramientas IA</h2>
+
+  <div class="solutions-grid">
+    <div class="solution-card">
+      <div class="solution-index">01</div>
+      <div class="solution-title">BB One</div>
+      <div class="solution-subtitle">Hardware dedicado</div>
+      <div class="solution-desc">Servidor local para automatizaciones IA que no dependen de la nube. Procesamiento en sitio con privacidad total.</div>
+      <a href="#" class="solution-link">Conocer mas →</a>
+    </div>
+    <div class="solution-card">
+      <div class="solution-index">02</div>
+      <div class="solution-title">Coworkers Digitales</div>
+      <div class="solution-subtitle">Agentes de texto</div>
+      <div class="solution-desc">Agentes inteligentes en WhatsApp y Telegram que atienden, clasifican y escalan conversaciones automaticamente.</div>
+      <a href="#" class="solution-link">Conocer mas →</a>
+    </div>
+    <div class="solution-card">
+      <div class="solution-index">03</div>
+      <div class="solution-title">Voice Coworkers</div>
+      <div class="solution-subtitle">Agentes telefonicos</div>
+      <div class="solution-desc">Agentes de voz con IA que manejan llamadas entrantes y salientes con procesamiento en tiempo real.</div>
+      <a href="#" class="solution-link">Conocer mas →</a>
+    </div>
+    <div class="solution-card">
+      <div class="solution-index">04</div>
+      <div class="solution-title">Agent Pentesting</div>
+      <div class="solution-subtitle">Auditoria de seguridad</div>
+      <div class="solution-desc">Evaluacion de vulnerabilidades en tus agentes IA. 60 patrones de ataque probados contra tu infraestructura.</div>
+      <a href="#" class="solution-link">Conocer mas →</a>
+    </div>
+    <div class="solution-card">
+      <div class="solution-index">05</div>
+      <div class="solution-title">MapYourFlow.app</div>
+      <div class="solution-subtitle">Mapeo de procesos</div>
+      <div class="solution-desc">Plataforma que mapea, diagnostica y scoreda tus procesos de negocio con inteligencia artificial.</div>
+      <a href="#" class="solution-link">Conocer mas →</a>
+    </div>
+    <div class="solution-card">
+      <div class="solution-index">06</div>
+      <div class="solution-title">AI Training</div>
+      <div class="solution-subtitle">Capacitacion empresarial</div>
+      <div class="solution-desc">Programas de capacitacion en herramientas de IA. Desde nivel principiante hasta implementacion avanzada.</div>
+      <a href="#" class="solution-link">Conocer mas →</a>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="proceso">
+  <div class="section-label">Proceso</div>
+  <div class="process-grid">
+    <h2 style="font-weight:900; font-size:clamp(1.5rem,3vw,2rem); letter-spacing:-0.03em;">Flujo de<br>despliegue</h2>
+    <div class="process-steps">
+      <div>
+        <div class="process-number">01</div>
+        <div class="process-title">Diagnostico</div>
+        <div class="process-text">Evaluamos tus sistemas actuales e identificamos oportunidades de automatizacion con impacto medible.</div>
+      </div>
+      <div>
+        <div class="process-number">02</div>
+        <div class="process-title">Arquitectura</div>
+        <div class="process-text">Disenamos la infraestructura especifica para tus necesidades. Sin soluciones genericas.</div>
+      </div>
+      <div>
+        <div class="process-number">03</div>
+        <div class="process-title">Despliegue</div>
+        <div class="process-text">Implementamos en sprints de 2 semanas con entregables funcionales al final de cada ciclo.</div>
+      </div>
+      <div>
+        <div class="process-number">04</div>
+        <div class="process-title">Operacion</div>
+        <div class="process-text">Monitoreo continuo, ajustes y optimizacion. Tu infraestructura evoluciona con tu negocio.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <div class="cta-inner">
+    <div>
+      <h2>Tu infraestructura de IA deberia estar funcionando ya</h2>
+      <p>Agenda un diagnostico tecnico de 30 minutos. Te decimos exactamente que necesitas y que no.</p>
+    </div>
+    <div class="cta-actions">
+      <button class="btn-white">Iniciar diagnostico</button>
+      <button class="btn-outline-white">Contactar ventas</button>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Agentes<span>&</span>Robots</div>
+      <p class="footer-desc">Ingenieria de IA para la automatizacion empresarial. Infraestructura inteligente para la era de los agentes autonomos.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Servicios</div>
+      <a href="#">BB One</a>
+      <a href="#">Coworkers Digitales</a>
+      <a href="#">Voice Coworkers</a>
+      <a href="#">Agent Pentesting</a>
+      <a href="#">MapYourFlow.app</a>
+      <a href="#">AI Training</a>
+    </div>
+    <div>
+      <div class="footer-heading">Empresa</div>
+      <a href="#">Nosotros</a>
+      <a href="#">Casos de estudio</a>
+      <a href="#">Contacto</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Agentes&Robots. Todos los derechos reservados.</div>
+</footer>
+
+</body>
+</html>

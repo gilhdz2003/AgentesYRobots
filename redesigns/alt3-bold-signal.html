@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alt 3: Bold Signal — Agentes&Robots</title>
+<meta name="description" content="Infraestructura de IA empresarial">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #08080e;
+  --bg-elevated: #101018;
+  --bg-surface: #16161f;
+  --text: #eaeaf0;
+  --text-secondary: #a0a0b0;
+  --text-muted: #5a5a6e;
+  --accent: #e84530;
+  --accent-soft: #e8453018;
+  --accent-muted: #e8453040;
+  --accent-glow: #e8453015;
+  --warm: #f5c542;
+  --border: #22222e;
+  --font-display: 'Archivo Narrow', sans-serif;
+  --font-body: 'Work Sans', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+  mix-blend-mode: difference;
+}
+
+.nav-inner {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover { color: #fff; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 clamp(1.5rem, 4vw, 4rem) clamp(4rem, 8vh, 6rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 30%, var(--accent-glow), transparent),
+    radial-gradient(ellipse 60% 50% at 20% 80%, #1a1a4020, transparent);
+  z-index: 0;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.3;
+  mask-image: radial-gradient(ellipse 70% 70% at center, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, black 20%, transparent 70%);
+}
+
+.hero-content {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 3rem;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(5rem, 12vw, 10rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  max-width: 1100px;
+  margin-bottom: 3rem;
+}
+
+.hero h1 em {
+  font-style: normal;
+  -webkit-text-stroke: 2px var(--accent);
+  color: transparent;
+}
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .hero-bottom { grid-template-columns: 1fr; }
+  .hero h1 { font-size: clamp(3rem, 12vw, 5rem); }
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-weight: 400;
+  max-width: 500px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.btn-accent {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 16px 36px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--accent-muted);
+}
+
+.btn-outline {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 16px 36px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.btn-outline:hover { border-color: var(--text-muted); }
+
+/* ── SOLUTIONS BENTO ── */
+.solutions {
+  padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.section-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+}
+
+.solutions h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  max-width: 600px;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1px;
+  background: var(--border);
+}
+
+@media (max-width: 900px) {
+  .bento-grid { grid-template-columns: 1fr; }
+}
+
+.bento-item {
+  background: var(--bg);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.bento-item:hover {
+  background: var(--bg-elevated);
+}
+
+.bento-item.large {
+  grid-column: span 2;
+  grid-row: span 1;
+  padding: 3rem;
+}
+
+@media (max-width: 900px) {
+  .bento-item.large { grid-column: span 1; }
+}
+
+.bento-index {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+}
+
+.bento-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.bento-subtitle {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.bento-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+.bento-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.bento-link:hover { opacity: 0.7; }
+
+.bento-deco {
+  position: absolute;
+  right: -30px;
+  bottom: -30px;
+  font-family: var(--font-display);
+  font-size: 10rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.04;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* ── PROCESS TIMELINE ── */
+.process {
+  padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.timeline {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .timeline { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+
+.timeline-item {
+  padding: 2.5rem;
+  border-left: 1px solid var(--border);
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: absolute;
+  left: -4px;
+  top: 2.5rem;
+}
+
+.timeline-number {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.15;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.timeline-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+}
+
+.timeline-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── CTA ── */
+.cta {
+  margin: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+}
+
+.cta-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 80% 50%, rgba(0,0,0,0.2), transparent);
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+  padding: clamp(4rem, 8vh, 6rem) clamp(2rem, 5vw, 5rem);
+}
+
+.cta h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: #fff;
+  max-width: 700px;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.cta p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.75);
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-ghost-white {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 16px 36px;
+  background: #fff;
+  color: var(--accent);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-outline-white {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 16px 36px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+}
+
+/* ── FOOTER ── */
+.footer {
+  padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+}
+
+@media (max-width: 768px) {
+  .footer-inner { grid-template-columns: 1fr; }
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.footer-brand span { color: var(--accent); }
+
+.footer-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 320px;
+}
+
+.footer-heading {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.footer a {
+  display: block;
+  font-size: 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+  transition: color 0.15s;
+}
+
+.footer a:hover { color: var(--accent); }
+
+.footer-copy {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* ── ALT LABEL ── */
+.alt-label {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 200;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 6px 12px;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<div class="alt-label">Alt 3: Bold Signal</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Agentes<span>&</span>Robots</a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Infraestructura de IA</div>
+    <h1>Construimos<br><em>futuro</em><br>operativo</h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">Diseñamos y desplegamos sistemas de IA que procesan datos reales, automatizan operaciones complejas y generan resultados medibles desde el primer sprint.</p>
+      <div class="hero-actions">
+        <button class="btn-accent">Explorar soluciones</button>
+        <button class="btn-outline">Solicitar diagnostico</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="solutions" id="servicios">
+  <div class="section-header">
+    <div>
+      <div class="section-label">06 Soluciones</div>
+      <h2>Ecosistema<br>completo</h2>
+    </div>
+  </div>
+
+  <div class="bento-grid">
+    <div class="bento-item large">
+      <div class="bento-index">01</div>
+      <div class="bento-title">BB One</div>
+      <div class="bento-subtitle">Hardware dedicado</div>
+      <div class="bento-desc">Servidor local para automatizaciones IA que no dependen de la nube. Procesamiento en sitio con privacidad total y latencia minima.</div>
+      <a href="#" class="bento-link">Ver detalle</a>
+      <div class="bento-deco">BB</div>
+    </div>
+    <div class="bento-item">
+      <div class="bento-index">02</div>
+      <div class="bento-title">Coworkers</div>
+      <div class="bento-subtitle">Agentes de texto</div>
+      <div class="bento-desc">Agentes inteligentes en WhatsApp y Telegram que atienden, clasifican y escalan.</div>
+      <a href="#" class="bento-link">Ver detalle</a>
+    </div>
+    <div class="bento-item">
+      <div class="bento-index">03</div>
+      <div class="bento-title">Voice</div>
+      <div class="bento-subtitle">Agentes telefonicos</div>
+      <div class="bento-desc">Agentes de voz con IA que manejan llamadas con procesamiento en tiempo real.</div>
+      <a href="#" class="bento-link">Ver detalle</a>
+    </div>
+    <div class="bento-item">
+      <div class="bento-index">04</div>
+      <div class="bento-title">Pentesting</div>
+      <div class="bento-subtitle">Auditoria de seguridad</div>
+      <div class="bento-desc">Evaluacion de vulnerabilidades en agentes IA. 60 patrones de ataque probados.</div>
+      <a href="#" class="bento-link">Ver detalle</a>
+    </div>
+    <div class="bento-item large">
+      <div class="bento-index">05</div>
+      <div class="bento-title">MapYourFlow.app</div>
+      <div class="bento-subtitle">Mapeo de procesos con scoring</div>
+      <div class="bento-desc">Plataforma que mapea, diagnostica y scoreda tus procesos de negocio con inteligencia artificial. Desplegado y operativo.</div>
+      <a href="#" class="bento-link">Ver detalle</a>
+      <div class="bento-deco">MYF</div>
+    </div>
+    <div class="bento-item">
+      <div class="bento-index">06</div>
+      <div class="bento-title">Training</div>
+      <div class="bento-subtitle">Capacitacion empresarial</div>
+      <div class="bento-desc">Programas de capacitacion en herramientas de IA para todos los niveles.</div>
+      <a href="#" class="bento-link">Ver detalle</a>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="proceso">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Flujo</div>
+      <h2>Despliegue</h2>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-number">01</div>
+      <div class="timeline-title">Diagnostico</div>
+      <div class="timeline-text">Evaluamos tus sistemas actuales e identificamos oportunidades con impacto medible.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-number">02</div>
+      <div class="timeline-title">Arquitectura</div>
+      <div class="timeline-text">Disenamos la infraestructura especifica para tus necesidades. Sin soluciones genericas.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-number">03</div>
+      <div class="timeline-title">Despliegue</div>
+      <div class="timeline-text">Implementamos en sprints de 2 semanas con entregables funcionables por ciclo.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-number">04</div>
+      <div class="timeline-title">Operacion</div>
+      <div class="timeline-text">Monitoreo continuo, ajustes y optimizacion. Tu infraestructura evoluciona.</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-content">
+    <h2>Tu infraestructura<br>de IA deberia estar<br>funcionando ya</h2>
+    <p>Agenda un diagnostico tecnico de 30 minutos. Te decimos exactamente que necesitas y que no.</p>
+    <div class="cta-actions">
+      <button class="btn-ghost-white">Iniciar diagnostico</button>
+      <button class="btn-outline-white">Contactar ventas</button>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Agentes<span>&</span>Robots</div>
+      <p class="footer-desc">Ingenieria de IA para la automatizacion empresarial. Infraestructura inteligente para la era de los agentes autonomos.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Servicios</div>
+      <a href="#">BB One</a>
+      <a href="#">Coworkers Digitales</a>
+      <a href="#">Voice Coworkers</a>
+      <a href="#">Agent Pentesting</a>
+      <a href="#">MapYourFlow.app</a>
+      <a href="#">AI Training</a>
+    </div>
+    <div>
+      <div class="footer-heading">Empresa</div>
+      <a href="#">Nosotros</a>
+      <a href="#">Casos de estudio</a>
+      <a href="#">Contacto</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Agentes&Robots. Todos los derechos reservados.</div>
+</footer>
+
+</body>
+</html>

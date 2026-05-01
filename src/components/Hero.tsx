@@ -34,7 +34,7 @@ export default function Hero() {
           <div className="flex flex-wrap gap-5">
             <motion.button
               whileHover={{ scale: 1.02 }}
-              className="px-8 py-4 bg-brand-accent text-brand-bg font-bold tracking-wide rounded-md"
+              className="px-8 py-4 bg-brand-amber text-brand-bg font-bold tracking-wide rounded-md"
             >
               EXPLORAR SOLUCIONES
             </motion.button>
@@ -66,7 +66,7 @@ export default function Hero() {
           <div className="absolute -bottom-6 -left-6 px-6 py-4 glass-premium rounded-xl">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[12px] font-bold tracking-wider uppercase">Live Ops Terminal</span>
+              <span className="text-[12px] font-bold tracking-wider uppercase text-gray-300">Operación activa</span>
             </div>
           </div>
         </motion.div>

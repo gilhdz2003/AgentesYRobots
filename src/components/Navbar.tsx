@@ -56,7 +56,7 @@ export default function Navbar() {
           <Link to="/contacto">
             <motion.span
               whileHover={{ scale: 1.02 }}
-              className="inline-block px-6 py-2.5 bg-brand-accent text-brand-bg font-bold text-[12px] rounded-md tracking-wider shadow-lg shadow-brand-accent/20 cursor-pointer"
+              className="inline-block px-6 py-2.5 bg-brand-amber text-brand-bg font-bold text-[12px] rounded-md tracking-wider shadow-lg shadow-brand-amber/20 cursor-pointer"
             >
               COMENZAR
             </motion.span>
@@ -102,7 +102,7 @@ export default function Navbar() {
 
           <Link
             to="/contacto"
-            className="bg-brand-accent text-brand-bg font-display text-xs font-bold px-6 py-3 rounded-md tracking-widest text-center mt-2"
+            className="bg-brand-amber text-brand-bg font-display text-xs font-bold px-6 py-3 rounded-md tracking-widest text-center mt-2"
             onClick={() => setIsOpen(false)}
           >
             COMENZAR

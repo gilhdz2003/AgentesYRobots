@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alt 1: Terminal Authority — Agentes&Robots</title>
+<meta name="description" content="Infraestructura de IA empresarial">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&family=Libre+Franklin:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0c0c0c;
+  --bg-elevated: #161616;
+  --bg-surface: #1c1c1c;
+  --text: #e8e4de;
+  --text-muted: #7a756d;
+  --text-dim: #4a4640;
+  --accent: #d4920a;
+  --accent-soft: #d4920a20;
+  --accent-muted: #d4920a40;
+  --border: #2a2724;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Libre Franklin', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent-muted);
+  color: var(--accent);
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+}
+
+.nav-inner {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.nav-cta:hover { opacity: 0.85; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* ── HERO ── */
+.hero {
+  padding: clamp(8rem, 15vh, 12rem) clamp(1.5rem, 4vw, 4rem) clamp(4rem, 8vh, 6rem);
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+}
+
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero h1 {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover { opacity: 0.85; }
+
+.btn-ghost {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.btn-ghost:hover { border-color: var(--text-muted); }
+
+/* Terminal window */
+.terminal {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.terminal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.terminal-dot:nth-child(1) { background: #5c5040; }
+.terminal-dot:nth-child(2) { background: #5c5040; }
+.terminal-dot:nth-child(3) { background: #5c5040; }
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-left: 8px;
+}
+
+.terminal-body {
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+.terminal-body .prompt { color: var(--accent); }
+.terminal-body .cmd { color: var(--text); }
+.terminal-body .output { color: var(--text-dim); }
+.terminal-body .highlight { color: var(--accent); }
+
+.terminal-status {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.stat-block {
+  text-align: center;
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.stat-value span { color: var(--accent); }
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* ── SOLUTIONS ── */
+.solutions {
+  padding: clamp(4rem, 8vh, 6rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.solutions-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.solutions-header h2 {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.03em;
+}
+
+.solutions-header h2 span { color: var(--accent); }
+
+.solutions-count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+.solution-table {
+  width: 100%;
+}
+
+.solution-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr 80px;
+  gap: 2rem;
+  align-items: center;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.solution-row:hover {
+  background: var(--accent-soft);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+@media (max-width: 768px) {
+  .solution-row {
+    grid-template-columns: 40px 1fr;
+    gap: 0.5rem;
+  }
+  .solution-desc, .solution-link { display: none; }
+}
+
+.solution-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.solution-title {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.solution-subtitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.solution-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.solution-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  text-align: right;
+  transition: opacity 0.2s;
+}
+
+.solution-link:hover { opacity: 0.7; }
+
+/* ── PROCESS ── */
+.process {
+  padding: clamp(4rem, 8vh, 6rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .process-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.process-step {
+  background: var(--bg);
+  padding: 2.5rem;
+}
+
+.process-number {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+}
+
+.process-title {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.process-text {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ── CTA ── */
+.cta {
+  margin: clamp(4rem, 8vh, 6rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--accent);
+  padding: clamp(4rem, 8vh, 6rem) clamp(2rem, 5vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '>';
+  position: absolute;
+  right: -20px;
+  top: -40px;
+  font-family: var(--font-mono);
+  font-size: 20rem;
+  font-weight: 800;
+  color: var(--bg);
+  opacity: 0.06;
+  line-height: 1;
+}
+
+.cta h2 {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--bg);
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  position: relative;
+}
+
+.cta p {
+  font-size: 1.1rem;
+  color: var(--bg);
+  opacity: 0.7;
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+  position: relative;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.btn-dark {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  background: var(--bg);
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-outline-dark {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  background: transparent;
+  color: var(--bg);
+  border: 1px solid var(--bg);
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+/* ── FOOTER ── */
+.footer {
+  padding: clamp(3rem, 6vh, 4rem) clamp(1.5rem, 4vw, 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+}
+
+@media (max-width: 768px) {
+  .footer-inner { grid-template-columns: 1fr; }
+}
+
+.footer-brand {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-brand span { color: var(--accent); }
+
+.footer-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 320px;
+}
+
+.footer-heading {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.footer a {
+  display: block;
+  font-size: 13px;
+  color: var(--text-dim);
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+  transition: color 0.2s;
+}
+
+.footer a:hover { color: var(--accent); }
+
+.footer-copy {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+/* ── ALT LABEL ── */
+.alt-label {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 200;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 6px 12px;
+}
+</style>
+</head>
+<body>
+
+<div class="alt-label">ALT 1: TERMINAL AUTHORITY</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">agentes<span>&</span>robots</a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#contacto" class="nav-cta">Iniciar</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-label">Infraestructura de IA</div>
+    <h1>Construimos la<br><em>columna vertebral</em><br>de tu empresa</h1>
+    <p class="hero-desc">No vendemos charlas sobre IA. Desplegamos infraestructura que procesa datos, automatiza operaciones y genera resultados medibles desde el primer sprint.</p>
+    <div class="hero-actions">
+      <button class="btn-primary">Ver soluciones</button>
+      <button class="btn-ghost">Solicitar diagnostico</button>
+    </div>
+  </div>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="terminal-dot"></div>
+      <div class="terminal-dot"></div>
+      <div class="terminal-dot"></div>
+      <span class="terminal-title">agentes-robots-cli v2.6.0</span>
+    </div>
+    <div class="terminal-body">
+      <div><span class="prompt">$</span> <span class="cmd">ar deploy --env=production</span></div>
+      <div class="output">Verificando infraestructura...</div>
+      <div class="output"><span class="highlight">✓</span> 6 modulos desplegados</div>
+      <div class="output"><span class="highlight">✓</span> 29,062 registros procesados</div>
+      <div class="output"><span class="highlight">✓</span> 7 bots RPA monitoreados</div>
+      <div class="output"><span class="highlight">✓</span> Latencia: 12ms avg</div>
+      <div class="output" style="margin-top:0.5rem; color:var(--accent);">Status: OPERATIVO</div>
+
+      <div class="terminal-status">
+        <div class="stat-block">
+          <div class="stat-value">6<span>+</span></div>
+          <div class="stat-label">Productos</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-value">29<span>K</span></div>
+          <div class="stat-label">Registros</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-value">60<span>%</span></div>
+          <div class="stat-label">Reduccion</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="solutions" id="servicios">
+  <div class="solutions-header">
+    <h2>Soluciones <span>desplegadas</span></h2>
+    <span class="solutions-count">06 MODULOS</span>
+  </div>
+
+  <div class="solution-table">
+    <div class="solution-row">
+      <span class="solution-index">01</span>
+      <div>
+        <div class="solution-title">BB One</div>
+        <div class="solution-subtitle">Hardware dedicado</div>
+      </div>
+      <span class="solution-desc">Servidor local para automatizaciones IA que no dependen de la nube. Procesamiento en sitio con privacidad total.</span>
+      <a href="#" class="solution-link">DETALLE →</a>
+    </div>
+
+    <div class="solution-row">
+      <span class="solution-index">02</span>
+      <div>
+        <div class="solution-title">Coworkers Digitales</div>
+        <div class="solution-subtitle">Agentes de texto</div>
+      </div>
+      <span class="solution-desc">Agentes inteligentes en WhatsApp y Telegram que atienden, clasifican y escalan conversaciones.</span>
+      <a href="#" class="solution-link">DETALLE →</a>
+    </div>
+
+    <div class="solution-row">
+      <span class="solution-index">03</span>
+      <div>
+        <div class="solution-title">Voice Coworkers</div>
+        <div class="solution-subtitle">Agentes telefonicos</div>
+      </div>
+      <span class="solution-desc">Agentes de voz con IA que manejan llamadas entrantes y salientes con procesamiento en tiempo real.</span>
+      <a href="#" class="solution-link">DETALLE →</a>
+    </div>
+
+    <div class="solution-row">
+      <span class="solution-index">04</span>
+      <div>
+        <div class="solution-title">Agent Pentesting</div>
+        <div class="solution-subtitle">Auditoria de seguridad</div>
+      </div>
+      <span class="solution-desc">Evaluacion de vulnerabilidades en tus agentes IA. 60 patrones de ataque probados contra tu infraestructura.</span>
+      <a href="#" class="solution-link">DETALLE →</a>
+    </div>
+
+    <div class="solution-row">
+      <span class="solution-index">05</span>
+      <div>
+        <div class="solution-title">MapYourFlow.app</div>
+        <div class="solution-subtitle">Mapeo de procesos</div>
+      </div>
+      <span class="solution-desc">Plataforma que mapea, diagnostica y scoreda tus procesos de negocio con inteligencia artificial.</span>
+      <a href="#" class="solution-link">DETALLE →</a>
+    </div>
+
+    <div class="solution-row">
+      <span class="solution-index">06</span>
+      <div>
+        <div class="solution-title">AI Training</div>
+        <div class="solution-subtitle">Capacitacion</div>
+      </div>
+      <span class="solution-desc">Programas de capacitacion empresarial en herramientas de IA. Desde principiantes hasta implementacion avanzada.</span>
+      <a href="#" class="solution-link">DETALLE →</a>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="proceso">
+  <div class="solutions-header">
+    <h2>Flujo de <span>despliegue</span></h2>
+    <span class="solutions-count">04 ETAPAS</span>
+  </div>
+
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="process-number">PASO 01</div>
+      <div class="process-title">Diagnostico</div>
+      <div class="process-text">Evaluamos tus sistemas actuales e identificamos oportunidades de automatizacion con impacto medible.</div>
+    </div>
+    <div class="process-step">
+      <div class="process-number">PASO 02</div>
+      <div class="process-title">Arquitectura</div>
+      <div class="process-text">Disenamos la infraestructura especifica para tus necesidades. Sin soluciones genericas.</div>
+    </div>
+    <div class="process-step">
+      <div class="process-number">PASO 03</div>
+      <div class="process-title">Despliegue</div>
+      <div class="process-text">Implementamos en sprints de 2 semanas con entregables funcionales al final de cada ciclo.</div>
+    </div>
+    <div class="process-step">
+      <div class="process-number">PASO 04</div>
+      <div class="process-title">Operacion</div>
+      <div class="process-text">Monitoreo continuo, ajustes y optimizacion. Tu infraestructura evoluciona con tu negocio.</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <h2>Tu infraestructura de IA deberia estar funcionando ya</h2>
+  <p>Agenda un diagnostico tecnico de 30 minutos. Te decimos exactamente que necesitas y que no.</p>
+  <div class="cta-actions">
+    <button class="btn-dark">Iniciar diagnostico</button>
+    <button class="btn-outline-dark">Contactar ventas</button>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">agentes<span>&</span>robots</div>
+      <p class="footer-desc">Ingenieria de IA para la automatizacion empresarial. Infraestructura inteligente para la era de los agentes autonomos.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Servicios</div>
+      <a href="#">BB One</a>
+      <a href="#">Coworkers Digitales</a>
+      <a href="#">Voice Coworkers</a>
+      <a href="#">Agent Pentesting</a>
+      <a href="#">MapYourFlow.app</a>
+      <a href="#">AI Training</a>
+    </div>
+    <div>
+      <div class="footer-heading">Empresa</div>
+      <a href="#">Nosotros</a>
+      <a href="#">Casos de estudio</a>
+      <a href="#">Contacto</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Agentes&Robots. Todos los derechos reservados.</div>
+</footer>
+
+</body>
+</html>
