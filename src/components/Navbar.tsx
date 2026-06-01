@@ -13,6 +13,7 @@ const productLinks = [
 ];
 
 const navLinks = [
+  { label: "CASOS", href: "/casos" },
   { label: "NOSOTROS", href: "/nosotros" },
   { label: "CONTACTO", href: "/contacto" },
 ];
