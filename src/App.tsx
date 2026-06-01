@@ -13,6 +13,7 @@ import Stats from "./components/Stats";
 import SocialProof from "./components/SocialProof";
 import FAQ from "./components/FAQ";
 import CTA from "./components/CTA";
+import PortfolioSection from "./components/PortfolioSection";
 import Footer from "./components/Footer";
 import SEO, { websiteSchema } from "./components/SEO";
 import ScrollToTop from "./components/ScrollToTop";
@@ -43,6 +44,7 @@ function HomePage() {
       <Process />
       <Stats />
       <SocialProof />
+      <PortfolioSection />
       <FAQ />
       <CTA />
     </>

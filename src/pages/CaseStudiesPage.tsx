@@ -2,6 +2,8 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import SEO, { breadcrumbSchema } from "../components/SEO";
+import ProjectGrid from "../components/ProjectGrid";
+import { gridProjects } from "../data/projects";
 
 const cases = [
   {
@@ -226,6 +228,22 @@ export default function CaseStudiesPage() {
               </div>
             </motion.article>
           ))}
+        </div>
+      </section>
+
+      {/* Grid filtrable - Catálogo completo */}
+      <section className="pb-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-2 mb-6">
+            <div className="w-8 h-[2px] bg-brand-accent" />
+            <span className="label-tech text-brand-accent">
+              CATÁLOGO COMPLETO // {gridProjects.length}
+            </span>
+          </div>
+          <h2 className="font-display text-4xl font-black tracking-tight text-white uppercase mb-12">
+            Más Soluciones
+          </h2>
+          <ProjectGrid projects={gridProjects} />
         </div>
       </section>
 
