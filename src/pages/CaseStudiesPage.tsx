@@ -56,6 +56,57 @@ const cases = [
     stack: "Python, ZKTeco SDK, PyInstaller",
     link: undefined,
   },
+  {
+    id: "sonara-mapyourflow",
+    title: "SONARA — Diagnóstico Operativo",
+    client: "SONARA",
+    category: "MapYourFlow",
+    challenge:
+      "SONARA necesitaba documentar y optimizar sus procesos operativos pero no tenía un método estructurado para identificar cuellos de botella ni medir la eficiencia de cada área de la empresa.",
+    solution:
+      "Implementación de MapYourFlow para mapeo de 8 procesos críticos con scoring IA. Diagnóstico completo que identificó áreas de mejora prioritarias y generó un plan de optimización con ROI estimado.",
+    metrics: [
+      "Score 76/100 en diagnóstico operativo",
+      "8 procesos críticos mapeados",
+      "ROI estimado 3.2x en el primer año",
+    ],
+    stack: "Next.js 15, Supabase, Zai AI, Drizzle ORM",
+    link: "https://mapyourflowapp.vercel.app",
+  },
+  {
+    id: "voice-agent-konectify",
+    title: "Voice Agent Wendy",
+    client: "Konectify",
+    category: "Voice Coworkers",
+    challenge:
+      "Konectify recibía prospectos por múltiples canales sin un sistema unificado de captura. Los leads entrantes por teléfono no se registraban automáticamente y se perdían oportunidades de negocio.",
+    solution:
+      "Pipeline de agente de voz con FreeSWITCH + Deepgram STT + Gemini LLM + Cartesia TTS. La agente Wendy contesta llamadas, diagnostica necesidades del prospecto y captura datos en 12 turnos de conversación.",
+    metrics: [
+      "Latencia reducida de ~5s a ~2.5-3.5s",
+      "12 turnos de conversación automatizados",
+      "Captura de datos sin intervención humana",
+    ],
+    stack: "FreeSWITCH, Deepgram, Gemini 2.5 Flash, Cartesia TTS",
+    link: undefined,
+  },
+  {
+    id: "pentesting-fintech",
+    title: "Auditoría de Seguridad IA",
+    client: "Fintech",
+    category: "Agent Pentesting",
+    challenge:
+      "Una fintech desplegaba agentes de IA con LLMs sin evaluación de seguridad previa. Necesitaban identificar vulnerabilidades de prompt injection, data leakage y jailbreaks antes de salir a producción.",
+    solution:
+      "Auditoría completa con 60 patrones de prompt injection en 7 categorías. Evaluación de robustez del agente, identificación de vectores de ataque y recomendaciones de hardening específicas para su stack.",
+    metrics: [
+      "12 vulnerabilidades identificadas",
+      "3 clasificadas como críticas",
+      "60 patrones de ataque evaluados",
+    ],
+    stack: "Custom pentesting framework, Python",
+    link: undefined,
+  },
 ];
 
 export default function CaseStudiesPage() {
