@@ -33,4 +33,23 @@
   .label-tech {
     @apply text-[10px] uppercase tracking-[0.4em] font-bold;
   }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #F59E0B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-subtle {
+    background: linear-gradient(135deg, #ffffff 30%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.2) 50%, transparent 100%);
+  }
 }

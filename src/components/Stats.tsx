@@ -1,36 +1,48 @@
 import { motion } from "motion/react";
+import AnimatedCounter from "./ui/AnimatedCounter";
+import { scaleIn, staggerContainer, sectionTransition } from "../utils/animations";
 
 const stats = [
-  { value: "6", label: "Productos desplegados", unit: "" },
-  { value: "29K", label: "Registros procesados", unit: "+" },
-  { value: "7", label: "Bots RPA monitoreados", unit: "" },
-  { value: "60", label: "Reducción en tiempo operativo", unit: "%" },
+  { value: 6, label: "Productos desplegados", suffix: "" },
+  { value: 29, label: "Registros procesados", suffix: "", formatValue: (v: number) => `${Math.round(v)}K+` },
+  { value: 7, label: "Bots RPA monitoreados", suffix: "" },
+  { value: 60, label: "Reducción en tiempo operativo", suffix: "%" },
 ];
 
 export default function Stats() {
   return (
-    <section className="py-24 px-6 border-y border-white/5">
+    <section className="py-24 px-6">
+      <div className="section-divider mb-24" />
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={sectionTransition}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-8"
+        >
+          {stats.map((stat) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              variants={scaleIn}
               className="text-center"
             >
               <div className="font-display text-5xl md:text-6xl font-black text-white mb-3">
-                {stat.value}
-                <span className="text-brand-accent">{stat.unit}</span>
+                <AnimatedCounter
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  formatValue={stat.formatValue}
+                  duration={2}
+                  delay={0.2}
+                />
               </div>
               <div className="text-[11px] font-bold tracking-widest text-gray-500 uppercase">
                 {stat.label}
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

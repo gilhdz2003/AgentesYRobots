@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { scaleIn, sectionTransition } from "../utils/animations";
 
 export default function CTA() {
   return (
@@ -7,9 +8,11 @@ export default function CTA() {
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,transparent_0%,black_40%)] opacity-20" />
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
+          transition={sectionTransition}
           className="relative z-10"
         >
           <h2 className="font-serif text-5xl md:text-7xl italic tracking-tighter mb-10 leading-[0.9] text-brand-bg">

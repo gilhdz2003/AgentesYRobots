@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Quote, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { fadeInUp, staggerContainer, sectionTransition } from "../utils/animations";
 
 const testimonials = [
   {
@@ -30,32 +31,43 @@ export default function SocialProof() {
   return (
     <section className="py-32 px-6 bg-slate-900/20">
       <div className="max-w-7xl mx-auto">
-        <div className="max-w-xl mb-16">
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={sectionTransition}
+          className="max-w-xl mb-16"
+        >
           <div className="flex items-center gap-2 mb-6">
             <div className="w-8 h-[2px] bg-brand-accent" />
             <span className="label-tech text-brand-accent">
               Resultados // 03
             </span>
           </div>
-          <h2 className="font-display text-5xl font-black tracking-tight text-white uppercase mb-6">
+          <h2 className="font-display text-5xl font-black tracking-tight gradient-text-subtle uppercase mb-6">
             Proyectos<br />en producción
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, index) => (
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={sectionTransition}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
+          {testimonials.map((t) => (
             <motion.article
               key={t.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15 }}
+              variants={fadeInUp}
               className="p-8 rounded-2xl enterprise-border bg-slate-900/40 flex flex-col"
             >
               <Quote className="text-brand-accent/30 mb-6" size={32} />
 
               <blockquote className="text-gray-300 text-sm leading-relaxed font-medium mb-8 flex-grow">
-                "{t.quote}"
+                &ldquo;{t.quote}&rdquo;
               </blockquote>
 
               <div className="pt-6 border-t border-white/5">
@@ -69,7 +81,7 @@ export default function SocialProof() {
               </div>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
 
         <div className="mt-12 text-center">
           <Link

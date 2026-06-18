@@ -9,3 +9,8 @@ coverage/
 tsconfig.tsbuildinfo
 *.png
 .playwright-mcp/
+
+# Privado — NO commitear (repo público gilhdz2003/AgentesYRobots)
+planes comerciales*.md
+Survey*.pdf
+.agents/

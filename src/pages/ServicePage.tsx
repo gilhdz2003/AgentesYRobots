@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence } from "motion/react";
 import SEO, { serviceSchema, breadcrumbSchema } from "../components/SEO";
+import { PricingSection } from "../components/pricing/PricingSection";
 import { getServiceBySlug } from "../data/services";
 
 function FAQAccordion({
@@ -280,8 +281,16 @@ export default function ServicePage() {
         </div>
       </section>
 
+      {/* Pricing */}
+      {service.pricing && (
+        <PricingSection
+          pricing={service.pricing}
+          serviceSlug={service.slug}
+        />
+      )}
+
       {/* FAQ */}
-      <section className="py-32 px-6">
+      <section className={`py-32 px-6 ${service.pricing ? "bg-slate-900/20" : ""}`}>
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <div className="w-8 h-[2px] bg-brand-accent" />

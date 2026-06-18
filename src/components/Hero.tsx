@@ -1,14 +1,85 @@
+import { useRef, useEffect } from "react";
 import { motion } from "motion/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { fadeInLeft, fadeInRight } from "../utils/animations";
+import { prefersReducedMotion, isMobileWidth } from "../utils/accessibility";
+import ParticleField from "./ui/ParticleField";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (prefersReducedMotion || isMobileWidth() || !sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Parallax: blobs drift slower than content (0.5x)
+      gsap.to(".hero-blob", {
+        yPercent: -30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      // Parallax: image moves at 0.7x speed
+      if (imageRef.current) {
+        gsap.to(imageRef.current, {
+          yPercent: -15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden px-6">
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-accent/10 blur-[150px] -z-10 rounded-full" />
+    <section
+      ref={sectionRef}
+      className="hero-section relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden px-6"
+    >
+      {/* Layer 0: Animated gradient mesh background */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <motion.div
+          className="hero-blob absolute -top-[10%] -right-[5%] w-[500px] h-[500px] rounded-full bg-brand-accent/15 blur-[120px] md:w-[600px] md:h-[600px]"
+          animate={{ x: [0, 40, -20, 0], y: [0, -30, 20, 0] }}
+          transition={{ duration: 12, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+        />
+        <motion.div
+          className="hero-blob absolute -bottom-[10%] -left-[5%] w-[400px] h-[400px] rounded-full bg-brand-amber/10 blur-[100px] md:w-[500px] md:h-[500px]"
+          animate={{ x: [0, -30, 30, 0], y: [0, 20, -30, 0] }}
+          transition={{ duration: 15, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+        />
+        <motion.div
+          className="hero-blob absolute top-[30%] left-[20%] w-[300px] h-[300px] rounded-full bg-purple-500/8 blur-[80px] md:w-[400px] md:h-[400px]"
+          animate={{ x: [0, 20, -10, 0], y: [0, -15, 15, 0] }}
+          transition={{ duration: 10, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+        />
+      </div>
+
+      {/* Layer 1: Particle constellation */}
+      <ParticleField />
 
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          ref={contentRef}
+          variants={fadeInLeft}
+          initial="hidden"
+          animate="visible"
           transition={{ duration: 0.8 }}
         >
           <motion.div
@@ -22,7 +93,7 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          <h1 className="font-serif text-7xl lg:text-9xl italic tracking-tighter leading-none mb-10 text-white">
+          <h1 className="font-serif text-7xl lg:text-9xl italic tracking-tighter leading-none mb-10 gradient-text">
             Inteligencia<br />
             Operativa
           </h1>
@@ -47,8 +118,10 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
+          ref={imageRef}
+          variants={fadeInRight}
+          initial="hidden"
+          animate="visible"
           transition={{ duration: 1, delay: 0.2 }}
           className="relative hidden lg:block"
         >

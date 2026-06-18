@@ -6,7 +6,12 @@ import {
   Shield,
   Map,
   GraduationCap,
+  Receipt,
+  CreditCard,
+  BarChart3,
+  Calculator,
 } from "lucide-react";
+import type { ServicePricing } from "../components/pricing/PricingSection";
 
 export interface ServiceFeature {
   title: string;
@@ -41,6 +46,7 @@ export interface Service {
   process: ServiceProcessStep[];
   useCase: ServiceUseCase;
   faq: ServiceFAQ[];
+  pricing?: ServicePricing;
 }
 
 export const services: Service[] = [
@@ -134,6 +140,189 @@ export const services: Service[] = [
         a: "Incluimos respaldo automático de configuración y modelos. Si el hardware necesita reemplazo, desplegamos uno nuevo con tu configuración restaurada en menos de 24 horas.",
       },
     ],
+    pricing: {
+      model: "modular",
+      sectionTitle: "Inversión en Automatización",
+      sectionSubtitle:
+        "Un Hub en tu oficina + empleados virtuales según la complejidad de tus procesos.",
+      hubPrice: { min: 1500, max: 1500, suffix: "/mes" },
+      hubDescription:
+        "El servidor local donde viven y trabajan tus empleados virtuales administrativos.",
+      implementationTiers: [
+        {
+          tierName: "Básica",
+          tierSlug: "basica",
+          description: "1 sistema, flujo corto, pocas reglas.",
+          setupPrice: {
+            min: 5000,
+            max: 8000,
+            suffix: " (único)",
+          },
+          features: [
+            { text: "Descarga de reportes y envío por correo", included: true },
+            { text: "Carga de archivos a portales", included: true },
+            { text: "Tareas simples sin excepciones", included: true },
+            { text: "Baja frecuencia de ejecución", included: true },
+          ],
+        },
+        {
+          tierName: "Intermedia",
+          tierSlug: "intermedia",
+          description: "2-3 sistemas, facturación o cobranza.",
+          setupPrice: {
+            min: 12000,
+            max: 20000,
+            suffix: " (único)",
+          },
+          features: [
+            {
+              text: "Generación de CFDI y envío por correo",
+              included: true,
+            },
+            { text: "Recordatorios de pago y cobranza", included: true },
+            { text: "Consolidación de reportes multi-sistema", included: true },
+            {
+              text: "Reglas de negocio con validaciones",
+              included: true,
+            },
+            { text: "Reintentos automáticos y logs", included: true },
+          ],
+          highlight: true,
+        },
+        {
+          tierName: "Avanzada",
+          tierSlug: "avanzada",
+          description: "3+ sistemas, conciliación, flujos complejos.",
+          setupPrice: {
+            min: 25000,
+            max: 45000,
+            suffix: " (único)",
+            openEnded: true,
+          },
+          features: [
+            {
+              text: "Conciliación bancaria/contable multi-fuente",
+              included: true,
+            },
+            { text: "Cobranza integral multicanal", included: true },
+            {
+              text: "Flujos completos de punta a punta",
+              included: true,
+            },
+            {
+              text: "Manejo de errores y alertas en tiempo real",
+              included: true,
+            },
+            { text: "Reportes de KPIs y monitoreo crítico", included: true },
+          ],
+        },
+      ],
+      rentTiers: [
+        {
+          tierName: "Nivel 1",
+          tierSlug: "renta-basica",
+          description: "Monitoreo básico, 1 ajuste menor/mes.",
+          monthlyPrice: { min: 700, max: 1000, suffix: "/mes" },
+          features: [
+            { text: "Monitoreo de disponibilidad", included: true },
+            { text: "1 ajuste menor mensual", included: true },
+            { text: "Alertas por fallas", included: true },
+          ],
+        },
+        {
+          tierName: "Nivel 2",
+          tierSlug: "renta-intermedia",
+          description: "Alertas, 2-3 ajustes, revisión trimestral.",
+          monthlyPrice: { min: 1500, max: 2500, suffix: "/mes" },
+          features: [
+            { text: "Monitoreo y alertas proactivas", included: true },
+            { text: "2-3 ajustes menores mensuales", included: true },
+            { text: "Revisión trimestral del flujo", included: true },
+            { text: "Notificación de anomalías", included: true },
+          ],
+          highlight: true,
+        },
+        {
+          tierName: "Nivel 3",
+          tierSlug: "renta-avanzada",
+          description: "Prioridad, bolsa de horas, revisión mensual.",
+          monthlyPrice: {
+            min: 3000,
+            max: 5000,
+            suffix: "/mes",
+            openEnded: true,
+          },
+          features: [
+            {
+              text: "Monitoreo priorizado casi en tiempo real",
+              included: true,
+            },
+            { text: "Bolsa de 2-4 horas de soporte/mes", included: true },
+            { text: "Revisión mensual de desempeño", included: true },
+            { text: "Propuestas de optimización continua", included: true },
+          ],
+        },
+      ],
+      roles: [
+        {
+          name: "Facturación",
+          icon: Receipt,
+          description: "Genera CFDI, timbra y envía facturas automáticamente.",
+          exampleTasks: [
+            "Facturación masiva desde datos del ERP",
+            "Envío automático por correo al cliente",
+            "Validación de datos antes de timbrar",
+          ],
+        },
+        {
+          name: "Cobranza",
+          icon: CreditCard,
+          description:
+            "Recordatorios de pago, estados de cuenta y enlaces de pago.",
+          exampleTasks: [
+            "Envío de recordatorios por vencimiento",
+            "Generación de estados de cuenta",
+            "Seguimiento automatizado de pagos",
+          ],
+        },
+        {
+          name: "Reportes",
+          icon: BarChart3,
+          description:
+            "Descarga, consolida y envía reportes de tus sistemas.",
+          exampleTasks: [
+            "Consolidación diaria de múltiples fuentes",
+            "Envío de resúmenes por correo",
+            "Generación de dashboards periódicos",
+          ],
+        },
+        {
+          name: "Contable",
+          icon: Calculator,
+          description:
+            "Conciliaciones, cruces y validaciones contables automáticas.",
+          exampleTasks: [
+            "Conciliación bancaria automática",
+            "Cruces entre bancos y sistema contable",
+            "Validaciones previas al cierre mensual",
+          ],
+        },
+      ],
+      pricingFaq: [
+        {
+          q: "¿El precio del Hub incluye el hardware?",
+          a: "El Hub es el servicio de software y monitoreo que corre en un mini-PC. El costo del hardware físico se cotiza por separado según los requerimientos de procesamiento de tu caso.",
+        },
+        {
+          q: "¿Puedo tener un solo empleado virtual?",
+          a: "Sí. Puedes empezar con un solo bot de backoffice y agregar más conforme lo necesites. Cada uno tiene su propio costo de implementación y renta mensual.",
+        },
+        {
+          q: "¿Qué pasa si mi proceso crece en complejidad?",
+          a: "Si un bot básico necesita manejar más sistemas o reglas, evaluamos la migración al siguiente nivel. Solo pagas la diferencia de implementación.",
+        },
+      ],
+    },
   },
   {
     slug: "coworkers-digitales",
@@ -217,9 +406,94 @@ export const services: Service[] = [
       },
       {
         q: "¿Puedo tener más de un Coworker?",
-        a: "Sí. Puedes tener agentes especializados: uno para atención al cliente, otro para operaciones internas, otro para soporte técnico. Cada uno con su propia personalidad y conocimiento.",
+        a: "Sí. Puedes tener agentes especializados: uno para atención al cliente, otro para operaciones internos, otro para soporte técnico. Cada uno con su propia personalidad y conocimiento.",
       },
     ],
+    pricing: {
+      model: "tiered",
+      sectionTitle: "Planes de Coworkers Digitales",
+      sectionSubtitle:
+        "Desde atención básica hasta operación omnicanal completa. Todos incluyen diagnóstico sin costo.",
+      plans: [
+        {
+          tierName: "Starter",
+          tierSlug: "starter",
+          description: "Para negocios pequeños que quieren dejar de perder mensajes.",
+          setupPrice: { min: 4000, max: 7000, suffix: " (único)" },
+          monthlyPrice: { min: 1200, max: 2000, suffix: "/mes" },
+          features: [
+            { text: "1 canal (WhatsApp o web)", included: true },
+            { text: "Respuestas a preguntas frecuentes", included: true },
+            { text: "Captura de datos de contacto", included: true },
+            { text: "Hasta 1,000 conversaciones IA/mes", included: true },
+            { text: "Flujos guiados con árboles de decisión", included: true },
+            { text: "Integración CRM avanzada", included: false },
+            { text: "Reportes mensuales", included: false },
+          ],
+          addOns: ["Solo atención al cliente"],
+        },
+        {
+          tierName: "Growth",
+          tierSlug: "growth",
+          description:
+            "Para clínicas, gimnasios, escuelas e inmobiliarias con flujo constante.",
+          setupPrice: { min: 8000, max: 15000, suffix: " (único)" },
+          monthlyPrice: { min: 2500, max: 4500, suffix: "/mes" },
+          highlight: true,
+          features: [
+            { text: "2 canales (WhatsApp + web)", included: true },
+            { text: "IA para respuestas abiertas", included: true },
+            { text: "Agenda de citas y recordatorios", included: true },
+            { text: "Hasta 4,000 conversaciones IA/mes", included: true },
+            { text: "Integración con Google Calendar/CRM ligero", included: true },
+            { text: "Reporte mensual simple", included: true },
+            { text: "4+ canales omnicanal", included: false },
+          ],
+          addOns: [
+            "+1 Empleado Virtual Administrativo a elegir:",
+            "• Facturación básica",
+            "• Recordatorios de pago",
+            "• Envío de notificaciones automáticas",
+          ],
+        },
+        {
+          tierName: "Pro Omnicanal",
+          tierSlug: "pro",
+          description:
+            "Para empresas con volúmenes importantes y múltiples sistemas.",
+          setupPrice: { min: 18000, max: 35000, suffix: " (único)" },
+          monthlyPrice: { min: 6000, max: 10000, suffix: "/mes" },
+          features: [
+            { text: "3-4 canales (WhatsApp, web, Facebook, Instagram)", included: true },
+            { text: "Integración CRM/ERP (HubSpot, Zoho, etc.)", included: true },
+            { text: "Flujo completo desde contacto hasta venta", included: true },
+            { text: "Hasta 10,000-15,000 conversaciones IA/mes", included: true },
+            { text: "Reportes avanzados con KPIs", included: true },
+            { text: "Modelos IA avanzados para tareas complejas", included: true },
+            { text: "Soporte prioritario", included: true },
+          ],
+          addOns: [
+            "+2-3 Empleados Virtuales Administrativos:",
+            "• Facturación + cobranza",
+            "• Reportes/consolidación contable",
+          ],
+        },
+      ],
+      pricingFaq: [
+        {
+          q: "¿Qué pasa si supero el límite de conversaciones?",
+          a: "Si superas el límite de tu plan de forma recurrente (2+ meses consecutivos), aplicamos un cargo adicional por bloque extra de conversaciones o te recomendamos migrar al plan superior. Sin sorpresas.",
+        },
+        {
+          q: "¿El setup incluye todo?",
+          a: "El setup cubre diseño de flujos, personalización, conexión a canales y rondas de ajustes. Si necesitas integraciones adicionales no contempladas inicialmente, se cotizan por separado.",
+        },
+        {
+          q: "¿Puedo cambiar de plan?",
+          a: "Sí. Puedes escalar de Starter a Growth o de Growth a Pro en cualquier momento. Solo pagas la diferencia proporcional del setup.",
+        },
+      ],
+    },
   },
   {
     slug: "voice-coworkers",
@@ -307,6 +581,91 @@ export const services: Service[] = [
         a: "El agente detecta cuando una llamada supera su capacidad y transfiere a un agente humano con todo el contexto de la conversación. Sin que el caller tenga que repetir información.",
       },
     ],
+    pricing: {
+      model: "tiered",
+      sectionTitle: "Planes de Voice Coworkers",
+      sectionSubtitle:
+        "Desde atención básica por teléfono hasta operación completa con CRM integrado.",
+      plans: [
+        {
+          tierName: "Starter",
+          tierSlug: "starter",
+          description:
+            "Para negocios que reciben llamadas frecuentes y necesitan filtrar y atender las más comunes.",
+          setupPrice: { min: 8000, max: 15000, suffix: " (único)" },
+          monthlyPrice: { min: 2500, max: 4000, suffix: "/mes" },
+          features: [
+            { text: "1 línea telefónica", included: true },
+            { text: "Flujos de atención básica (FAQ, horarios, citas)", included: true },
+            { text: "Transcripción automática de llamadas", included: true },
+            { text: "Hasta 500 minutos/mes", included: true },
+            { text: "Escalamiento a humano con contexto", included: true },
+            { text: "Integración CRM bidireccional", included: false },
+            { text: "Reportes avanzados", included: false },
+          ],
+          addOns: ["Solo atención telefónica"],
+        },
+        {
+          tierName: "Growth",
+          tierSlug: "growth",
+          description:
+            "Para centros de contacto con volumen medio que necesitan CRM y seguimiento.",
+          setupPrice: { min: 15000, max: 25000, suffix: " (único)" },
+          monthlyPrice: { min: 5000, max: 8000, suffix: "/mes" },
+          highlight: true,
+          features: [
+            { text: "2-3 líneas telefónicas", included: true },
+            { text: "Flujos de ventas, soporte y seguimiento", included: true },
+            { text: "Integración CRM (HubSpot, Salesforce)", included: true },
+            { text: "Hasta 2,000 minutos/mes", included: true },
+            { text: "Transcripción + análisis de sentimiento", included: true },
+            { text: "Reporte mensual de KPIs", included: true },
+            { text: "Multi-idioma", included: false },
+          ],
+          addOns: [
+            "+1 Empleado Virtual Administrativo:",
+            "• Transcripción y clasificación automática",
+            "• Seguimiento post-llamada por correo",
+          ],
+        },
+        {
+          tierName: "Pro",
+          tierSlug: "pro",
+          description:
+            "Para operaciones de alto volumen con telefonía compleja y múltiples integraciones.",
+          setupPrice: { min: 30000, max: 50000, suffix: " (único)" },
+          monthlyPrice: { min: 10000, max: 18000, suffix: "/mes" },
+          features: [
+            { text: "Líneas ilimitadas según PBX", included: true },
+            { text: "Flujos personalizados por tipo de llamada", included: true },
+            { text: "CRM bidireccional + APIs internas", included: true },
+            { text: "Hasta 10,000 minutos/mes", included: true },
+            { text: "Dashboards en tiempo real", included: true },
+            { text: "Análisis de calidad y compliance", included: true },
+            { text: "Soporte prioritario 24/7", included: true },
+          ],
+          addOns: [
+            "+2-3 Empleados Virtuales Administrativos:",
+            "• Reportes automáticos de operación",
+            "• Conciliación de datos de llamadas vs CRM",
+          ],
+        },
+      ],
+      pricingFaq: [
+        {
+          q: "¿Los minutos son por línea o totales?",
+          a: "Son minutos totales consumidos por todas las líneas del plan. Si necesitas más minutos, se agregan por bloque con costo proporcional.",
+        },
+        {
+          q: "¿La integración con mi PBX tiene costo extra?",
+          a: "La integración con SIP estándar (FreeSWITCH, Asterisk, 3CX) está incluida en el setup. Si tu sistema requiere desarrollo personalizado, se cotiza por separado.",
+        },
+        {
+          q: "¿Qué proveedor de telefonía usan?",
+          a: "Trabajamos con tu proveedor actual si soporta SIP. También podemos configurar con Twilio, Vonage u otros según la región y cobertura que necesites.",
+        },
+      ],
+    },
   },
   {
     slug: "agent-pentesting",

@@ -2,14 +2,22 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { services } from "../data/services";
+import { fadeInUp, scaleIn, staggerContainer, sectionTransition } from "../utils/animations";
 
 export default function Solutions() {
   return (
     <section className="py-32 px-6 bg-slate-900/20" id="services">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={sectionTransition}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8"
+        >
           <div className="max-w-xl">
-            <h2 className="font-display text-5xl font-black tracking-tight text-white uppercase mb-6">
+            <h2 className="font-display text-5xl font-black tracking-tight gradient-text-subtle uppercase mb-6">
               Arquitectura<br />de Soluciones
             </h2>
             <p className="text-gray-400 text-lg font-medium leading-relaxed">
@@ -21,19 +29,28 @@ export default function Solutions() {
               6 MÓDULOS
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((item, index) => {
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={sectionTransition}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {services.map((item) => {
             const Icon = item.icon;
             return (
               <motion.div
                 key={item.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group p-8 rounded-2xl enterprise-border bg-slate-900/40 hover:bg-slate-900/60 hover:border-brand-accent/50 transition-all duration-300"
+                variants={scaleIn}
+                whileHover={{
+                  borderColor: "rgba(56, 189, 248, 0.4)",
+                  boxShadow: "0 0 30px rgba(56, 189, 248, 0.08)",
+                }}
+                transition={{ duration: 0.3 }}
+                className="group p-8 rounded-2xl enterprise-border bg-slate-900/40"
               >
                 <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                   <Icon className="text-brand-accent" size={20} />
@@ -55,12 +72,14 @@ export default function Solutions() {
                   className="inline-flex items-center gap-3 text-[12px] font-bold text-white hover:text-brand-accent transition-colors"
                 >
                   VER MÁS
-                  <ArrowRight size={16} />
+                  <motion.span whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                    <ArrowRight size={16} />
+                  </motion.span>
                 </Link>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
