@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { TieredPlans } from "./TieredPlans";
 import { ModularPricing } from "./ModularPricing";
+import { QuotePricing } from "./QuotePricing";
 import type {
   ServicePricing,
   ServiceFAQ,
@@ -96,6 +97,10 @@ export function PricingSection({
             roles={pricing.roles}
             serviceSlug={serviceSlug}
           />
+        )}
+
+        {pricing.model === "quote" && pricing.quote && (
+          <QuotePricing quote={pricing.quote} serviceSlug={serviceSlug} />
         )}
 
         {pricing.pricingFaq && pricing.pricingFaq.length > 0 && (
