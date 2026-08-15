@@ -22,14 +22,22 @@ Portal de servicios B2B para **Agentes&Robots** — marca de infraestructura de 
 
 ## Productos/Soluciones
 
-| Producto | Descripcion |
-|----------|-------------|
-| BB One | Hardware dedicado para automatizaciones IA locales |
-| Coworkers Digitales | Agentes de texto en WhatsApp/Telegram |
-| Voice Coworkers | Agentes telefonicos con IA |
-| Agent Pentesting | Auditorias de seguridad para agentes IA |
-| MapYourFlow.app | Plataforma mapeo de procesos con scoring |
-| AI Training | Capacitacion empresarial en herramientas IA |
+Catalogo de **6 familias** (2 con sub-tipos). Fuente de verdad: `src/data/services.ts`.
+
+| Familia | Sub-tipos | Descripcion |
+|---------|-----------|-------------|
+| BB One | — | Hardware dedicado para automatizaciones IA locales |
+| Coworkers Digitales | Chat Agents / Voice Agents / Agent Workflows | Agentes de IA conversacionales y operativos: chat, voz e integraciones |
+| Security Testing | Agent Security / Web Security | Pentesting de agentes IA (60+ patrones) y web tradicional (OWASP Top 10) |
+| MapYourFlow | — | Plataforma de mapeo de procesos con scoring de automatizacion |
+| Agent Visibility | — | Presencia agentica y AEO ante ChatGPT, Perplexity y Gemini |
+| AI Training | — | Capacitacion empresarial en herramientas IA |
+
+### Arquitectura del catalogo (Enfoque A)
+
+- `Service` tiene `variants?` **opcional** (`src/types/catalog.ts`): si una familia define `variants`, el detalle (features, useCase, faq, pricing) vive en cada sub-tipo y los campos a nivel Service se ignoran; si no, el servicio es "plano" y usa sus campos directos.
+- El **pricing vive por sub-tipo**, con 3 modelos (`ServicePricing.model`): `tiered` (planes), `modular` (hub + tiers, BB One) y `quote` ("desde $X", Workflows y Agent Security).
+- Una familia = **1 pagina** (`/servicios/{slug}`) con **sticky sub-nav** de anclas por variante (`#{variant-slug}`); los servicios planos renderizan el layout directo.
 
 ## Estructura del Proyecto
 
@@ -37,14 +45,26 @@ Portal de servicios B2B para **Agentes&Robots** — marca de infraestructura de 
 Agentes&Robots/
 ├── src/
 │   ├── components/
-│   │   ├── Navbar.tsx      # Navegacion fija con glassmorphism
+│   │   ├── Navbar.tsx      # Navegacion fija con glassmorphism (6 familias)
 │   │   ├── Hero.tsx        # Hero editorial con serif + imagen grayscale
-│   │   ├── Solutions.tsx   # Grid de cards de productos (3 col)
+│   │   ├── Solutions.tsx   # Grid de cards del catalogo (6 familias)
 │   │   ├── CTA.tsx         # Call to action con gradiente
-│   │   └── Footer.tsx      # Footer con links reales y social
-│   ├── App.tsx
+│   │   ├── Footer.tsx      # Footer con links a las 6 familias
+│   │   ├── service/        # VariantNav (sticky), VariantBlock, Features/UseCase/FAQSection
+│   │   └── pricing/        # TieredPlans, ModularPricing, QuotePricing, PlanCard
+│   ├── data/
+│   │   └── services.ts     # Catalogo: 6 familias (fuente de verdad)
+│   ├── types/
+│   │   └── catalog.ts      # Service, ServiceVariant, ServicePricing
+│   ├── pages/
+│   │   ├── ServicePage.tsx # Detalle: familia (variants + sub-nav) o servicio plano
+│   │   └── About/Contact/CaseStudies
+│   ├── App.tsx             # Router: /, /servicios/:slug, /nosotros, /contacto, /casos
 │   ├── main.tsx
 │   └── index.css           # Design tokens (@theme)
+├── public/
+│   ├── robots.txt
+│   └── sitemap.xml         # Incluye las 6 URLs /servicios
 ├── CLAUDE.md
 ├── package.json
 ├── vite.config.ts
