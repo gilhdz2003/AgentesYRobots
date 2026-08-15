@@ -2,7 +2,9 @@ import {
   Cpu,
   MessageSquare,
   Phone,
-  Shield,
+  ShieldCheck,
+  Bot,
+  Globe,
   Map,
   GraduationCap,
   Receipt,
@@ -712,83 +714,232 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "agent-pentesting",
-    title: "Agent Pentesting",
-    subtitle: "Validación de Seguridad",
-    icon: Shield,
+    slug: "security-testing",
+    title: "Security Testing",
+    subtitle: "Validación de Seguridad para IA y Web",
+    icon: ShieldCheck,
     shortDescription:
-      "Auditorías rigurosas para asegurar que tus agentes de IA no sean vulnerables a inyecciones de prompts o filtración de datos sensibles.",
+      "Pentesting profesional para todo lo que construimos con IA y para lo que ya tienes en línea: auditoría de agentes con 60+ patrones de ataque y pentesting web tradicional OWASP Top 10. Con reportes ejecutivos y técnicos, y re-test incluido.",
     longDescription:
-      "Agent Pentesting es nuestro servicio especializado de auditoría de seguridad para sistemas de IA. Evaluamos tus agentes con más de 60 patrones de ataque documentados para identificar vulnerabilidades antes de que sean explotadas. Porque un agente de IA sin pruebas de seguridad es un riesgo.",
-    features: [
-      {
-        title: "60+ patrones de ataque",
-        description:
-          "Suite completa de pruebas que cubre inyección de prompts, jailbreaking, extracción de datos y manipulación de contexto.",
-      },
-      {
-        title: "7 categorías de vulnerabilidad",
-        description:
-          "Inyección directa, indirecta, role-playing, encoding, multi-turno, lateral y de infraestructura.",
-      },
-      {
-        title: "Reportes ejecutivos y técnicos",
-        description:
-          "Dos niveles de reporte: uno ejecutivo con riesgo y recomendaciones, otro técnico con payloads y reproducción exacta.",
-      },
-      {
-        title: "Re-tests incluidos",
-        description:
-          "Después de cada remediación, verificamos que las vulnerabilidades estén efectivamente cerradas.",
-      },
-      {
-        title: "Compliance-ready",
-        description:
-          "Alineado con OWASP Top 10 para LLMs y mejores prácticas de seguridad de la industria.",
-      },
-    ],
+      "Un sistema en producción sin pruebas de seguridad es un riesgo asumido sin saberlo. Security Testing es nuestra práctica de pentesting con dos frentes: seguridad de agentes de IA (el attack surface nuevo que nadie audita) y seguridad web tradicional (OWASP Top 10). Metodología formal, evidencia reproducible y remediación verificada.",
     process: [
       {
         step: 1,
         title: "Scope y contexto",
         description:
-          "Definimos el alcance de la auditoría: agentes a probar, canales de entrada, datos sensibles en scope.",
+          "Definimos el alcance: sistemas y agentes a probar, canales de entrada, datos sensibles en juego, y reglas de engagement documentadas antes de tocar nada.",
       },
       {
         step: 2,
         title: "Ejecución de pruebas",
         description:
-          "Aplicamos nuestra suite de 60+ patrones de ataque adaptados al contexto específico de tu agente.",
+          "Aplicamos nuestra suite de patrones de ataque —60+ para agentes IA, OWASP Top 10 para web— adaptada al contexto específico de tu sistema.",
       },
       {
         step: 3,
-        title: "Reporte y recomendaciones",
+        title: "Reporte y remediación",
         description:
-          "Entregamos reporte ejecutivo y técnico con vulnerabilidades encontradas, severidad y pasos de remediación.",
+          "Entregamos reporte ejecutivo (riesgo y recomendaciones) y técnico (payloads y reproducción exacta). Tu equipo remedia con nuestra guía.",
+      },
+      {
+        step: 4,
+        title: "Re-test de verificación",
+        description:
+          "Después de la remediación, re-ejecutamos los hallazgos para verificar que están efectivamente cerrados. Sin sorpresas.",
       },
     ],
-    useCase: {
-      title: "Agente de atención al cliente en producción",
-      description:
-        "Una empresa de fintech tenía un agente de IA atendiendo consultas de saldo y movimientos. Nuestra auditoría encontró que podía ser manipulado para revelar datos de otros usuarios.",
-      metrics: [
-        "12 vulnerabilidades encontradas",
-        "3 críticas de filtración de datos",
-        "0 incidentes post-remediación",
-      ],
-    },
-    faq: [
+    variants: [
       {
-        q: "¿Necesito tener un agente de IA para contratar este servicio?",
-        a: "Sí. El pentesting evalúa agentes existentes. Si estás planeando construir uno, te recomendamos hacerlo como parte del proceso de despliegue.",
+        slug: "agent-security",
+        name: "Agent Security",
+        tagline: "Red teaming para agentes de IA",
+        icon: Bot,
+        description:
+          "Auditoría de seguridad especializada para agentes de IA en producción. Evaluamos inyección de prompts, jailbreaking, extracción de datos y manipulación de contexto con más de 60 patrones de ataque documentados. Porque un agente sin pruebas de seguridad es una puerta abierta.",
+        features: [
+          {
+            title: "60+ patrones de ataque",
+            description:
+              "Suite completa de pruebas que cubre inyección de prompts, jailbreaking, extracción de datos y manipulación de contexto.",
+          },
+          {
+            title: "7 categorías de vulnerabilidad",
+            description:
+              "Inyección directa, indirecta, role-playing, encoding, multi-turno, lateral y de infraestructura.",
+          },
+          {
+            title: "Reportes ejecutivos y técnicos",
+            description:
+              "Dos niveles de reporte: uno ejecutivo con riesgo y recomendaciones, otro técnico con payloads y reproducción exacta.",
+          },
+          {
+            title: "Re-tests incluidos",
+            description:
+              "Después de cada remediación, verificamos que las vulnerabilidades estén efectivamente cerradas.",
+          },
+          {
+            title: "Compliance-ready",
+            description:
+              "Alineado con OWASP Top 10 para LLMs y mejores prácticas de seguridad de la industria.",
+          },
+        ],
+        useCase: {
+          title: "Agente de atención al cliente en producción",
+          description:
+            "Una empresa de fintech tenía un agente de IA atendiendo consultas de saldo y movimientos. Nuestra auditoría encontró que podía ser manipulado para revelar datos de otros usuarios.",
+          metrics: [
+            "12 vulnerabilidades encontradas",
+            "3 críticas de filtración de datos",
+            "0 incidentes post-remediación",
+          ],
+        },
+        faq: [
+          {
+            q: "¿Necesito tener un agente de IA para contratar este servicio?",
+            a: "Sí. El pentesting evalúa agentes existentes. Si estás planeando construir uno, te recomendamos hacerlo como parte del proceso de despliegue.",
+          },
+          {
+            q: "¿Cuánto toma una auditoría completa?",
+            a: "Depende de la complejidad del agente. Un agente simple (chatbot) toma 3-5 días. Un sistema multi-agente con integraciones puede tomar 2-3 semanas.",
+          },
+          {
+            q: "¿El pentesting puede afectar mi operación?",
+            a: "No. Ejecutamos en ambiente de staging o con controles que no afectan usuarios reales. Nunca probamos con datos de producción reales.",
+          },
+        ],
+        pricing: {
+          model: "quote",
+          sectionTitle: "Cotización por auditoría",
+          sectionSubtitle:
+            "El costo depende de la complejidad del agente y sus integraciones. Rango típico:",
+          quote: {
+            priceLine: "Desde $25,000 MXN por auditoría completa",
+            bullets: [
+              "Suite de 60+ patrones de ataque adaptada a tu agente",
+              "Reporte ejecutivo + reporte técnico con reproducción exacta",
+              "Re-test incluido tras la remediación",
+              "Chatbot simple (3-5 días) / sistema multi-agente (2-3 semanas)",
+            ],
+          },
+          pricingFaq: [
+            {
+              q: "¿El re-test tiene costo adicional?",
+              a: "No. La verificación post-remediación está incluida en la auditoría. Si después quieres validación continua (cada release mayor), se contrata como retainer.",
+            },
+          ],
+        },
       },
       {
-        q: "¿Cuánto toma una auditoría completa?",
-        a: "Depende de la complejidad del agente. Un agente simple (chatbot) toma 3-5 días. Un sistema multi-agente con integraciones puede tomar 2-3 semanas.",
-      },
-      {
-        q: "¿El pentesting puede afectar mi operación?",
-        a: "No. Ejecutamos en ambiente de staging o con controles que no afectan usuarios reales. Nunca probamos con datos de producción reales.",
+        slug: "web-security",
+        name: "Web Security",
+        tagline: "Pentesting web tradicional — OWASP Top 10",
+        icon: Globe,
+        description:
+          "Auditoría de seguridad para aplicaciones web: inyección, autenticación rota, control de acceso, configuración errónea y el resto del OWASP Top 10. Metodología formal de 6 fases con herramientas probadas (ZAP, nuclei, Nikto) y validación manual de hallazgos.",
+        features: [
+          {
+            title: "OWASP Top 10 completo",
+            description:
+              "Cobertura de las 10 categorías de riesgo web más críticas, adaptada al stack de tu aplicación.",
+          },
+          {
+            title: "Metodología de 6 fases",
+            description:
+              "Pre-engagement, reconocimiento, escaneo, explotación manual, reporting y post-remediación. Nada de escaneos automáticos sin contexto.",
+          },
+          {
+            title: "Stack probado y reproducible",
+            description:
+              "Herramientas open-source validadas (ZAP, nuclei, Nikto, Wappalyzer) y evidencia reproducible: cada hallazgo incluye pasos exactos de reproducción.",
+          },
+          {
+            title: "Doble reporte",
+            description:
+              "Reporte ejecutivo para dirección (riesgo, impacto, prioridades) y reporte técnico para el equipo de desarrollo (payloads, evidencia, remediación).",
+          },
+          {
+            title: "Reglas de engagement claras",
+            description:
+              "Antes de probar nada, firmamos reglas de engagement que definen alcance, ventanas y límites. Cero riesgo para tu operación.",
+          },
+        ],
+        useCase: {
+          title: "E-commerce con pagos y datos de clientes",
+          description:
+            "Una tienda en línea con pagos, webhooks de pasarela y datos personales de clientes requería auditoría antes de su campaña anual de ventas. Evaluamos la aplicación completa: autenticación, control de acceso, webhooks y exposición de secrets en el cliente.",
+          metrics: [
+            "OWASP Top 10 cubierto end-to-end",
+            "Hallazgos priorizados por impacto real de negocio",
+            "Re-test de verificación incluido post-remediación",
+          ],
+        },
+        faq: [
+          {
+            q: "¿El pentesting puede tumbar mi sitio?",
+            a: "No. Trabajamos con reglas de engagement firmadas, ventanas acordadas y control de tasa. Si algo es delicado, se prueba en staging o con datos controlados.",
+          },
+          {
+            q: "¿Necesito prepararme antes?",
+            a: "Solo acceso: URLs, credenciales de prueba y contexto del stack. Nosotros traemos las herramientas y la metodología.",
+          },
+          {
+            q: "¿Sirve para compliance?",
+            a: "El reporte ejecutivo está diseñado para presentarse a dirección y auditores. Alineamos hallazgos con las referencias OWASP correspondientes.",
+          },
+        ],
+        pricing: {
+          model: "tiered",
+          sectionTitle: "Planes de Web Security",
+          sectionSubtitle: "Según el tipo de aplicación y profundidad de alcance.",
+          plans: [
+            {
+              tierName: "App Estática",
+              tierSlug: "estatica",
+              description: "Sitios informativos y landing pages con superficie mínima.",
+              setupPrice: { min: 15000, max: 25000, suffix: " (único)" },
+              features: [
+                { text: "OWASP Top 10 sobre sitio público", included: true },
+                { text: "Escaneo + validación manual", included: true },
+                { text: "Reporte ejecutivo + técnico", included: true },
+                { text: "Re-test post-remediación", included: true },
+                { text: "Testing autenticado de lógica de negocio", included: false },
+              ],
+            },
+            {
+              tierName: "App Dinámica",
+              tierSlug: "dinamica",
+              description: "Aplicaciones con login, base de datos y transacciones.",
+              setupPrice: { min: 25000, max: 45000, suffix: " (único)" },
+              highlight: true,
+              features: [
+                { text: "Todo lo de App Estática", included: true },
+                { text: "Testing autenticado (roles y permisos)", included: true },
+                { text: "Lógica de negocio y control de acceso", included: true },
+                { text: "APIs y webhooks", included: true },
+                { text: "Re-test post-remediación", included: true },
+              ],
+            },
+            {
+              tierName: "Ecosistema",
+              tierSlug: "ecosistema",
+              description: "Múltiples aplicaciones, integraciones y pagos.",
+              setupPrice: { min: 45000, max: 80000, suffix: " (único)", openEnded: true },
+              features: [
+                { text: "Todo lo de App Dinámica", included: true },
+                { text: "Múltiples aplicaciones y subdominios", included: true },
+                { text: "Pasarelas de pago y flujos transaccionales", included: true },
+                { text: "Revisión de secrets y configuración cloud", included: true },
+                { text: "Re-test + acompañamiento de remediación", included: true },
+              ],
+            },
+          ],
+          pricingFaq: [
+            {
+              q: "¿Cada cuánto se recomienda auditar?",
+              a: "Con cada release mayor o mínimo una vez al año. Ofrecemos re-test anual con descuento para clientes recurrentes.",
+            },
+          ],
+        },
       },
     ],
   },
