@@ -1,4 +1,5 @@
-import { PlanCard, type PricingPlan } from "./PlanCard";
+import { PlanCard } from "./PlanCard";
+import type { PricingPlan } from "../../types/catalog";
 
 export function TieredPlans({
   plans,

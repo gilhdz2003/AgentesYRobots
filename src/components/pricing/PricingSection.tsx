@@ -3,23 +3,13 @@ import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { TieredPlans } from "./TieredPlans";
 import { ModularPricing } from "./ModularPricing";
-import type { PricingPlan, PlanFeature } from "./PlanCard";
-import type { VirtualRole } from "./RoleCard";
-import type { PriceRange } from "../../utils/formatPrice";
-import type { ServiceFAQ } from "../../data/services";
-
-export interface ServicePricing {
-  sectionTitle?: string;
-  sectionSubtitle?: string;
-  model: "tiered" | "modular";
-  plans?: PricingPlan[];
-  hubPrice?: PriceRange;
-  hubDescription?: string;
-  implementationTiers?: PricingPlan[];
-  rentTiers?: PricingPlan[];
-  roles?: VirtualRole[];
-  pricingFaq?: ServiceFAQ[];
-}
+import type {
+  ServicePricing,
+  ServiceFAQ,
+  PricingPlan,
+  PlanFeature,
+  VirtualRole,
+} from "../../types/catalog";
 
 function PricingFAQ({ faqs }: { faqs: ServiceFAQ[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -118,4 +108,4 @@ export function PricingSection({
   );
 }
 
-export type { PricingPlan, PlanFeature, VirtualRole };
+export type { ServicePricing, PricingPlan, PlanFeature, VirtualRole };

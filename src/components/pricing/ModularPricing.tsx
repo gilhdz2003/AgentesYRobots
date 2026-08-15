@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
 import { Server } from "lucide-react";
 import { formatPriceRange, type PriceRange } from "../../utils/formatPrice";
-import { PlanCard, type PricingPlan } from "./PlanCard";
-import { RoleCard, type VirtualRole } from "./RoleCard";
+import { PlanCard } from "./PlanCard";
+import { RoleCard } from "./RoleCard";
+import type { PricingPlan, VirtualRole } from "../../types/catalog";
 
 export function ModularPricing({
   hubPrice,

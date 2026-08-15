@@ -1,23 +1,10 @@
 import { motion } from "motion/react";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { formatPriceRange, type PriceRange } from "../../utils/formatPrice";
+import { formatPriceRange } from "../../utils/formatPrice";
+import type { PricingPlan, PlanFeature } from "../../types/catalog";
 
-export interface PlanFeature {
-  text: string;
-  included: boolean;
-}
-
-export interface PricingPlan {
-  tierName: string;
-  tierSlug: string;
-  description: string;
-  setupPrice?: PriceRange;
-  monthlyPrice?: PriceRange;
-  features: PlanFeature[];
-  highlight?: boolean;
-  addOns?: string[];
-}
+export type { PricingPlan, PlanFeature };
 
 export function PlanCard({
   plan,

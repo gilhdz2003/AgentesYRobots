@@ -83,7 +83,7 @@ export default function ServicePage() {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: service.faq.map((f) => ({
+    mainEntity: service.faq!.map((f) => ({
       "@type": "Question",
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -179,7 +179,7 @@ export default function ServicePage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {service.features.map((feature, i) => (
+            {service.features!.map((feature, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -254,15 +254,15 @@ export default function ServicePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <h2 className="font-display text-4xl font-black tracking-tight text-white uppercase mb-6">
-                {service.useCase.title}
+                {service.useCase!.title}
               </h2>
               <p className="text-gray-400 text-lg leading-relaxed">
-                {service.useCase.description}
+                {service.useCase!.description}
               </p>
             </div>
 
             <div className="space-y-4">
-              {service.useCase.metrics.map((metric, i) => (
+              {service.useCase!.metrics.map((metric, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: 20 }}
@@ -299,7 +299,7 @@ export default function ServicePage() {
           <h2 className="font-display text-4xl font-black tracking-tight text-white uppercase mb-12">
             Preguntas sobre<br />{service.title}
           </h2>
-          <FAQAccordion faqs={service.faq} />
+          <FAQAccordion faqs={service.faq!} />
         </div>
       </section>
 

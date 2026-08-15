@@ -1,4 +1,3 @@
-import type { LucideIcon } from "lucide-react";
 import {
   Cpu,
   MessageSquare,
@@ -11,43 +10,25 @@ import {
   BarChart3,
   Calculator,
 } from "lucide-react";
-import type { ServicePricing } from "../components/pricing/PricingSection";
+import type {
+  Service,
+  ServiceFeature,
+  ServiceProcessStep,
+  ServiceFAQ,
+  ServiceUseCase,
+  ServiceVariant,
+} from "../types/catalog";
 
-export interface ServiceFeature {
-  title: string;
-  description: string;
-}
-
-export interface ServiceProcessStep {
-  step: number;
-  title: string;
-  description: string;
-}
-
-export interface ServiceFAQ {
-  q: string;
-  a: string;
-}
-
-export interface ServiceUseCase {
-  title: string;
-  description: string;
-  metrics: string[];
-}
-
-export interface Service {
-  slug: string;
-  title: string;
-  subtitle: string;
-  icon: LucideIcon;
-  shortDescription: string;
-  longDescription: string;
-  features: ServiceFeature[];
-  process: ServiceProcessStep[];
-  useCase: ServiceUseCase;
-  faq: ServiceFAQ[];
-  pricing?: ServicePricing;
-}
+// Re-export de compatibilidad: el resto del código sigue importando
+// estos tipos desde data/services.
+export type {
+  Service,
+  ServiceFeature,
+  ServiceProcessStep,
+  ServiceFAQ,
+  ServiceUseCase,
+  ServiceVariant,
+};
 
 export const services: Service[] = [
   {

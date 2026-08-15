@@ -1,12 +1,7 @@
 import { motion } from "motion/react";
-import type { LucideIcon } from "lucide-react";
+import type { VirtualRole } from "../../types/catalog";
 
-export interface VirtualRole {
-  name: string;
-  icon: LucideIcon;
-  description: string;
-  exampleTasks: string[];
-}
+export type { VirtualRole };
 
 export function RoleCard({ role, index }: { role: VirtualRole; index: number }) {
   const Icon = role.icon;
