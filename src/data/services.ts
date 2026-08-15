@@ -1119,7 +1119,7 @@ export const services: Service[] = [
       model: "tiered",
       sectionTitle: "Planes de Agent Visibility",
       sectionSubtitle:
-        "Del diagnóstico puntual a la mejora continua. La auditoría inicial va incluida en todos.",
+        "Del diagnóstico puntual a la mejora continua. Si continúas a Implementación, el Diagnóstico se descuenta completo de tu paquete.",
       plans: [
         {
           tierName: "Diagnóstico",
