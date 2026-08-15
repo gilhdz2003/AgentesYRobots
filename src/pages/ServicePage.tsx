@@ -39,7 +39,7 @@ export default function ServicePage() {
         ...service.variants!.flatMap((v) => v.faq),
         ...service.variants!.flatMap((v) => v.pricing?.pricingFaq ?? []),
       ]
-    : [...service.faq ?? [], ...service.pricing?.pricingFaq ?? []];
+    : [...(service.faq ?? [])];
 
   const faqJsonLd = allFaqs.length > 0 ? {
     "@context": "https://schema.org",
@@ -130,6 +130,8 @@ export default function ServicePage() {
         <VariantNav variants={service.variants!} familySlug={service.slug} />
       )}
 
+      {!isFamily && <FeaturesSection features={service.features!} />}
+
       {/* Process */}
       <section id="proceso" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
@@ -173,7 +175,6 @@ export default function ServicePage() {
         ))
       ) : (
         <>
-          <FeaturesSection features={service.features!} />
           <UseCaseSection useCase={service.useCase!} />
           {service.pricing && (
             <PricingSection pricing={service.pricing} serviceSlug={service.slug} />
