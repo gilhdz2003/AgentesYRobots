@@ -6,6 +6,8 @@ import { PricingSection } from "../components/pricing/PricingSection";
 import { FeaturesSection } from "../components/service/FeaturesSection";
 import { UseCaseSection } from "../components/service/UseCaseSection";
 import { FAQSection } from "../components/service/FAQSection";
+import { VariantNav } from "../components/service/VariantNav";
+import { VariantBlock } from "../components/service/VariantBlock";
 import { getServiceBySlug } from "../data/services";
 
 export default function ServicePage() {
@@ -28,17 +30,26 @@ export default function ServicePage() {
     );
   }
 
+  const isFamily = !!service.variants;
+
   const Icon = service.icon;
 
-  const faqJsonLd = {
+  const allFaqs = isFamily
+    ? [
+        ...service.variants!.flatMap((v) => v.faq),
+        ...service.variants!.flatMap((v) => v.pricing?.pricingFaq ?? []),
+      ]
+    : [...service.faq ?? [], ...service.pricing?.pricingFaq ?? []];
+
+  const faqJsonLd = allFaqs.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: service.faq!.map((f) => ({
+    mainEntity: allFaqs.map((f) => ({
       "@type": "Question",
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
-  };
+  } : undefined;
 
   return (
     <>
@@ -57,7 +68,7 @@ export default function ServicePage() {
             { name: "Servicios", url: "/#services" },
             { name: service.title, url: `/servicios/${service.slug}` },
           ]),
-          faqJsonLd,
+          ...(faqJsonLd ? [faqJsonLd] : []),
         ]}
       />
 
@@ -115,8 +126,9 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* Features */}
-      <FeaturesSection features={service.features!} />
+      {isFamily && (
+        <VariantNav variants={service.variants!} familySlug={service.slug} />
+      )}
 
       {/* Process */}
       <section id="proceso" className="py-32 px-6">
@@ -155,23 +167,24 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* Use Case */}
-      <UseCaseSection useCase={service.useCase!} />
-
-      {/* Pricing */}
-      {service.pricing && (
-        <PricingSection
-          pricing={service.pricing}
-          serviceSlug={service.slug}
-        />
+      {isFamily ? (
+        service.variants!.map((v) => (
+          <VariantBlock key={v.slug} variant={v} familySlug={service.slug} />
+        ))
+      ) : (
+        <>
+          <FeaturesSection features={service.features!} />
+          <UseCaseSection useCase={service.useCase!} />
+          {service.pricing && (
+            <PricingSection pricing={service.pricing} serviceSlug={service.slug} />
+          )}
+          <FAQSection
+            faqs={service.faq!}
+            title={"Preguntas sobre " + service.title}
+            alternate={!!service.pricing}
+          />
+        </>
       )}
-
-      {/* FAQ */}
-      <FAQSection
-        faqs={service.faq!}
-        title={"Preguntas sobre " + service.title}
-        alternate={!!service.pricing}
-      />
 
       {/* CTA */}
       <section className="py-32 px-6">

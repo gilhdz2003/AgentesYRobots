@@ -11,6 +11,7 @@ export function VariantBlock({
 }: {
   variant: ServiceVariant;
   familySlug: string;
+  key?: string;
 }) {
   const Icon = variant.icon;
   return (
