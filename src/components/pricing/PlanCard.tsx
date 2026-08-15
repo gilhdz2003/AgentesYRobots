@@ -14,6 +14,7 @@ export function PlanCard({
   plan: PricingPlan;
   index: number;
   serviceSlug: string;
+  key?: string;
 }) {
   return (
     <motion.div

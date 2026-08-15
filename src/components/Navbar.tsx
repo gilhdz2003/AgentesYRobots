@@ -7,8 +7,8 @@ const productLinks = [
   { label: "MAPYOURFLOW", href: "/servicios/mapyourflow" },
   { label: "BB ONE", href: "/servicios/bb-one" },
   { label: "COWORKERS", href: "/servicios/coworkers-digitales" },
-  { label: "VOICE", href: "/servicios/voice-coworkers" },
-  { label: "PENTESTING", href: "/servicios/agent-pentesting" },
+  { label: "SECURITY", href: "/servicios/security-testing" },
+  { label: "VISIBILITY", href: "/servicios/agent-visibility" },
   { label: "TRAINING", href: "/servicios/ai-training" },
 ];
 

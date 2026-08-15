@@ -3,7 +3,7 @@ import type { VirtualRole } from "../../types/catalog";
 
 export type { VirtualRole };
 
-export function RoleCard({ role, index }: { role: VirtualRole; index: number }) {
+export function RoleCard({ role, index }: { role: VirtualRole; index: number; key?: string }) {
   const Icon = role.icon;
 
   return (

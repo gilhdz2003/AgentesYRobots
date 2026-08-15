@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 const services = [
   { label: "BB One Hardware", to: "/servicios/bb-one" },
   { label: "Coworkers Digitales", to: "/servicios/coworkers-digitales" },
-  { label: "Voice Coworkers", to: "/servicios/voice-coworkers" },
-  { label: "Agent Pentesting", to: "/servicios/agent-pentesting" },
+  { label: "Security Testing", to: "/servicios/security-testing" },
   { label: "MapYourFlow.app", to: "/servicios/mapyourflow" },
+  { label: "Agent Visibility", to: "/servicios/agent-visibility" },
   { label: "AI Training", to: "/servicios/ai-training" },
 ];
 
