@@ -9,6 +9,7 @@ import {
   CreditCard,
   BarChart3,
   Calculator,
+  Workflow,
 } from "lucide-react";
 import type {
   Service,
@@ -308,44 +309,12 @@ export const services: Service[] = [
   {
     slug: "coworkers-digitales",
     title: "Coworkers Digitales",
-    subtitle: "Agentes Edge & Internos",
+    subtitle: "Agentes de IA Conversacionales y Operativos",
     icon: MessageSquare,
     shortDescription:
-      "Agentes inteligentes en WhatsApp y Telegram. Atención al cliente, operaciones internas y flujos de trabajo complejos con comprensión de contexto natural.",
+      "Agentes de IA donde tu operación ya vive: chat en WhatsApp, Telegram y web; atención telefónica con voz natural; e integraciones que conectan tus sistemas y ejecutan trabajo real. No son chatbots de menú.",
     longDescription:
-      "Coworkers Digitales son agentes de IA que viven en los canales donde tu equipo y clientes ya están: WhatsApp, Telegram y tu plataforma interna. No son chatbots genéricos — comprenden el contexto de tu negocio, acceden a tus bases de datos y ejecutan acciones reales.",
-    features: [
-      {
-        title: "WhatsApp Business nativo",
-        description:
-          "Integración directa con WhatsApp Business API. Tus clientes interactúan sin instalar nada nuevo.",
-      },
-      {
-        title: "Comprensión de contexto",
-        description:
-          "El agente recuerda historial de conversaciones, conoce tus productos y entiende el jerga de tu industria.",
-      },
-      {
-        title: "Acciones reales",
-        description:
-          "No solo responde preguntas: consulta inventarios, genera cotizaciones, agenda citas, crea tickets en tu CRM.",
-      },
-      {
-        title: "Escalamiento a humanos",
-        description:
-          "Cuando el agente detecta que no puede resolver algo, escala automáticamente a un operador humano con todo el contexto.",
-      },
-      {
-        title: "Multi-canal",
-        description:
-          "Mismo agente, múltiples canales. WhatsApp, Telegram, web chat y APIs internas con una sola configuración.",
-      },
-      {
-        title: "Analytics integrado",
-        description:
-          "Dashboard con métricas de conversaciones, satisfacción, resoluciones y tiempos de respuesta.",
-      },
-    ],
+      "Coworkers Digitales es nuestra línea de agentes de IA para operación empresarial. Un Coworker comprende el contexto de tu negocio, accede a tus sistemas y ejecuta acciones reales: agenda, cotiza, factura, notifica y escala a humanos cuando corresponde. Elige la forma que necesita tu operación — chat, voz o integraciones entre sistemas — o combínalas.",
     process: [
       {
         step: 1,
@@ -366,287 +335,381 @@ export const services: Service[] = [
           "Desplegamos con un grupo piloto de usuarios. Monitoreamos y ajustamos antes del lanzamiento completo.",
       },
     ],
-    useCase: {
-      title: "Coordinación de inspectores de siniestros",
-      description:
-        "GMB Ajustes manejaba la asignación de citas de inspectores por llamadas y WhatsApp manual. Un Coworker Digital ahora gestiona automáticamente la asignación, confirmación y seguimiento.",
-      metrics: [
-        "60% reducción en tiempo de coordinación",
-        "29,000+ registros procesados",
-        "Disponible 24/7 sin intervención humana",
-      ],
-    },
-    faq: [
+    variants: [
       {
-        q: "¿Pueden los Coworkers manejar conversaciones complejas?",
-        a: "Sí. No son chatbots de menú. Comprenden lenguaje natural, manejan contexto de conversaciones largas y pueden ejecutar flujos de múltiples pasos (cotizar, confirmar, agendar, notificar).",
+        slug: "chat-agents",
+        name: "Chat Agents",
+        tagline: "Atención conversacional en WhatsApp, Telegram y web",
+        icon: MessageSquare,
+        description:
+          "Agentes de texto que atienden clientes y equipos en los canales que ya usan. Comprenden lenguaje natural, manejan contexto de conversaciones largas y ejecutan flujos de múltiples pasos: cotizar, confirmar, agendar, notificar.",
+        features: [
+          {
+            title: "WhatsApp Business nativo",
+            description:
+              "Integración directa con WhatsApp Business API. Tus clientes interactúan sin instalar nada nuevo.",
+          },
+          {
+            title: "Comprensión de contexto",
+            description:
+              "El agente recuerda historial de conversaciones, conoce tus productos y entiende el jerga de tu industria.",
+          },
+          {
+            title: "Acciones reales",
+            description:
+              "No solo responde preguntas: consulta inventarios, genera cotizaciones, agenda citas, crea tickets en tu CRM.",
+          },
+          {
+            title: "Escalamiento a humanos",
+            description:
+              "Cuando el agente detecta que no puede resolver algo, escala automáticamente a un operador humano con todo el contexto.",
+          },
+          {
+            title: "Multi-canal",
+            description:
+              "Mismo agente, múltiples canales. WhatsApp, Telegram, web chat y APIs internas con una sola configuración.",
+          },
+          {
+            title: "Analytics integrado",
+            description:
+              "Dashboard con métricas de conversaciones, satisfacción, resoluciones y tiempos de respuesta.",
+          },
+        ],
+        useCase: {
+          title: "Coordinación de inspectores de siniestros",
+          description:
+            "GMB Ajustes manejaba la asignación de citas de inspectores por llamadas y WhatsApp manual. Un Coworker Digital ahora gestiona automáticamente la asignación, confirmación y seguimiento.",
+          metrics: [
+            "60% reducción en tiempo de coordinación",
+            "29,000+ registros procesados",
+            "Disponible 24/7 sin intervención humana",
+          ],
+        },
+        faq: [
+          {
+            q: "¿Pueden los Coworkers manejar conversaciones complejas?",
+            a: "Sí. No son chatbots de menú. Comprenden lenguaje natural, manejan contexto de conversaciones largas y pueden ejecutar flujos de múltiples pasos (cotizar, confirmar, agendar, notificar).",
+          },
+          {
+            q: "¿Cuánto toma implementar un Coworker Digital?",
+            a: "El piloto funcional se despliega en 2-3 semanas. La fase de producción completa con todas las integraciones toma 4-6 semanas.",
+          },
+          {
+            q: "¿Puedo tener más de un Coworker?",
+            a: "Sí. Puedes tener agentes especializados: uno para atención al cliente, otro para operaciones internos, otro para soporte técnico. Cada uno con su propia personalidad y conocimiento.",
+          },
+        ],
+        pricing: {
+          model: "tiered",
+          sectionTitle: "Planes de Coworkers Digitales",
+          sectionSubtitle:
+            "Desde atención básica hasta operación omnicanal completa. Todos incluyen diagnóstico sin costo.",
+          plans: [
+            {
+              tierName: "Starter",
+              tierSlug: "starter",
+              description: "Para negocios pequeños que quieren dejar de perder mensajes.",
+              setupPrice: { min: 4000, max: 7000, suffix: " (único)" },
+              monthlyPrice: { min: 1200, max: 2000, suffix: "/mes" },
+              features: [
+                { text: "1 canal (WhatsApp o web)", included: true },
+                { text: "Respuestas a preguntas frecuentes", included: true },
+                { text: "Captura de datos de contacto", included: true },
+                { text: "Hasta 1,000 conversaciones IA/mes", included: true },
+                { text: "Flujos guiados con árboles de decisión", included: true },
+                { text: "Integración CRM avanzada", included: false },
+                { text: "Reportes mensuales", included: false },
+              ],
+              addOns: ["Solo atención al cliente"],
+            },
+            {
+              tierName: "Growth",
+              tierSlug: "growth",
+              description:
+                "Para clínicas, gimnasios, escuelas e inmobiliarias con flujo constante.",
+              setupPrice: { min: 8000, max: 15000, suffix: " (único)" },
+              monthlyPrice: { min: 2500, max: 4500, suffix: "/mes" },
+              highlight: true,
+              features: [
+                { text: "2 canales (WhatsApp + web)", included: true },
+                { text: "IA para respuestas abiertas", included: true },
+                { text: "Agenda de citas y recordatorios", included: true },
+                { text: "Hasta 4,000 conversaciones IA/mes", included: true },
+                { text: "Integración con Google Calendar/CRM ligero", included: true },
+                { text: "Reporte mensual simple", included: true },
+                { text: "4+ canales omnicanal", included: false },
+              ],
+              addOns: [
+                "+1 Empleado Virtual Administrativo a elegir:",
+                "• Facturación básica",
+                "• Recordatorios de pago",
+                "• Envío de notificaciones automáticas",
+              ],
+            },
+            {
+              tierName: "Pro Omnicanal",
+              tierSlug: "pro",
+              description:
+                "Para empresas con volúmenes importantes y múltiples sistemas.",
+              setupPrice: { min: 18000, max: 35000, suffix: " (único)" },
+              monthlyPrice: { min: 6000, max: 10000, suffix: "/mes" },
+              features: [
+                { text: "3-4 canales (WhatsApp, web, Facebook, Instagram)", included: true },
+                { text: "Integración CRM/ERP (HubSpot, Zoho, etc.)", included: true },
+                { text: "Flujo completo desde contacto hasta venta", included: true },
+                { text: "Hasta 10,000-15,000 conversaciones IA/mes", included: true },
+                { text: "Reportes avanzados con KPIs", included: true },
+                { text: "Modelos IA avanzados para tareas complejas", included: true },
+                { text: "Soporte prioritario", included: true },
+              ],
+              addOns: [
+                "+2-3 Empleados Virtuales Administrativos:",
+                "• Facturación + cobranza",
+                "• Reportes/consolidación contable",
+              ],
+            },
+          ],
+          pricingFaq: [
+            {
+              q: "¿Qué pasa si supero el límite de conversaciones?",
+              a: "Si superas el límite de tu plan de forma recurrente (2+ meses consecutivos), aplicamos un cargo adicional por bloque extra de conversaciones o te recomendamos migrar al plan superior. Sin sorpresas.",
+            },
+            {
+              q: "¿El setup incluye todo?",
+              a: "El setup cubre diseño de flujos, personalización, conexión a canales y rondas de ajustes. Si necesitas integraciones adicionales no contempladas inicialmente, se cotizan por separado.",
+            },
+            {
+              q: "¿Puedo cambiar de plan?",
+              a: "Sí. Puedes escalar de Starter a Growth o de Growth a Pro en cualquier momento. Solo pagas la diferencia proporcional del setup.",
+            },
+          ],
+        },
       },
       {
-        q: "¿Cuánto toma implementar un Coworker Digital?",
-        a: "El piloto funcional se despliega en 2-3 semanas. La fase de producción completa con todas las integraciones toma 4-6 semanas.",
+        slug: "voice-agents",
+        name: "Voice Agents",
+        tagline: "Atención telefónica con voz natural",
+        icon: Phone,
+        description:
+          "Agentes de voz que atienden llamadas con voces en español neutro que no suenan robóticas, integrados a tu telefonía IP y CRM. Capturan, verifican, transfieren y escalan cada llamada de forma inteligente.",
+        features: [
+          {
+            title: "Voz natural ultra-realista",
+            description:
+              "Voces en español neutro y latino que no suenan robóticas. Latencia de respuesta menor a 1 segundo.",
+          },
+          {
+            title: "Telefonía IP integrada",
+            description:
+              "Compatible con FreeSWITCH, Twilio, Vonage y cualquier sistema SIP estándar.",
+          },
+          {
+            title: "CRM bidireccional",
+            description:
+              "Consulta y actualiza información en Salesforce, HubSpot y cualquier CRM durante la llamada en tiempo real.",
+          },
+          {
+            title: "Transcripción en vivo",
+            description:
+              "Cada llamada se transcribe automáticamente para análisis, calidad y cumplimiento.",
+          },
+          {
+            title: "Flujos conversacionales",
+            description:
+              "Maneja llamadas de ventas, soporte, encuestas y seguimiento con flujos personalizados por tipo.",
+          },
+        ],
+        useCase: {
+          title: "Centro de atención de seguros",
+          description:
+            "Una aseguradora recibía 200+ llamadas diarias de reporte de siniestros. Voice Coworker captura datos del reporte, verifica póliza y asigna ajustador automáticamente.",
+          metrics: [
+            "200+ llamadas/día atendidas automáticamente",
+            "70% de llamadas resueltas sin intervención humana",
+            "45 segundos promedio de ahorro por llamada",
+          ],
+        },
+        faq: [
+          {
+            q: "¿La voz suena robótica?",
+            a: "No. Usamos modelos de síntesis de voz de última generación con voces en español neutro. La mayoría de los callers no distinguen que están hablando con una IA.",
+          },
+          {
+            q: "¿Funciona con mi central telefónica actual?",
+            a: "Probablemente sí. Voice Coworkers es compatible con cualquier sistema que soporte SIP (FreeSWITCH, Asterisk, 3CX, Twilio, Vonage, etc.). Hacemos la auditoría antes de empezar.",
+          },
+          {
+            q: "¿Qué pasa si la llamada es muy compleja?",
+            a: "El agente detecta cuando una llamada supera su capacidad y transfiere a un agente humano con todo el contexto de la conversación. Sin que el caller tenga que repetir información.",
+          },
+        ],
+        pricing: {
+          model: "tiered",
+          sectionTitle: "Planes de Voice Coworkers",
+          sectionSubtitle:
+            "Desde atención básica por teléfono hasta operación completa con CRM integrado.",
+          plans: [
+            {
+              tierName: "Starter",
+              tierSlug: "starter",
+              description:
+                "Para negocios que reciben llamadas frecuentes y necesitan filtrar y atender las más comunes.",
+              setupPrice: { min: 8000, max: 15000, suffix: " (único)" },
+              monthlyPrice: { min: 2500, max: 4000, suffix: "/mes" },
+              features: [
+                { text: "1 línea telefónica", included: true },
+                { text: "Flujos de atención básica (FAQ, horarios, citas)", included: true },
+                { text: "Transcripción automática de llamadas", included: true },
+                { text: "Hasta 500 minutos/mes", included: true },
+                { text: "Escalamiento a humano con contexto", included: true },
+                { text: "Integración CRM bidireccional", included: false },
+                { text: "Reportes avanzados", included: false },
+              ],
+              addOns: ["Solo atención telefónica"],
+            },
+            {
+              tierName: "Growth",
+              tierSlug: "growth",
+              description:
+                "Para centros de contacto con volumen medio que necesitan CRM y seguimiento.",
+              setupPrice: { min: 15000, max: 25000, suffix: " (único)" },
+              monthlyPrice: { min: 5000, max: 8000, suffix: "/mes" },
+              highlight: true,
+              features: [
+                { text: "2-3 líneas telefónicas", included: true },
+                { text: "Flujos de ventas, soporte y seguimiento", included: true },
+                { text: "Integración CRM (HubSpot, Salesforce)", included: true },
+                { text: "Hasta 2,000 minutos/mes", included: true },
+                { text: "Transcripción + análisis de sentimiento", included: true },
+                { text: "Reporte mensual de KPIs", included: true },
+                { text: "Multi-idioma", included: false },
+              ],
+              addOns: [
+                "+1 Empleado Virtual Administrativo:",
+                "• Transcripción y clasificación automática",
+                "• Seguimiento post-llamada por correo",
+              ],
+            },
+            {
+              tierName: "Pro",
+              tierSlug: "pro",
+              description:
+                "Para operaciones de alto volumen con telefonía compleja y múltiples integraciones.",
+              setupPrice: { min: 30000, max: 50000, suffix: " (único)" },
+              monthlyPrice: { min: 10000, max: 18000, suffix: "/mes" },
+              features: [
+                { text: "Líneas ilimitadas según PBX", included: true },
+                { text: "Flujos personalizados por tipo de llamada", included: true },
+                { text: "CRM bidireccional + APIs internas", included: true },
+                { text: "Hasta 10,000 minutos/mes", included: true },
+                { text: "Dashboards en tiempo real", included: true },
+                { text: "Análisis de calidad y compliance", included: true },
+                { text: "Soporte prioritario 24/7", included: true },
+              ],
+              addOns: [
+                "+2-3 Empleados Virtuales Administrativos:",
+                "• Reportes automáticos de operación",
+                "• Conciliación de datos de llamadas vs CRM",
+              ],
+            },
+          ],
+          pricingFaq: [
+            {
+              q: "¿Los minutos son por línea o totales?",
+              a: "Son minutos totales consumidos por todas las líneas del plan. Si necesitas más minutos, se agregan por bloque con costo proporcional.",
+            },
+            {
+              q: "¿La integración con mi PBX tiene costo extra?",
+              a: "La integración con SIP estándar (FreeSWITCH, Asterisk, 3CX) está incluida en el setup. Si tu sistema requiere desarrollo personalizado, se cotiza por separado.",
+            },
+            {
+              q: "¿Qué proveedor de telefonía usan?",
+              a: "Trabajamos con tu proveedor actual si soporta SIP. También podemos configurar con Twilio, Vonage u otros según la región y cobertura que necesites.",
+            },
+          ],
+        },
       },
       {
-        q: "¿Puedo tener más de un Coworker?",
-        a: "Sí. Puedes tener agentes especializados: uno para atención al cliente, otro para operaciones internos, otro para soporte técnico. Cada uno con su propia personalidad y conocimiento.",
+        slug: "agent-workflows",
+        name: "Agent Workflows",
+        tagline: "Integraciones y automatizaciones con IA entre tus sistemas",
+        icon: Workflow,
+        description:
+          "No todo agente conversa. Los Agent Workflows conectan tus sistemas —CRM, ERP, correo, hojas de cálculo, portales— y ejecutan trabajo de punta a punta con IA: clasifican, deciden, transforman y mueven información sin que nadie abra una pantalla. La evolución inteligente de lo que antes hacías con scripts y n8n.",
+        features: [
+          {
+            title: "Orquestación multi-sistema",
+            description:
+              "Conectamos CRM, ERP, correo y portales en flujos de punta a punta. La información fluye sola entre sistemas que hoy no se hablan.",
+          },
+          {
+            title: "Decisiones con IA, no solo triggers",
+            description:
+              "A diferencia de una automatización tradicional, el workflow clasifica documentos, interpreta excepciones y decide el siguiente paso según reglas de negocio reales.",
+          },
+          {
+            title: "Manejo de errores con criterio",
+            description:
+              "Reintentos automáticos, validaciones previas y alertas cuando algo requiere criterio humano. El flujo no se rompe silenciosamente.",
+          },
+          {
+            title: "Despliegue flexible",
+            description:
+              "En la nube o on-premise junto a BB One cuando los datos son sensibles. La misma lógica, el grado de privacidad que tu compliance exige.",
+          },
+          {
+            title: "Observabilidad total",
+            description:
+              "Cada ejecución queda registrada: qué corrió, qué decidió, qué movió. Logs consultables y métricas de operación en dashboard.",
+          },
+        ],
+        useCase: {
+          title: "CRM conversacional para operación de campo",
+          description:
+            "Un despacho de servicios necesitaba que la información de sus agentes de campo llegara al CRM sin captura manual. Con Agent Workflows sobre Hermes, los reportes de campo se procesan, clasifican y registran solos, con escalamiento a humano solo en excepciones.",
+          metrics: [
+            "Captura manual eliminada en registros de campo",
+            "Clasificación automática con escalamiento por excepción",
+            "Operación 24/7 sin intervención rutinaria",
+          ],
+        },
+        faq: [
+          {
+            q: "¿En qué se diferencia de una automatización con n8n o Make?",
+            a: "Las plataformas de automatización mueven datos cuando el flujo es rígido y predecible. Los Agent Workflows agregan criterio: clasifican documentos, interpretan excepciones y deciden el siguiente paso. Solemos combinar ambas — orquestación determinista donde sirve, IA donde aporta.",
+          },
+          {
+            q: "¿Necesito tener BB One para contratar Agent Workflows?",
+            a: "No. Los Agent Workflows corren en la nube por defecto. BB One entra cuando tus datos no pueden salir de tu red o necesitas inferencia local: mismo cerebro, mayor privacidad.",
+          },
+          {
+            q: "¿Cómo se cobra?",
+            a: "Cada integración se cotiza según los sistemas involucrados y la complejidad de las reglas. El diagnóstico inicial es sin costo y de ahí sale una propuesta cerrada antes de escribir una línea de código.",
+          },
+        ],
+        pricing: {
+          model: "quote",
+          sectionTitle: "Cotización por integración",
+          sectionSubtitle:
+            "El precio depende de los sistemas a conectar y la complejidad de las reglas. Así de simple.",
+          quote: {
+            priceLine: "Implementaciones desde $18,000 MXN",
+            bullets: [
+              "Diagnóstico de sistemas y flujos (sin costo)",
+              "Propuesta cerrada antes de desarrollar",
+              "Mantenimiento y evolución mensual opcional",
+            ],
+            note: "La mayoría de los clientes arranca con un flujo crítico y crece desde ahí.",
+          },
+          pricingFaq: [
+            {
+              q: "¿Qué determina el costo?",
+              a: "Número de sistemas a integrar, volumen de datos y complejidad de las reglas de negocio. Con el diagnóstico lo sabrás antes de comprometerte a nada.",
+            },
+          ],
+        },
       },
     ],
-    pricing: {
-      model: "tiered",
-      sectionTitle: "Planes de Coworkers Digitales",
-      sectionSubtitle:
-        "Desde atención básica hasta operación omnicanal completa. Todos incluyen diagnóstico sin costo.",
-      plans: [
-        {
-          tierName: "Starter",
-          tierSlug: "starter",
-          description: "Para negocios pequeños que quieren dejar de perder mensajes.",
-          setupPrice: { min: 4000, max: 7000, suffix: " (único)" },
-          monthlyPrice: { min: 1200, max: 2000, suffix: "/mes" },
-          features: [
-            { text: "1 canal (WhatsApp o web)", included: true },
-            { text: "Respuestas a preguntas frecuentes", included: true },
-            { text: "Captura de datos de contacto", included: true },
-            { text: "Hasta 1,000 conversaciones IA/mes", included: true },
-            { text: "Flujos guiados con árboles de decisión", included: true },
-            { text: "Integración CRM avanzada", included: false },
-            { text: "Reportes mensuales", included: false },
-          ],
-          addOns: ["Solo atención al cliente"],
-        },
-        {
-          tierName: "Growth",
-          tierSlug: "growth",
-          description:
-            "Para clínicas, gimnasios, escuelas e inmobiliarias con flujo constante.",
-          setupPrice: { min: 8000, max: 15000, suffix: " (único)" },
-          monthlyPrice: { min: 2500, max: 4500, suffix: "/mes" },
-          highlight: true,
-          features: [
-            { text: "2 canales (WhatsApp + web)", included: true },
-            { text: "IA para respuestas abiertas", included: true },
-            { text: "Agenda de citas y recordatorios", included: true },
-            { text: "Hasta 4,000 conversaciones IA/mes", included: true },
-            { text: "Integración con Google Calendar/CRM ligero", included: true },
-            { text: "Reporte mensual simple", included: true },
-            { text: "4+ canales omnicanal", included: false },
-          ],
-          addOns: [
-            "+1 Empleado Virtual Administrativo a elegir:",
-            "• Facturación básica",
-            "• Recordatorios de pago",
-            "• Envío de notificaciones automáticas",
-          ],
-        },
-        {
-          tierName: "Pro Omnicanal",
-          tierSlug: "pro",
-          description:
-            "Para empresas con volúmenes importantes y múltiples sistemas.",
-          setupPrice: { min: 18000, max: 35000, suffix: " (único)" },
-          monthlyPrice: { min: 6000, max: 10000, suffix: "/mes" },
-          features: [
-            { text: "3-4 canales (WhatsApp, web, Facebook, Instagram)", included: true },
-            { text: "Integración CRM/ERP (HubSpot, Zoho, etc.)", included: true },
-            { text: "Flujo completo desde contacto hasta venta", included: true },
-            { text: "Hasta 10,000-15,000 conversaciones IA/mes", included: true },
-            { text: "Reportes avanzados con KPIs", included: true },
-            { text: "Modelos IA avanzados para tareas complejas", included: true },
-            { text: "Soporte prioritario", included: true },
-          ],
-          addOns: [
-            "+2-3 Empleados Virtuales Administrativos:",
-            "• Facturación + cobranza",
-            "• Reportes/consolidación contable",
-          ],
-        },
-      ],
-      pricingFaq: [
-        {
-          q: "¿Qué pasa si supero el límite de conversaciones?",
-          a: "Si superas el límite de tu plan de forma recurrente (2+ meses consecutivos), aplicamos un cargo adicional por bloque extra de conversaciones o te recomendamos migrar al plan superior. Sin sorpresas.",
-        },
-        {
-          q: "¿El setup incluye todo?",
-          a: "El setup cubre diseño de flujos, personalización, conexión a canales y rondas de ajustes. Si necesitas integraciones adicionales no contempladas inicialmente, se cotizan por separado.",
-        },
-        {
-          q: "¿Puedo cambiar de plan?",
-          a: "Sí. Puedes escalar de Starter a Growth o de Growth a Pro en cualquier momento. Solo pagas la diferencia proporcional del setup.",
-        },
-      ],
-    },
-  },
-  {
-    slug: "voice-coworkers",
-    title: "Voice Coworkers",
-    subtitle: "Agentes Telefónicos",
-    icon: Phone,
-    shortDescription:
-      "Atención telefónica automatizada indistinguible de un operador humano, con integración directa a tu CRM y bases de datos.",
-    longDescription:
-      "Voice Coworkers son agentes de IA que atienden llamadas telefónicas con voz natural y comprensión completa del contexto. Se integran con tu telefonía IP existente, CRM y bases de datos para resolver, transferir o escalar cada llamada de forma inteligente.",
-    features: [
-      {
-        title: "Voz natural ultra-realista",
-        description:
-          "Voces en español neutro y latino que no suenan robóticas. Latencia de respuesta menor a 1 segundo.",
-      },
-      {
-        title: "Telefonía IP integrada",
-        description:
-          "Compatible con FreeSWITCH, Twilio, Vonage y cualquier sistema SIP estándar.",
-      },
-      {
-        title: "CRM bidireccional",
-        description:
-          "Consulta y actualiza información en Salesforce, HubSpot y cualquier CRM durante la llamada en tiempo real.",
-      },
-      {
-        title: "Transcripción en vivo",
-        description:
-          "Cada llamada se transcribe automáticamente para análisis, calidad y cumplimiento.",
-      },
-      {
-        title: "Flujos conversacionales",
-        description:
-          "Maneja llamadas de ventas, soporte, encuestas y seguimiento con flujos personalizados por tipo.",
-      },
-    ],
-    process: [
-      {
-        step: 1,
-        title: "Auditoría de telefonía",
-        description:
-          "Evaluamos tu infraestructura telefónica actual (PBX, SIP trunking, volúmenes de llamadas) para diseñar la integración.",
-      },
-      {
-        step: 2,
-        title: "Diseño de flujos de voz",
-        description:
-          "Definimos los flujos conversacionales, tono de voz, scripts y reglas de escalamiento.",
-      },
-      {
-        step: 3,
-        title: "Integración y pruebas",
-        description:
-          "Conectamos con tu telefonía y CRM. Probamos con llamadas reales controladas antes de salir en vivo.",
-      },
-      {
-        step: 4,
-        title: "Despliegue gradual",
-        description:
-          "Iniciamos con un porcentaje de llamadas y escalamos conforme validamos rendimiento y satisfacción.",
-      },
-    ],
-    useCase: {
-      title: "Centro de atención de seguros",
-      description:
-        "Una aseguradora recibía 200+ llamadas diarias de reporte de siniestros. Voice Coworker captura datos del reporte, verifica póliza y asigna ajustador automáticamente.",
-      metrics: [
-        "200+ llamadas/día atendidas automáticamente",
-        "70% de llamadas resueltas sin intervención humana",
-        "45 segundos promedio de ahorro por llamada",
-      ],
-    },
-    faq: [
-      {
-        q: "¿La voz suena robótica?",
-        a: "No. Usamos modelos de síntesis de voz de última generación con voces en español neutro. La mayoría de los callers no distinguen que están hablando con una IA.",
-      },
-      {
-        q: "¿Funciona con mi central telefónica actual?",
-        a: "Probablemente sí. Voice Coworkers es compatible con cualquier sistema que soporte SIP (FreeSWITCH, Asterisk, 3CX, Twilio, Vonage, etc.). Hacemos la auditoría antes de empezar.",
-      },
-      {
-        q: "¿Qué pasa si la llamada es muy compleja?",
-        a: "El agente detecta cuando una llamada supera su capacidad y transfiere a un agente humano con todo el contexto de la conversación. Sin que el caller tenga que repetir información.",
-      },
-    ],
-    pricing: {
-      model: "tiered",
-      sectionTitle: "Planes de Voice Coworkers",
-      sectionSubtitle:
-        "Desde atención básica por teléfono hasta operación completa con CRM integrado.",
-      plans: [
-        {
-          tierName: "Starter",
-          tierSlug: "starter",
-          description:
-            "Para negocios que reciben llamadas frecuentes y necesitan filtrar y atender las más comunes.",
-          setupPrice: { min: 8000, max: 15000, suffix: " (único)" },
-          monthlyPrice: { min: 2500, max: 4000, suffix: "/mes" },
-          features: [
-            { text: "1 línea telefónica", included: true },
-            { text: "Flujos de atención básica (FAQ, horarios, citas)", included: true },
-            { text: "Transcripción automática de llamadas", included: true },
-            { text: "Hasta 500 minutos/mes", included: true },
-            { text: "Escalamiento a humano con contexto", included: true },
-            { text: "Integración CRM bidireccional", included: false },
-            { text: "Reportes avanzados", included: false },
-          ],
-          addOns: ["Solo atención telefónica"],
-        },
-        {
-          tierName: "Growth",
-          tierSlug: "growth",
-          description:
-            "Para centros de contacto con volumen medio que necesitan CRM y seguimiento.",
-          setupPrice: { min: 15000, max: 25000, suffix: " (único)" },
-          monthlyPrice: { min: 5000, max: 8000, suffix: "/mes" },
-          highlight: true,
-          features: [
-            { text: "2-3 líneas telefónicas", included: true },
-            { text: "Flujos de ventas, soporte y seguimiento", included: true },
-            { text: "Integración CRM (HubSpot, Salesforce)", included: true },
-            { text: "Hasta 2,000 minutos/mes", included: true },
-            { text: "Transcripción + análisis de sentimiento", included: true },
-            { text: "Reporte mensual de KPIs", included: true },
-            { text: "Multi-idioma", included: false },
-          ],
-          addOns: [
-            "+1 Empleado Virtual Administrativo:",
-            "• Transcripción y clasificación automática",
-            "• Seguimiento post-llamada por correo",
-          ],
-        },
-        {
-          tierName: "Pro",
-          tierSlug: "pro",
-          description:
-            "Para operaciones de alto volumen con telefonía compleja y múltiples integraciones.",
-          setupPrice: { min: 30000, max: 50000, suffix: " (único)" },
-          monthlyPrice: { min: 10000, max: 18000, suffix: "/mes" },
-          features: [
-            { text: "Líneas ilimitadas según PBX", included: true },
-            { text: "Flujos personalizados por tipo de llamada", included: true },
-            { text: "CRM bidireccional + APIs internas", included: true },
-            { text: "Hasta 10,000 minutos/mes", included: true },
-            { text: "Dashboards en tiempo real", included: true },
-            { text: "Análisis de calidad y compliance", included: true },
-            { text: "Soporte prioritario 24/7", included: true },
-          ],
-          addOns: [
-            "+2-3 Empleados Virtuales Administrativos:",
-            "• Reportes automáticos de operación",
-            "• Conciliación de datos de llamadas vs CRM",
-          ],
-        },
-      ],
-      pricingFaq: [
-        {
-          q: "¿Los minutos son por línea o totales?",
-          a: "Son minutos totales consumidos por todas las líneas del plan. Si necesitas más minutos, se agregan por bloque con costo proporcional.",
-        },
-        {
-          q: "¿La integración con mi PBX tiene costo extra?",
-          a: "La integración con SIP estándar (FreeSWITCH, Asterisk, 3CX) está incluida en el setup. Si tu sistema requiere desarrollo personalizado, se cotiza por separado.",
-        },
-        {
-          q: "¿Qué proveedor de telefonía usan?",
-          a: "Trabajamos con tu proveedor actual si soporta SIP. También podemos configurar con Twilio, Vonage u otros según la región y cobertura que necesites.",
-        },
-      ],
-    },
   },
   {
     slug: "agent-pentesting",
