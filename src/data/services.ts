@@ -355,7 +355,7 @@ export const services: Service[] = [
           {
             title: "Comprensión de contexto",
             description:
-              "El agente recuerda historial de conversaciones, conoce tus productos y entiende el jerga de tu industria.",
+              "El agente recuerda historial de conversaciones, conoce tus productos y entiende la jerga de tu industria.",
           },
           {
             title: "Acciones reales",
