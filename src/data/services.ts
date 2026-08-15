@@ -1,5 +1,6 @@
 import {
   Cpu,
+  Eye,
   MessageSquare,
   Phone,
   ShieldCheck,
@@ -1023,6 +1024,152 @@ export const services: Service[] = [
         a: "Cero. La plataforma está diseñada para perfiles operativos. Las entrevistas son conversacionales y los resultados se presentan de forma visual e intuitiva.",
       },
     ],
+  },
+  {
+    slug: "agent-visibility",
+    title: "Agent Visibility",
+    subtitle: "Presencia Agéntica y AEO",
+    icon: Eye,
+    shortDescription:
+      "Cuando un comprador pregunta a la IA, ¿te recomienda a ti o a tu competencia? Diagnosticamos y mejoramos tu presencia ante ChatGPT, Perplexity, Gemini y los agentes que ya deciden qué comprar ver.",
+    longDescription:
+      "La búsqueda cambió: millones de compras empiezan con una pregunta a una IA, no con un clic en Google. Agent Visibility mide si las IAs te encuentran, te entienden y te recomiendan cuando un comprador pregunta por lo que vendes — y corrige lo que falta. No vanity metrics de '¿se mencionó mi marca?': verificamos si la IA recomienda tu solución para el trabajo que genera revenue.",
+    features: [
+      {
+        title: "Score de Presencia Agéntica 0-100",
+        description:
+          "Diagnóstico cuantitativo de qué tan visible eres para las IAs, con benchmark directo contra tu competencia en las consultas que importan.",
+      },
+      {
+        title: "Buyer intent queries de tu vertical",
+        description:
+          "No medimos consultas genéricas. Diseñamos las preguntas reales que hacen tus compradores y auditamos qué responde cada IA sobre ti en cada una.",
+      },
+      {
+        title: "Diagnóstico en 3 dimensiones",
+        description:
+          "Accesibilidad (¿la IA puede encontrarte?), Legibilidad (¿entiende qué ofreces?) y Confianza (¿tiene señales de que eres bueno?). Causa técnica de cada hueco, no solo el síntoma.",
+      },
+      {
+        title: "Plan de fixes priorizado",
+        description:
+          "Inventario de acciones concretas —schema, contenido por jobs, estrategia de reviews, llms.txt— priorizadas por impacto y ordenadas en roadmap de 90 días.",
+      },
+      {
+        title: "Re-medición y retainer de crecimiento",
+        description:
+          "La presencia agéntica no es one-shot. Re-medimos el score tras implementar y mantenemos la mejora con monitoreo mensual contra tu competencia.",
+      },
+    ],
+    process: [
+      {
+        step: 1,
+        title: "Auditoría inicial",
+        description:
+          "Inventario de presencia: GBP, indexación, robots.txt, schema, reviews, directorios. Salida: score 0-100 y benchmark vs competencia.",
+      },
+      {
+        step: 2,
+        title: "Análisis de causas",
+        description:
+          "Por cada hueco de presencia, identificamos la causa técnica: schema faltante, precios no parseables, contenido que la IA no puede citar.",
+      },
+      {
+        step: 3,
+        title: "Plan de 90 días",
+        description:
+          "Roadmap priorizado de fixes con impacto estimado. Lo implementamos nosotros, tu equipo, o mezcla — tú decides.",
+      },
+      {
+        step: 4,
+        title: "Implementación y re-medición",
+        description:
+          "Ejecución de fixes y re-medición del score. Garantía de movimiento: si el score no avanza, seguimos sin costo hasta que avance.",
+      },
+    ],
+    useCase: {
+      title: "Clínica veterinaria en Coyoacán",
+      description:
+        "PetCare tenía sitio web, Google Business Profile activo y buenas reseñas — pero al preguntarle a ChatGPT por 'veterinaria confiable en Coyoacán', la IA recomendaba a su competencia. El diagnóstico encontró las causas: robots.txt bloqueando GPTBot, precios en imágenes no parseables y schema LocalBusiness incompleto.",
+      metrics: [
+        "Score inicial 18/100 vs 61% de menciones a la competencia",
+        "8 fixes priorizados en roadmap de 90 días",
+        "Meta: aparecer en el top 3 de recomendaciones de IA del barrio",
+      ],
+    },
+    faq: [
+      {
+        q: "¿Esto es SEO?",
+        a: "Es lo que el SEO era en el 2005: un canal nuevo donde los primeros que se posicionen se llevan la ventaja. Las técnicas se solapan (schema, contenido, reseñas) pero el objetivo es otro — no rankear en Google, sino ser la respuesta que da la IA.",
+      },
+      {
+        q: "¿Qué IAs evalúan?",
+        a: "Las que tus compradores usan: ChatGPT, Perplexity, Gemini y Copilot como base, más las específicas de tu vertical que detectemos en la auditoría.",
+      },
+      {
+        q: "¿Cuánto tarda en moverse el score?",
+        a: "Los fixes técnicos (schema, robots, parseo) mueven la aguja en semanas. Las señales de confianza (reviews, menciones) toman 2-3 meses. Por eso el plan es de 90 días.",
+      },
+      {
+        q: "¿Sirve para mi negocio?",
+        a: "Si tus clientes te buscan o comparan online —y sobre todo si te preguntan a una IA— sí. Si tu demanda es 100% referida y offline, hay mejores inversiones. Te lo decimos honestamente en la auditoría.",
+      },
+    ],
+    pricing: {
+      model: "tiered",
+      sectionTitle: "Planes de Agent Visibility",
+      sectionSubtitle:
+        "Del diagnóstico puntual a la mejora continua. La auditoría inicial va incluida en todos.",
+      plans: [
+        {
+          tierName: "Diagnóstico",
+          tierSlug: "diagnostico",
+          description: "Saber dónde estás y qué hacer al respecto.",
+          setupPrice: { min: 8000, max: 12000, suffix: " (único)" },
+          features: [
+            { text: "Score de presencia agéntica 0-100", included: true },
+            { text: "Benchmark contra 2-3 competidores directos", included: true },
+            { text: "Auditoría en 3 dimensiones (accesibilidad/legibilidad/confianza)", included: true },
+            { text: "Plan de fixes priorizado", included: true },
+            { text: "Implementación de fixes", included: false },
+            { text: "Re-medición", included: false },
+          ],
+        },
+        {
+          tierName: "Implementación 90 días",
+          tierSlug: "implementacion",
+          description: "Ejecutamos el plan completo y re-medimos.",
+          setupPrice: { min: 15000, max: 25000, suffix: " (90 días)" },
+          highlight: true,
+          features: [
+            { text: "Todo el plan Diagnóstico", included: true },
+            { text: "Implementación de los fixes priorizados", included: true },
+            { text: "Contenido orientado a jobs y buyer queries", included: true },
+            { text: "Estrategia de reviews 90 días", included: true },
+            { text: "Re-medición final con reporte de avance", included: true },
+            { text: "Garantía de movimiento del score", included: true },
+          ],
+        },
+        {
+          tierName: "Retainer Growth",
+          tierSlug: "retainer",
+          description: "Presencia agéntica que se mantiene y crece.",
+          monthlyPrice: { min: 1500, max: 2500, suffix: "/mes" },
+          features: [
+            { text: "Monitoreo mensual del score", included: true },
+            { text: "Ajustes continuos ante cambios de las IAs", included: true },
+            { text: "Respuesta a reviews con plantillas", included: true },
+            { text: "Reporte mensual de mención vs competencia", included: true },
+          ],
+        },
+      ],
+      pricingFaq: [
+        {
+          q: "¿Qué es la 'garantía de movimiento'?",
+          a: "Si tras los 90 días el score no avanzó significativamente, seguimos trabajando sin costo adicional hasta que lo haga. Nos pagan por resultados, no por horas.",
+        },
+      ],
+    },
   },
   {
     slug: "ai-training",
