@@ -539,7 +539,7 @@ export const services: Service[] = [
           },
           {
             q: "¿Funciona con mi central telefónica actual?",
-            a: "Probablemente sí. Voice Coworkers es compatible con cualquier sistema que soporte SIP (FreeSWITCH, Asterisk, 3CX, Twilio, Vonage, etc.). Hacemos la auditoría antes de empezar.",
+            a: "Probablemente sí. Voice Agents es compatible con cualquier sistema que soporte SIP (FreeSWITCH, Asterisk, 3CX, Twilio, Vonage, etc.). Hacemos la auditoría antes de empezar.",
           },
           {
             q: "¿Qué pasa si la llamada es muy compleja?",
@@ -548,7 +548,7 @@ export const services: Service[] = [
         ],
         pricing: {
           model: "tiered",
-          sectionTitle: "Planes de Voice Coworkers",
+          sectionTitle: "Planes de Voice Agents",
           sectionSubtitle:
             "Desde atención básica por teléfono hasta operación completa con CRM integrado.",
           plans: [

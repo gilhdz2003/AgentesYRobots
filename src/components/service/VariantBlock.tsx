@@ -47,7 +47,7 @@ export function VariantBlock({
       {variant.pricing && (
         <PricingSection
           pricing={variant.pricing}
-          serviceSlug={`${familySlug}#${variant.slug}`}
+          serviceSlug={`${familySlug}?variant=${variant.slug}`}
         />
       )}
       <FAQSection
