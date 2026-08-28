@@ -136,14 +136,12 @@ export default function Hero() {
         >
           <div className="enterprise-border p-4 bg-slate-900/40 backdrop-blur-2xl rounded-2xl">
             <div className="aspect-square relative overflow-hidden rounded-xl">
-              {/* TODO(imagen): reemplazar por imagen generada en public/hero-bb-node.jpg */}
               <img
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
-                alt="Equipo de ingeniería supervisando agentes de IA en operación"
-                className="w-full h-full object-cover brightness-75 contrast-110 grayscale"
-                referrerPolicy="no-referrer"
+                src="/hero-bb-node.webp"
+                alt="Nodo de cómputo local con agentes de IA en operación: LEDs ámbar activos y cable de red conectado"
+                className="w-full h-full object-cover brightness-95"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 via-transparent to-transparent" />
             </div>
           </div>
           <div className="absolute -bottom-6 -left-6 px-6 py-4 glass-premium rounded-xl">
