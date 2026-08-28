@@ -9,11 +9,13 @@ coverage/
 tsconfig.tsbuildinfo
 *.png
 # Assets de marca — excepciones al bloqueo de PNGs (screenshots, material de diseño)
+# brand/ = assets fuente; public/ = solo lo que viaja a producción
 !public/logo-ar.png
-!public/logo-wordmark-en.png
 !public/favicon-*.png
 !public/icon-*.png
 !public/apple-touch-icon.png
+!brand/logo-ar-fullbleed.png
+!brand/logo-wordmark-en.png
 .playwright-mcp/
 
 # Privado — NO commitear (repo público gilhdz2003/AgentesYRobots)
