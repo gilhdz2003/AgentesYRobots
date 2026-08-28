@@ -3,7 +3,7 @@ import { MessageCircle, Mail, Linkedin, ArrowRight } from "lucide-react";
 import SEO, { breadcrumbSchema } from "../components/SEO";
 import { services } from "../data/services";
 
-const WA_NUMBER = "525512345678";
+const WA_NUMBER = "5218117991300";
 
 const serviceOptions = services.map((s) => ({
   label: s.title,
