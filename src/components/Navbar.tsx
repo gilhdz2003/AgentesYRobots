@@ -24,9 +24,14 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-bg/80 backdrop-blur-md border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-1">
+        <Link to="/" className="flex items-center gap-3">
+          <img
+            src="/logo-ar.png"
+            alt="Logotipo de Agentes&Robots"
+            className="h-10 w-10 rounded-lg object-cover"
+          />
           <span className="font-display text-2xl font-black tracking-tighter text-white">
-            AGENTES<span className="text-brand-accent tracking-normal">&</span>ROBOTS
+            AGENTES<span className="text-gray-300 tracking-normal">&</span>ROBOTS
           </span>
         </Link>
 

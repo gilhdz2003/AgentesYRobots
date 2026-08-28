@@ -8,6 +8,9 @@ coverage/
 .design-backups/
 tsconfig.tsbuildinfo
 *.png
+# Assets de marca — excepciones al bloqueo de PNGs (screenshots, material de diseño)
+!public/logo-ar.png
+!public/logo-wordmark.png
 .playwright-mcp/
 
 # Privado — NO commitear (repo público gilhdz2003/AgentesYRobots)
