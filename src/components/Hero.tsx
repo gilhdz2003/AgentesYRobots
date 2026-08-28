@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { fadeInLeft, fadeInRight } from "../utils/animations";
@@ -89,31 +90,39 @@ export default function Hero() {
           >
             <div className="w-8 h-[2px] bg-brand-accent" />
             <span className="label-tech text-brand-accent">
-              Infraestructura de IA // 01
+              Agentes de IA en producción // 01
             </span>
           </motion.div>
 
-          <h1 className="font-serif text-7xl lg:text-9xl italic tracking-tighter leading-none mb-10 gradient-text">
-            Inteligencia<br />
-            Operativa
+          <h1 className="font-serif italic tracking-tighter leading-[1.05] mb-8">
+            <span className="block text-6xl lg:text-8xl text-brand-text">
+              Automatiza la operación.
+            </span>
+            <span className="block text-4xl lg:text-6xl mt-3 text-brand-amber">
+              Escala sin contratar.
+            </span>
           </h1>
 
           <p className="max-w-lg text-lg text-gray-400 font-medium leading-relaxed mb-12">
-            Desplegamos infraestructuras de IA que actúan como la columna vertebral de empresas modernas. Automatización real para problemas complejos.
+            Agentes de IA para empresas que ya no caben en sus procesos: WhatsApp, telefonía, facturación y reportes operando solos.
           </p>
 
           <div className="flex flex-wrap gap-5">
-            <motion.button
+            <motion.a
+              href="#services"
               whileHover={{ scale: 1.02 }}
               className="px-8 py-4 bg-brand-amber text-brand-bg font-bold tracking-wide rounded-md"
             >
               EXPLORAR SOLUCIONES
-            </motion.button>
-            <motion.button
-              className="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold tracking-wide rounded-md hover:bg-white/10 transition-colors"
-            >
-              SOLICITAR DEMO
-            </motion.button>
+            </motion.a>
+            <motion.div whileHover={{ scale: 1.02 }}>
+              <Link
+                to="/contacto"
+                className="inline-block px-8 py-4 bg-white/5 border border-white/10 text-white font-bold tracking-wide rounded-md hover:bg-white/10 transition-colors"
+              >
+                SOLICITAR DEMO
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
 
@@ -127,9 +136,10 @@ export default function Hero() {
         >
           <div className="enterprise-border p-4 bg-slate-900/40 backdrop-blur-2xl rounded-2xl">
             <div className="aspect-square relative overflow-hidden rounded-xl">
+              {/* TODO(imagen): reemplazar por imagen generada en public/hero-bb-node.jpg */}
               <img
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
-                alt="AI Team Meeting"
+                alt="Equipo de ingeniería supervisando agentes de IA en operación"
                 className="w-full h-full object-cover brightness-75 contrast-110 grayscale"
                 referrerPolicy="no-referrer"
               />

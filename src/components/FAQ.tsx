@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown } from "lucide-react";
-import SEO from "./SEO";
 
 const faqs = [
   {
@@ -51,6 +50,10 @@ const faqJsonLd = {
   })),
 };
 
+// La FAQ es sección de la home: su JSON-LD lo consume el <SEO> de HomePage.
+// Un <SEO> aquí pisa el título de la home (último Helmet montado gana).
+export { faqJsonLd };
+
 function FAQItem({ q, a }: { q: string; a: string; key?: string }) {
   const [open, setOpen] = useState(false);
 
@@ -92,11 +95,6 @@ function FAQItem({ q, a }: { q: string; a: string; key?: string }) {
 export default function FAQ() {
   return (
     <>
-      <SEO
-        title="Preguntas Frecuentes"
-        description="Respuestas sobre implementación de IA empresarial, costos, seguridad, tiempos de implementación y más."
-        jsonLd={faqJsonLd}
-      />
       <section className="py-32 px-6">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-2 mb-6">

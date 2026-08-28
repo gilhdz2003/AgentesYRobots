@@ -11,7 +11,7 @@ import Solutions from "./components/Solutions";
 import Process from "./components/Process";
 import Stats from "./components/Stats";
 import SocialProof from "./components/SocialProof";
-import FAQ from "./components/FAQ";
+import FAQ, { faqJsonLd } from "./components/FAQ";
 import CTA from "./components/CTA";
 import PortfolioSection from "./components/PortfolioSection";
 import Footer from "./components/Footer";
@@ -38,7 +38,7 @@ const ORG_JSON_LD = {
 function HomePage() {
   return (
     <>
-      <SEO jsonLd={[ORG_JSON_LD, websiteSchema()]} />
+      <SEO jsonLd={[ORG_JSON_LD, websiteSchema(), faqJsonLd]} />
       <Hero />
       <Solutions />
       <Process />
