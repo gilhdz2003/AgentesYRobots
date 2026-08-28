@@ -110,14 +110,14 @@ export default function ServicePage() {
             <div className="flex flex-wrap gap-4 mt-10">
               <Link
                 to="/contacto"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-brand-accent text-brand-bg font-bold text-[12px] rounded-md tracking-wider shadow-lg shadow-brand-accent/20"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-brand-accent text-brand-bg font-bold text-sm rounded-md tracking-wider shadow-lg shadow-brand-accent/20"
               >
                 SOLICITAR DIAGNÓSTICO
                 <ArrowRight size={16} />
               </Link>
               <a
                 href="#proceso"
-                className="inline-flex items-center gap-3 px-8 py-4 enterprise-border rounded-md text-white font-bold text-[12px] tracking-wider hover:border-brand-accent/50 transition-colors"
+                className="inline-flex items-center gap-3 px-8 py-4 enterprise-border rounded-md text-white font-bold text-sm tracking-wider hover:border-brand-accent/50 transition-colors"
               >
                 VER PROCESO
               </a>

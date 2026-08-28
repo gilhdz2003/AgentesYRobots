@@ -25,6 +25,7 @@ function PricingFAQ({ faqs }: { faqs: ServiceFAQ[] }) {
           <div key={i} className="border-b border-white/5">
             <button
               onClick={() => setOpenIndex(openIndex === i ? null : i)}
+              aria-expanded={openIndex === i}
               className="w-full flex items-center justify-between py-5 text-left group cursor-pointer"
             >
               <span className="text-white font-medium text-sm pr-8 group-hover:text-brand-accent transition-colors">

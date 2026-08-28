@@ -61,6 +61,7 @@ function FAQItem({ q, a }: { q: string; a: string; key?: string }) {
     <div className="border-b border-white/5">
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className="w-full flex items-center justify-between py-6 text-left group cursor-pointer"
       >
         <span className="text-white font-medium text-sm pr-8 group-hover:text-brand-accent transition-colors">

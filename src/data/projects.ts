@@ -110,7 +110,7 @@ export const projects: Project[] = [
     featured: false,
     deployUrl: "https://nefastos.com",
     description:
-      "Portal ciudadano con Score Nefasto 0-100. Los usuarios publican quejas con evidencia; las empresas reciben calificación automática. Principio inviolable: nunca vender borrar quejas.",
+      "Portal ciudadano con Score Nefasto 0-100. Los usuarios publican quejas con evidencia; las empresas reciben calificación automática. Principio inviolable: jamás se vende la eliminación de quejas.",
   },
   {
     id: "cursosia",
@@ -166,7 +166,7 @@ export const projects: Project[] = [
     status: "en_desarrollo",
     featured: false,
     description:
-      "CLI installer que genera un Sistema Operativo Agéntico personalizado. El cliente recibe Obsidian + Claude Code + Dashboard con botones sin tocar terminal. Ticket $5K-15K MXN.",
+      "CLI installer que genera un Sistema Operativo Agéntico personalizado. El cliente recibe Obsidian + Claude Code + Dashboard con botones sin tocar terminal.",
   },
 
   // ── LABORATORIO ──

@@ -5,6 +5,7 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { MotionConfig } from "motion/react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Solutions from "./components/Solutions";
@@ -54,22 +55,24 @@ function HomePage() {
 export default function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <div className="min-h-screen selection:bg-brand-cyan/30 flex flex-col">
-          <Navbar />
-          <main className="flex-grow pt-20">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/servicios/:slug" element={<ServicePage />} />
-              <Route path="/nosotros" element={<AboutPage />} />
-              <Route path="/contacto" element={<ContactPage />} />
-              <Route path="/casos" element={<CaseStudiesPage />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </BrowserRouter>
+      <MotionConfig reducedMotion="user">
+        <BrowserRouter>
+          <ScrollToTop />
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <main className="flex-grow pt-20">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/servicios/:slug" element={<ServicePage />} />
+                <Route path="/nosotros" element={<AboutPage />} />
+                <Route path="/contacto" element={<ContactPage />} />
+                <Route path="/casos" element={<CaseStudiesPage />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </BrowserRouter>
+      </MotionConfig>
     </HelmetProvider>
   );
 }

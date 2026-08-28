@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { scaleIn, sectionTransition } from "../utils/animations";
 
 export default function CTA() {
@@ -25,17 +26,22 @@ export default function CTA() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="px-10 py-5 bg-brand-bg text-white font-black text-[14px] rounded-xl shadow-2xl"
-            >
-              INICIAR DIAGNÓSTICO
-            </motion.button>
-            <motion.button
-              className="px-10 py-5 bg-transparent border-2 border-brand-bg/20 text-brand-bg font-black text-[14px] rounded-xl hover:bg-brand-bg/10 transition-colors"
-            >
-              CONTACTAR VENTAS
-            </motion.button>
+            <motion.div whileHover={{ scale: 1.05 }}>
+              <Link
+                to="/contacto"
+                className="inline-block px-10 py-5 bg-brand-bg text-white font-black text-[14px] rounded-xl shadow-2xl"
+              >
+                INICIAR DIAGNÓSTICO
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }}>
+              <Link
+                to="/contacto"
+                className="inline-block px-10 py-5 bg-transparent border-2 border-brand-bg/20 text-brand-bg font-black text-[14px] rounded-xl hover:bg-brand-bg/10 transition-colors"
+              >
+                CONTACTAR VENTAS
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
       </div>

@@ -33,6 +33,7 @@ export default function Footer() {
               href="https://linkedin.com/company/agentesyrobots"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn de Agentes&Robots"
               className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-brand-accent transition-colors cursor-pointer"
             >
               in
@@ -41,6 +42,7 @@ export default function Footer() {
               href="https://github.com/agentesyrobots"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub de Agentes&Robots"
               className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-brand-accent transition-colors cursor-pointer"
             >
               gh

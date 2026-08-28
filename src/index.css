@@ -18,6 +18,13 @@
   body {
     @apply bg-brand-bg text-brand-text font-sans antialiased selection:bg-brand-accent/30;
   }
+
+  /* Navegación por teclado visible en todo el sitio (WCAG AA) */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-amber);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 }
 
 @layer utilities {
@@ -31,7 +38,7 @@
     @apply border border-white/10;
   }
   .label-tech {
-    @apply text-[10px] uppercase tracking-[0.4em] font-bold;
+    @apply text-xs uppercase tracking-[0.4em] font-bold;
   }
 
   .gradient-text {
