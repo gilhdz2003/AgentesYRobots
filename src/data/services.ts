@@ -785,13 +785,14 @@ export const services: Service[] = [
           },
         ],
         useCase: {
-          title: "Agente de atención al cliente en producción",
+          title: "Red team a nuestro propio agente en producción",
           description:
-            "Una empresa de fintech tenía un agente de IA atendiendo consultas de saldo y movimientos. Nuestra auditoría encontró que podía ser manipulado para revelar datos de otros usuarios.",
+            "Antes de venderle seguridad a nadie, atacamos el agente de IA de Konectify que atiende clientes reales en konectify.cloud. 324 ataques organizados en 4 campañas lograron extraer el system prompt completo del agente combinando crescendo conversacional con encoding ROT13. Remediamos en producción y volvimos a atacar con el mismo arsenal para certificar el blindaje.",
           metrics: [
-            "12 vulnerabilidades encontradas",
-            "3 críticas de filtración de datos",
-            "0 incidentes post-remediación",
+            "324 ataques documentados en 4 campañas",
+            "Hallazgo crítico: system prompt extraído → blindado",
+            "Certificación: de 18 fallos a 5, residuales BAJA",
+            "0 datos de clientes reales expuestos",
           ],
         },
         faq: [

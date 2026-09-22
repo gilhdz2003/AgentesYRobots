@@ -79,7 +79,7 @@ const cases = [
     id: "voice-agent-konectify",
     title: "Voice Agent Wendy",
     client: "Konectify",
-    category: "Voice Coworkers",
+    category: "Voice Agents",
     challenge:
       "Konectify recibía prospectos por múltiples canales sin un sistema unificado de captura. Los leads entrantes por teléfono no se registraban automáticamente y se perdían oportunidades de negocio.",
     solution:
@@ -93,20 +93,21 @@ const cases = [
     link: undefined,
   },
   {
-    id: "pentesting-fintech",
-    title: "Auditoría de Seguridad IA",
-    client: "Fintech",
-    category: "Agent Pentesting",
+    id: "pentesting-konectify",
+    title: "Red Team a un Agente en Producción",
+    client: "Konectify",
+    category: "Agent Security",
     challenge:
-      "Una fintech desplegaba agentes de IA con LLMs sin evaluación de seguridad previa. Necesitaban identificar vulnerabilidades de prompt injection, data leakage y jailbreaks antes de salir a producción.",
+      "Konectify opera su propio chatbot de IA atendiendo clientes reales en konectify.cloud. La pregunta incómoda: ¿qué pasa si un atacante lo manipula? La respuesta de la casa fue atacarlo primero nosotros: 4 campañas de ataque contra el agente EN PRODUCCIÓN, con reglas de engagement formales y cada respuesta documentada.",
     solution:
-      "Auditoría completa con 60 patrones de prompt injection en 7 categorías. Evaluación de robustez del agente, identificación de vectores de ataque y recomendaciones de hardening específicas para su stack.",
+      "324 pruebas con arsenal creciente: prompt injection directa e indirecta, jailbreaks, exfiltración de datos y técnicas stateful multi-turno. El hallazgo crítico: el system prompt —el cerebro operativo del agente— era extraíble completo combinando crescendo conversacional con encoding ROT13. Remediación aplicada en producción y re-certificación ejecutando el mismo arsenal para demostrar el cierre.",
     metrics: [
-      "12 vulnerabilidades identificadas",
-      "3 clasificadas como críticas",
-      "60 patrones de ataque evaluados",
+      "324 ataques documentados en 4 campañas",
+      "System prompt extraído → blindado y re-certificado",
+      "De 18 fallos a 5 con el mismo arsenal (residuales BAJA)",
+      "0 datos de clientes reales expuestos",
     ],
-    stack: "Custom pentesting framework, Python",
+    stack: "promptfoo, OWASP Top 10 para LLMs, 60+ patrones en 7 categorías",
     link: undefined,
   },
 ];
@@ -148,7 +149,7 @@ export default function CaseStudiesPage() {
 
             <p className="text-gray-400 text-lg font-medium leading-relaxed max-w-2xl">
               Cada proyecto abajo está en producción, con usuarios reales y
-              métricas comprobables. No son demos ni pilots.
+              métricas comprobables. No son demos ni pilotos.
             </p>
           </motion.div>
         </div>
