@@ -16,6 +16,7 @@ tsconfig.tsbuildinfo
 !public/apple-touch-icon.png
 !brand/logo-ar-fullbleed.png
 !brand/logo-wordmark-en.png
+!redesigns/kimi-directions/public/logo-ar.png
 .playwright-mcp/
 
 # Privado — NO commitear (repo público gilhdz2003/AgentesYRobots)
