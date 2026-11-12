@@ -1,30 +1,24 @@
-import { motion } from "motion/react";
-import { Link } from "react-router-dom";
-import { ArrowRight, Zap, Shield, Target, Users } from "lucide-react";
 import SEO, { breadcrumbSchema } from "../components/SEO";
+import { waLink } from "../data/contact";
 
 const values = [
   {
-    icon: Zap,
-    title: "Velocidad sobre perfección",
+    title: "VELOCIDAD SOBRE PERFECCIÓN.",
     description:
       "Preferimos desplegar rápido e iterar. Un sistema funcionando vale más que una presentación perfecta.",
   },
   {
-    icon: Shield,
-    title: "Seguridad por defecto",
+    title: "SEGURIDAD POR DEFECTO.",
     description:
       "Cada agente que desplegamos pasa por pruebas de seguridad. No lanzamos nada que no hayamos auditado nosotros mismos.",
   },
   {
-    icon: Target,
-    title: "Resultados medibles",
+    title: "RESULTADOS MEDIBLES.",
     description:
       "Si no se puede medir, no se puede mejorar. Cada proyecto incluye métricas claras de impacto desde el día uno.",
   },
   {
-    icon: Users,
-    title: "Operación, no consultoría",
+    title: "OPERACIÓN, NO CONSULTORÍA.",
     description:
       "No entregamos PDFs. Desplegamos sistemas que funcionan 24/7 sin intervención humana y los monitoreamos continuamente.",
   },
@@ -67,187 +61,164 @@ export default function AboutPage() {
       />
 
       {/* Hero */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-[2px] bg-brand-accent" />
-              <span className="label-tech text-brand-accent">NOSOTROS</span>
-            </div>
-
-            <h1 className="font-display text-5xl md:text-7xl font-black tracking-tight text-white uppercase mb-8 max-w-4xl">
-              No somos una consultoría. Somos infraestructura.
-            </h1>
-
-            <p className="text-gray-400 text-lg font-medium leading-relaxed max-w-2xl">
-              Agentes&Robots nació de una frustración real: empresas que pagan
-              por presentaciones de IA bonitas pero nunca ven un sistema
-              funcionando en producción. Nosotros diseñamos, desplegamos y
-              operamos. Y lo hacemos rápido.
-            </p>
-          </motion.div>
+      <section className="px-4 pb-20 pt-16 min-[760px]:px-7 min-[760px]:pb-28 min-[760px]:pt-20">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-telemetry mb-8 block text-muted">
+            [ EL LABORATORIO / QUIÉNES SOMOS ]
+          </span>
+          <h1 className="mb-8 max-w-5xl font-serif text-5xl font-extrabold uppercase leading-[0.8] tracking-tight text-paper md:text-8xl">
+            NO SOMOS UNA CONSULTORÍA.
+            <br />
+            <em className="text-yellow not-italic">SOMOS INFRAESTRUCTURA.</em>
+          </h1>
+          <p className="max-w-2xl text-lg leading-relaxed text-muted">
+            Agentes&Robots nació de una frustración real: empresas que pagan
+            por presentaciones de IA bonitas pero nunca ven un sistema
+            funcionando en producción. Nosotros diseñamos, desplegamos y
+            operamos. Y lo hacemos rápido.
+          </p>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-32 px-6 bg-slate-900/20">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="font-display text-4xl font-black tracking-tight text-white uppercase mb-16">
-            Cómo trabajamos
+      {/* Valores */}
+      <section className="hairline-t px-4 py-20 min-[760px]:px-7 min-[760px]:py-28">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-telemetry mb-6 block text-muted">
+            [ CÓMO TRABAJAMOS ]
+          </span>
+          <h2 className="mb-14 font-serif text-4xl font-extrabold uppercase leading-[0.85] tracking-tight text-paper md:text-6xl">
+            REGLAS DEL <em className="text-yellow not-italic">LABORATORIO.</em>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {values.map((value, i) => {
-              const Icon = value.icon;
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="p-8 rounded-2xl enterprise-border bg-slate-900/40"
-                >
-                  <Icon className="text-brand-accent mb-6" size={24} />
-                  <h3 className="text-white font-bold text-lg mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {value.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="w-8 h-[2px] bg-brand-accent" />
-            <span className="label-tech text-brand-accent">TRAYECTORIA</span>
-          </div>
-          <h2 className="font-display text-4xl font-black tracking-tight text-white uppercase mb-16">
-            De la práctica a producción
-          </h2>
-
-          <div className="space-y-12">
-            {timeline.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="flex gap-8 items-start"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            {values.map((value, i) => (
+              <div
+                key={value.title}
+                className="border-t-2 border-line py-7 pr-6 transition-colors duration-[180ms] hover:border-yellow md:border-r md:border-line md:px-6 lg:[&:nth-child(4)]:border-r-0"
               >
-                <div className="flex-shrink-0 w-20">
-                  <span className="text-brand-accent font-display font-bold text-lg">
-                    {item.year}
-                  </span>
+                <div className="mb-3 font-mono text-[10px] font-medium uppercase tracking-[0.05em] text-yellow">
+                  [ {String(i + 1).padStart(2, "0")} ]
                 </div>
-                <div className="border-l-2 border-brand-accent/20 pl-8 pb-8">
-                  <h3 className="text-white font-bold text-lg mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed max-w-xl">
-                    {item.description}
-                  </p>
-                </div>
-              </motion.div>
+                <h3 className="mb-3 font-serif text-2xl font-bold uppercase leading-tight tracking-tight text-paper">
+                  {value.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted">
+                  {value.description}
+                </p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Profile */}
-      <section className="py-32 px-6 bg-slate-900/20">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-[2px] bg-brand-accent" />
-                <span className="label-tech text-brand-accent">FUNDADOR</span>
-              </div>
-              <h2 className="font-display text-4xl font-black tracking-tight text-white uppercase mb-6">
-                Gil Hernandez
-              </h2>
-              <div className="space-y-4 text-gray-400 leading-relaxed">
-                <p>
-                  Empresario y consultor de IA. Gerente de TI en GMB (despacho
-                  de ajustes de siniestros) donde implementó las primeras
-                  automatizaciones con IA que dieron origen a Agentes&Robots.
-                </p>
-                <p>
-                  Su enfoque es pragmático: no vende IA por la novedad, sino
-                  por los resultados medibles que genera. Cada producto de
-                  Agentes&Robots nació de un problema real que resolvió primero
-                  para sus propios clientes.
-                </p>
-                <p>
-                  A través de Konectify, su consultoría, ayuda a empresas
-                  mexicanas a adoptar IA sin complicaciones técnicas ni
-                  promesas vacías.
-                </p>
-              </div>
-            </div>
+      {/* Trayectoria */}
+      <section className="bg-paper px-4 py-20 text-ink min-[760px]:px-7 min-[760px]:py-28">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-telemetry mb-6 block text-ink/85">
+            [ TRAYECTORIA ]
+          </span>
+          <h2 className="mb-14 font-serif text-4xl font-extrabold uppercase leading-[0.85] tracking-tight md:text-6xl">
+            DE LA PRÁCTICA
+            <br />
+            A <em className="text-orange-deep not-italic">PRODUCCIÓN.</em>
+          </h2>
 
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { value: "29K+", label: "Registros procesados" },
-                { value: "7", label: "Bots en producción" },
-                { value: "60%", label: "Reducción en tiempo" },
-                { value: "3", label: "Productos propios" },
-              ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="p-6 rounded-xl enterprise-border bg-slate-900/40 text-center"
-                >
-                  <div className="font-display text-3xl font-black text-brand-accent mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-gray-500 text-[11px] font-bold tracking-wider">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
+          <div>
+            {timeline.map((item) => (
+              <div
+                key={item.year}
+                className="grid grid-cols-1 gap-4 border-t-2 border-ink py-8 md:grid-cols-[120px_1fr] md:gap-10"
+              >
+                <div className="font-serif text-5xl font-extrabold uppercase leading-none tracking-tight text-orange-deep">
+                  {item.year}
+                </div>
+                <div>
+                  <h3 className="mb-2 font-serif text-2xl font-bold uppercase tracking-tight">
+                    {item.title}
+                  </h3>
+                  <p className="max-w-xl text-sm leading-relaxed text-ink/85">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Fundador */}
+      <section className="px-4 py-20 min-[760px]:px-7 min-[760px]:py-28">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 lg:grid-cols-2">
+          <div>
+            <span className="label-telemetry mb-6 block text-muted">
+              [ FUNDADOR ]
+            </span>
+            <h2 className="mb-6 font-serif text-5xl font-extrabold uppercase leading-[0.8] tracking-tight text-paper md:text-6xl">
+              GIL<br />
+              <em className="text-yellow not-italic">HERNANDEZ.</em>
+            </h2>
+            <div className="space-y-4 leading-relaxed text-muted">
+              <p>
+                Empresario y consultor de IA. Gerente de TI en GMB (despacho
+                de ajustes de siniestros) donde implementó las primeras
+                automatizaciones con IA que dieron origen a Agentes&Robots.
+              </p>
+              <p>
+                Su enfoque es pragmático: no vende IA por la novedad, sino
+                por los resultados medibles que genera. Cada producto de
+                Agentes&Robots nació de un problema real que resolvió primero
+                para sus propios clientes.
+              </p>
+              <p>
+                A través de Konectify, su consultoría, ayuda a empresas
+                mexicanas a adoptar IA sin complicaciones técnicas ni
+                promesas vacías.
+              </p>
             </div>
+          </div>
+
+          <div className="grid grid-cols-2">
+            {[
+              { value: "29K+", label: "REGISTROS PROCESADOS" },
+              { value: "7", label: "BOTS EN PRODUCCIÓN" },
+              { value: "60%", label: "REDUCCIÓN EN TIEMPO" },
+              { value: "3", label: "PRODUCTOS PROPIOS" },
+            ].map((stat) => (
+              <div key={stat.label} className="border border-line p-6">
+                <div className="mb-2 font-serif text-4xl font-extrabold uppercase leading-none tracking-tight text-yellow md:text-5xl">
+                  {stat.value}
+                </div>
+                <div className="font-mono text-[9px] uppercase tracking-[0.05em] text-muted">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-32 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+      <section className="bg-paper px-4 py-20 text-ink min-[760px]:px-7 min-[760px]:py-28">
+        <div className="mx-auto max-w-4xl">
+          <span className="label-telemetry mb-6 block text-ink/85">
+            [ DIAGNÓSTICO SIN COSTO / 2 SEMANAS ]
+          </span>
+          <h2 className="mb-6 font-serif text-5xl font-extrabold uppercase leading-[0.8] tracking-tight md:text-7xl">
+            ¿TRABAJAMOS<br />
+            <em className="text-orange-deep not-italic">JUNTOS?</em>
+          </h2>
+          <p className="mb-10 max-w-xl text-lg leading-relaxed text-ink/85">
+            El diagnóstico inicial es sin costo. En 2 semanas sabrás exactamente
+            dónde la IA puede transformar tu operación.
+          </p>
+          <a
+            href={waLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-between gap-6 border-2 border-ink bg-yellow px-8 py-4 font-mono text-[12px] font-semibold uppercase tracking-[0.05em] hard-shadow"
           >
-            <h2 className="font-display text-4xl md:text-5xl font-black tracking-tight text-white uppercase mb-6">
-              ¿Trabajamos juntos?
-            </h2>
-            <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
-              El diagnóstico inicial es sin costo. En 2 semanas sabrás exactamente dónde la IA puede transformar tu operación.
-            </p>
-            <Link
-              to="/contacto"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-brand-accent text-brand-bg font-bold text-[13px] rounded-md tracking-wider shadow-lg shadow-brand-accent/20"
-            >
-              COMENZAR
-              <ArrowRight size={18} />
-            </Link>
-          </motion.div>
+            COMENZAR <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </section>
     </>

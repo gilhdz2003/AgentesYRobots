@@ -1,42 +1,32 @@
-import { motion } from "motion/react";
-import { CheckCircle2 } from "lucide-react";
 import type { ServiceFeature } from "../../types/catalog";
 
 export function FeaturesSection({ features }: { features: ServiceFeature[] }) {
   return (
-    <section className="py-32 px-6 bg-slate-900/20">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center gap-2 mb-6">
-          <div className="w-8 h-[2px] bg-brand-accent" />
-          <span className="label-tech text-brand-accent">
-            CAPACIDADES
-          </span>
-        </div>
-        <h2 className="font-display text-4xl font-black tracking-tight text-white uppercase mb-16">
-          Qué incluye
+    <section className="bg-paper px-4 py-20 text-ink min-[760px]:px-7 min-[760px]:py-28">
+      <div className="mx-auto max-w-7xl">
+        <span className="label-telemetry mb-6 block text-ink/85">
+          [ CAPACIDADES ]
+        </span>
+        <h2 className="mb-14 font-serif text-4xl font-extrabold uppercase leading-[0.85] tracking-tight md:text-6xl">
+          QUÉ <em className="text-orange-deep not-italic">INCLUDE.</em>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group p-8 rounded-2xl enterprise-border bg-slate-900/40 hover:bg-slate-900/60 hover:border-brand-accent/50 transition-all duration-300"
+            <div
+              key={feature.title}
+              className="border-t-2 border-ink py-7 pr-6 md:border-r md:border-ink/15 md:px-6 md:last:border-r-0 lg:[&:nth-child(3n)]:border-r-0"
             >
-              <CheckCircle2
-                size={20}
-                className="text-brand-accent mb-6"
-              />
-              <h3 className="text-white font-bold mb-3">
+              <div className="mb-3 font-mono text-[10px] font-medium uppercase tracking-[0.05em] text-orange-deep">
+                [ {String(i + 1).padStart(2, "0")} ]
+              </div>
+              <h3 className="mb-2 font-serif text-2xl font-bold uppercase tracking-tight">
                 {feature.title}
               </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed text-ink/85">
                 {feature.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

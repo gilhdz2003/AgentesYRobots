@@ -8,21 +8,19 @@ export function VariantNav({
   familySlug: string;
 }) {
   return (
-    <div className="sticky top-20 z-30 bg-brand-bg/85 backdrop-blur-md border-y border-white/5">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap gap-2 justify-center">
-        {variants.map((v) => {
-          const Icon = v.icon;
-          return (
-            <a
-              key={v.slug}
-              href={`#${v.slug}`}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-[12px] font-bold tracking-wider text-gray-400 hover:text-white hover:border-brand-accent/50 enterprise-border transition-colors"
-            >
-              <Icon size={14} className="text-brand-accent" />
-              {v.name.toUpperCase()}
-            </a>
-          );
-        })}
+    <div className="sticky top-20 z-30 border-b border-line bg-ink/95">
+      <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-x-8 gap-y-3 px-4 py-4 min-[760px]:px-7">
+        {variants.map((v, i) => (
+          <a
+            key={v.slug}
+            href={`#${v.slug}`}
+            className="border-b border-transparent pb-1 font-mono text-[10px] font-semibold uppercase tracking-[0.05em] text-muted transition-colors hover:border-yellow hover:text-yellow"
+          >
+            <span className="text-yellow">{String(i + 1).padStart(2, "0")}</span>{" "}
+            {v.name.toUpperCase()}
+            <span className="sr-only"> — {familySlug}</span>
+          </a>
+        ))}
       </div>
     </div>
   );

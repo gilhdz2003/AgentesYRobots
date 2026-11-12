@@ -1,7 +1,5 @@
-import { motion } from "motion/react";
-import { CheckCircle2, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import { formatPriceRange } from "../../utils/formatPrice";
+import { waLink } from "../../data/contact";
 import type { PricingPlan, PlanFeature } from "../../types/catalog";
 
 export type { PricingPlan, PlanFeature };
@@ -13,66 +11,66 @@ export function PlanCard({
 }: {
   plan: PricingPlan;
   index: number;
+  /** Puede traer sufijo ?variant= (familias): se limpia para el texto de WhatsApp. */
   serviceSlug: string;
   key?: string;
 }) {
+  const cleanSlug = serviceSlug.split("?")[0];
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.15 }}
-      className={`relative p-8 rounded-2xl border bg-slate-900/40 transition-all duration-300 flex flex-col ${
-        plan.highlight
-          ? "border-brand-accent/60 shadow-lg shadow-brand-accent/10"
-          : "border-white/5 hover:border-brand-accent/30"
+    <div
+      className={`flex flex-col border-2 border-ink p-7 ${
+        plan.highlight ? "bg-yellow text-ink" : "bg-paper text-ink"
       }`}
     >
       {plan.highlight && (
-        <div className="absolute -top-3 left-8">
-          <span className="text-[10px] font-black tracking-[0.15em] bg-brand-accent text-brand-bg px-3 py-1 rounded-sm">
+        <div className="mb-4">
+          <span className="bg-ink px-3 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.05em] text-yellow">
             RECOMENDADO
           </span>
         </div>
       )}
 
       <div className="mb-6">
-        <h4 className="text-white font-bold text-xl mb-1">{plan.tierName}</h4>
-        <p className="text-gray-500 text-sm">{plan.description}</p>
+        <span className="mb-2 block font-mono text-[9px] font-medium uppercase tracking-[0.05em] text-ink/85">
+          [ {String(index + 1).padStart(2, "0")} ]
+        </span>
+        <h4 className="mb-1 font-serif text-3xl font-extrabold uppercase leading-none tracking-tight">
+          {plan.tierName}
+        </h4>
+        <p className="mt-2 text-sm text-ink/85">{plan.description}</p>
       </div>
 
       {(plan.monthlyPrice || plan.setupPrice) && (
-        <div className="mb-6 pb-6 border-b border-white/5">
+        <div className="mb-6 border-b-2 border-ink pb-6">
           {plan.monthlyPrice && (
             <div className="mb-2">
-              <span className="font-display text-3xl font-black text-white">
+              <span className="font-serif text-4xl font-extrabold uppercase leading-none tracking-tight">
                 {formatPriceRange(plan.monthlyPrice)}
               </span>
             </div>
           )}
           {plan.setupPrice && (
-            <p className="text-gray-500 text-sm">
-              Setup:{" "}
-              <span className="text-gray-400">
-                {formatPriceRange(plan.setupPrice)}
-              </span>
+            <p className="font-mono text-[10px] uppercase tracking-[0.05em] text-ink/85">
+              SETUP: {formatPriceRange(plan.setupPrice)}
             </p>
           )}
         </div>
       )}
 
-      <ul className="space-y-3 mb-8 flex-1">
+      <ul className="mb-8 flex-1 space-y-3">
         {plan.features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-3">
-            <CheckCircle2
-              size={16}
-              className={`flex-shrink-0 mt-0.5 ${
-                feature.included ? "text-brand-accent" : "text-gray-600"
-              }`}
-            />
+          <li key={`${i}-${feature.text}`} className="flex items-start gap-3">
             <span
-              className={`text-sm ${
-                feature.included ? "text-gray-300" : "text-gray-600"
+              aria-hidden="true"
+              className={`font-mono text-[10px] font-semibold ${
+                feature.included ? "text-ink" : "text-ink/30"
+              }`}
+            >
+              {feature.included ? "[✓]" : "[—]"}
+            </span>
+            <span
+              className={`text-sm leading-snug ${
+                feature.included ? "text-ink/85" : "text-ink/35"
               }`}
             >
               {feature.text}
@@ -82,29 +80,30 @@ export function PlanCard({
       </ul>
 
       {plan.addOns && plan.addOns.length > 0 && (
-        <div className="mb-6 p-4 rounded-lg bg-brand-accent/5 border border-brand-accent/10">
-          <p className="text-[10px] font-bold tracking-[0.15em] text-brand-accent mb-2">
+        <div className="mb-6 border-t-2 border-ink pt-4">
+          <p className="mb-2 font-mono text-[9px] font-semibold uppercase tracking-[0.05em] text-ink/85">
             ADD-ONS BACKOFFICE
           </p>
-          {plan.addOns.map((addon, i) => (
-            <p key={i} className="text-gray-400 text-xs">
-              {addon}
+          {plan.addOns.map((addon) => (
+            <p key={addon} className="font-mono text-[11px] text-ink/85">
+              + {addon}
             </p>
           ))}
         </div>
       )}
 
-      <Link
-        to={`/contacto?servicio=${serviceSlug}&plan=${plan.tierSlug}`}
-        className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md text-[11px] font-bold tracking-wider transition-colors ${
+      <a
+        href={waLink(cleanSlug)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`inline-flex items-center justify-center px-6 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.05em] transition-colors ${
           plan.highlight
-            ? "bg-brand-accent text-brand-bg shadow-lg shadow-brand-accent/20"
-            : "border border-white/10 text-white hover:border-brand-accent/50 hover:text-brand-accent"
+            ? "bg-ink text-yellow"
+            : "border-2 border-ink text-ink hover:bg-ink hover:text-yellow"
         }`}
       >
-        COTIZAR
-        <ArrowRight size={14} />
-      </Link>
-    </motion.div>
+        COTIZAR {plan.tierSlug.toUpperCase()} ↗
+      </a>
+    </div>
   );
 }

@@ -22,7 +22,8 @@
   --color-ink: oklch(0.19 0.018 95);      /* fondo tinta / texto sobre papel-amarillo */
   --color-paper: oklch(0.95 0.018 95);    /* papel claro / texto sobre tinta */
   --color-yellow: oklch(0.9 0.19 99);     /* amarillo señal: CTAs, énfasis, acción */
-  --color-orange: oklch(0.7 0.19 47);     /* acento secundario (em de titulares) */
+  --color-orange: oklch(0.7 0.19 47);     /* acento secundario (em de titulares) — solo sobre tinta */
+  --color-orange-deep: oklch(0.52 0.17 45); /* naranja para contexto papel/amarillo (AA) */
   --color-line: oklch(0.42 0.025 95);     /* hairlines y bordes sobre tinta */
   --color-muted: oklch(0.68 0.02 95);     /* microcopy secundario sobre tinta */
 

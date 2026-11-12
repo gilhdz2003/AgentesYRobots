@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { TieredPlans } from "./TieredPlans";
 import { ModularPricing } from "./ModularPricing";
@@ -16,27 +15,29 @@ function PricingFAQ({ faqs }: { faqs: ServiceFAQ[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="mt-16 pt-12 border-t border-white/5">
-      <h4 className="text-white font-bold text-lg mb-8">
+    <div className="mt-16 max-w-3xl border-t border-line pt-12">
+      <h4 className="mb-8 font-serif text-2xl font-bold uppercase tracking-tight text-paper">
         Preguntas sobre precios
       </h4>
       <div>
         {faqs.map((faq, i) => (
-          <div key={i} className="border-b border-white/5">
+          <div key={i} className="border-b border-line">
             <button
               onClick={() => setOpenIndex(openIndex === i ? null : i)}
               aria-expanded={openIndex === i}
-              className="w-full flex items-center justify-between py-5 text-left group cursor-pointer"
+              className="group flex w-full cursor-pointer items-center justify-between gap-6 py-5 text-left"
             >
-              <span className="text-white font-medium text-sm pr-8 group-hover:text-brand-accent transition-colors">
+              <span className="pr-4 text-[15px] font-medium text-paper/90 transition-colors group-hover:text-yellow">
                 {faq.q}
               </span>
-              <ChevronDown
-                size={16}
-                className={`text-gray-500 flex-shrink-0 transition-transform duration-200 ${
-                  openIndex === i ? "rotate-180 text-brand-accent" : ""
+              <span
+                aria-hidden="true"
+                className={`flex-shrink-0 inline-block font-mono text-lg leading-none transition-transform duration-200 ${
+                  openIndex === i ? "rotate-45 text-yellow" : "text-muted"
                 }`}
-              />
+              >
+                +
+              </span>
             </button>
             <AnimatePresence>
               {openIndex === i && (
@@ -47,7 +48,7 @@ function PricingFAQ({ faqs }: { faqs: ServiceFAQ[] }) {
                   transition={{ duration: 0.2 }}
                   className="overflow-hidden"
                 >
-                  <p className="text-gray-400 text-sm leading-relaxed pb-5 pr-12">
+                  <p className="pb-5 pr-12 text-sm leading-relaxed text-muted">
                     {faq.a}
                   </p>
                 </motion.div>
@@ -72,18 +73,13 @@ export function PricingSection({
     pricing.sectionSubtitle ?? "Elige el plan que se adapte a tu operación.";
 
   return (
-    <section className="py-32 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center gap-2 mb-6">
-          <div className="w-8 h-[2px] bg-brand-accent" />
-          <span className="text-[11px] font-black tracking-[0.2em] text-brand-accent uppercase">
-            PRECIOS
-          </span>
-        </div>
-        <h2 className="font-display text-4xl font-black tracking-tight text-white uppercase mb-4">
+    <section className="hairline-t px-4 py-20 min-[760px]:px-7 min-[760px]:py-28">
+      <div className="mx-auto max-w-7xl">
+        <span className="label-telemetry mb-6 block text-muted">[ PRECIOS ]</span>
+        <h2 className="mb-4 font-serif text-4xl font-extrabold uppercase leading-[0.85] tracking-tight text-paper md:text-6xl">
           {title}
         </h2>
-        <p className="text-gray-400 text-lg max-w-2xl mb-16">{subtitle}</p>
+        <p className="mb-14 max-w-2xl text-lg text-muted">{subtitle}</p>
 
         {pricing.model === "tiered" && pricing.plans && (
           <TieredPlans plans={pricing.plans} serviceSlug={serviceSlug} />
@@ -105,9 +101,7 @@ export function PricingSection({
         )}
 
         {pricing.pricingFaq && pricing.pricingFaq.length > 0 && (
-          <div className="max-w-3xl">
-            <PricingFAQ faqs={pricing.pricingFaq} />
-          </div>
+          <PricingFAQ faqs={pricing.pricingFaq} />
         )}
       </div>
     </section>

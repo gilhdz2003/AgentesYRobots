@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import type { VirtualRole } from "../../types/catalog";
 
 export type { VirtualRole };
@@ -7,31 +6,29 @@ export function RoleCard({ role, index }: { role: VirtualRole; index: number; ke
   const Icon = role.icon;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className="group p-8 rounded-2xl border border-white/5 bg-slate-900/40 hover:bg-slate-900/60 hover:border-brand-accent/30 transition-all duration-300"
-    >
-      <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-5">
-        <Icon className="text-brand-accent" size={22} />
+    <div className="flex flex-col border border-line p-6 transition-colors duration-[180ms] hover:border-yellow">
+      <div className="mb-4 flex items-center justify-between">
+        <span className="font-mono text-[9px] font-medium uppercase tracking-[0.05em] text-muted">
+          [ {String(index + 1).padStart(2, "0")} ]
+        </span>
+        <Icon aria-hidden="true" className="text-yellow" size={18} />
       </div>
-      <h4 className="text-white font-bold text-lg mb-2">{role.name}</h4>
-      <p className="text-gray-400 text-sm leading-relaxed mb-4">
+      <h4 className="mb-2 font-serif text-2xl font-bold uppercase leading-none tracking-tight text-paper">
+        {role.name}
+      </h4>
+      <p className="mb-4 text-sm leading-relaxed text-muted">
         {role.description}
       </p>
-      <ul className="space-y-2">
-        {role.exampleTasks.map((task, i) => (
+      <ul className="mt-auto space-y-1.5">
+        {role.exampleTasks.map((task) => (
           <li
-            key={i}
-            className="text-gray-500 text-xs flex items-start gap-2"
+            key={task}
+            className="font-mono text-[11px] leading-snug text-muted"
           >
-            <span className="w-1 h-1 rounded-full bg-brand-accent/60 mt-1.5 flex-shrink-0" />
-            {task}
+            <span aria-hidden="true" className="text-orange">+</span> {task}
           </li>
         ))}
       </ul>
-    </motion.div>
+    </div>
   );
 }

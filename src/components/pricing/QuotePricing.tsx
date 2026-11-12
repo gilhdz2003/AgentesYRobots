@@ -1,5 +1,4 @@
-import { CheckCircle2, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { waLink } from "../../data/contact";
 import type { QuoteConfig } from "../../types/catalog";
 
 export function QuotePricing({
@@ -7,29 +6,41 @@ export function QuotePricing({
   serviceSlug,
 }: {
   quote: QuoteConfig;
+  /** Puede traer sufijo ?variant= (familias): se limpia para el texto de WhatsApp. */
   serviceSlug: string;
 }) {
+  const cleanSlug = serviceSlug.split("?")[0];
   return (
-    <div className="max-w-3xl p-8 rounded-2xl enterprise-border bg-slate-900/40">
-      <p className="text-white font-display text-2xl font-black mb-6">
+    <div className="max-w-3xl border-2 border-ink bg-paper p-8 text-ink">
+      <span className="label-telemetry mb-5 block text-ink/85">
+        [ POR COTIZACIÓN ]
+      </span>
+      <p className="mb-7 font-serif text-4xl font-extrabold uppercase leading-[0.85] tracking-tight">
         {quote.priceLine}
       </p>
-      <ul className="space-y-4 mb-8">
+      <ul className="mb-8 space-y-3.5">
         {quote.bullets.map((b) => (
-          <li key={b} className="flex items-start gap-3 text-gray-400 text-sm">
-            <CheckCircle2 size={18} className="text-brand-accent flex-shrink-0 mt-0.5" />
+          <li key={b} className="flex items-start gap-3 text-sm text-ink/85">
+            <span aria-hidden="true" className="font-mono text-[10px] font-semibold">
+              [✓]
+            </span>
             {b}
           </li>
         ))}
       </ul>
-      {quote.note && <p className="text-gray-500 text-sm mb-6">{quote.note}</p>}
-      <Link
-        to={`/contacto?servicio=${serviceSlug}`}
-        className="inline-flex items-center gap-3 px-8 py-4 bg-brand-accent text-brand-bg font-bold text-[12px] rounded-md tracking-wider"
+      {quote.note && (
+        <p className="mb-7 font-mono text-[11px] uppercase tracking-[0.05em] text-ink/85">
+          {quote.note}
+        </p>
+      )}
+      <a
+        href={waLink(cleanSlug)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center justify-between gap-6 border-2 border-ink bg-yellow px-8 py-4 font-mono text-[12px] font-semibold uppercase tracking-[0.05em] hard-shadow"
       >
-        SOLICITAR COTIZACIÓN
-        <ArrowRight size={16} />
-      </Link>
+        SOLICITAR COTIZACIÓN <span aria-hidden="true">↗</span>
+      </a>
     </div>
   );
 }

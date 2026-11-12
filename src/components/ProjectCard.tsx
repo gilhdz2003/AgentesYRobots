@@ -1,67 +1,59 @@
-import { motion } from "motion/react";
-import { ExternalLink } from "lucide-react";
 import type { Project } from "../data/projects";
 import { statusConfig, categoryLabels } from "../data/projects";
 
-export default function ProjectCard({ project }: { project: Project }) {
+/** Etiqueta de estado sin emoji: el microcopy Lab es texto plano. */
+const STATUS_LABEL: Record<string, string> = {
+  en_vivo: "EN VIVO",
+  en_desarrollo: "EN DESARROLLO",
+  completado: "COMPLETADO",
+  laboratorio: "LABORATORIO",
+};
+
+export default function ProjectCard({ project }: { project: Project; key?: string }) {
   const status = statusConfig[project.status];
   const category = categoryLabels[project.category];
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -4 }}
-      className="rounded-2xl enterprise-border bg-slate-900/40 overflow-hidden transition-colors hover:border-brand-accent/30"
-    >
-      {/* Screenshot placeholder */}
-      <div className="relative h-48 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-        <div className="w-[85%] h-[75%] rounded-lg border border-white/6 flex flex-col items-center justify-center gap-2 bg-white/[0.02]">
-          <div className="flex gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-white/10" />
-            <div className="w-2 h-2 rounded-full bg-white/10" />
-            <div className="w-2 h-2 rounded-full bg-white/10" />
-          </div>
-          <div className="w-[60%] h-2 rounded bg-brand-accent/20" />
-          <div className="w-[40%] h-2 rounded bg-brand-accent/20" />
-        </div>
-
-        {/* Status badge */}
+    <article className="flex flex-col border-2 border-ink bg-paper text-ink transition-colors duration-[180ms] hover:bg-yellow">
+      <div className="flex items-center justify-between border-b-2 border-ink px-5 py-3">
+        <span className="font-mono text-[9px] font-medium uppercase tracking-[0.05em] text-ink/85">
+          [ {category.toUpperCase()} ]
+        </span>
         <span
-          className={`absolute top-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-semibold border ${status.className}`}
+          className={`font-mono text-[9px] font-semibold uppercase tracking-[0.05em] ${
+            project.status === "en_vivo" ? "text-orange-deep" : "text-ink/85"
+          }`}
         >
-          {status.label}
+          {STATUS_LABEL[project.status] ?? status.label}
         </span>
       </div>
 
-      {/* Card body */}
-      <div className="p-6">
-        <p className="label-tech text-brand-accent mb-2">{category}</p>
-        <h3 className="font-display text-lg font-bold text-white tracking-tight mb-2">
+      <div className="flex flex-1 flex-col p-5">
+        <h3 className="mb-2 font-serif text-2xl font-bold uppercase leading-none tracking-tight">
           {project.name}
         </h3>
-        <p className="text-gray-500 text-sm leading-relaxed mb-4">
+        <p className="mb-5 text-sm leading-relaxed text-ink/85">
           {project.description}
         </p>
 
-        {project.deployUrl && (
-          <a
-            href={project.deployUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-brand-accent text-[12px] font-bold hover:gap-3 transition-all"
-          >
-            Ver proyecto
-            <ExternalLink size={14} />
-          </a>
-        )}
-        {project.deployLabel && !project.deployUrl && (
-          <span className="text-gray-600 text-[12px] font-bold">
-            {project.deployLabel}
-          </span>
-        )}
+        <div className="mt-auto">
+          {project.deployUrl && (
+            <a
+              href={project.deployUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block border-b border-current pb-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.05em] text-ink"
+            >
+              VER PROYECTO ↗
+            </a>
+          )}
+          {project.deployLabel && !project.deployUrl && (
+            <span className="font-mono text-[10px] uppercase tracking-[0.05em] text-ink/85">
+              {project.deployLabel}
+            </span>
+          )}
+        </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

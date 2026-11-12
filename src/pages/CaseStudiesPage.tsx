@@ -1,9 +1,7 @@
-import { motion } from "motion/react";
-import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink } from "lucide-react";
 import SEO, { breadcrumbSchema } from "../components/SEO";
 import ProjectGrid from "../components/ProjectGrid";
 import { gridProjects } from "../data/projects";
+import { waLink } from "../data/contact";
 
 const cases = [
   {
@@ -128,148 +126,129 @@ export default function CaseStudiesPage() {
       />
 
       {/* Hero */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-[2px] bg-brand-accent" />
-              <span className="label-tech text-brand-accent">
-                CASOS DE ESTUDIO
-              </span>
-            </div>
-
-            <h1 className="font-display text-5xl md:text-7xl font-black tracking-tight text-white uppercase mb-8 max-w-4xl">
-              Resultados reales,<br />
-              <span className="text-brand-accent">no presentaciones</span>
-            </h1>
-
-            <p className="text-gray-400 text-lg font-medium leading-relaxed max-w-2xl">
-              Cada proyecto abajo está en producción, con usuarios reales y
-              métricas comprobables. No son demos ni pilotos.
-            </p>
-          </motion.div>
+      <section className="px-4 pb-20 pt-16 min-[760px]:px-7 min-[760px]:pb-28 min-[760px]:pt-20">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-telemetry mb-8 block text-muted">
+            [ EXPEDIENTES DE CAMPO ]
+          </span>
+          <h1 className="mb-8 max-w-5xl font-serif text-5xl font-extrabold uppercase leading-[0.8] tracking-tight text-paper md:text-8xl">
+            RESULTADOS REALES,
+            <br />
+            <em className="text-yellow not-italic">NO PRESENTACIONES.</em>
+          </h1>
+          <p className="max-w-2xl text-lg leading-relaxed text-muted">
+            Cada proyecto abajo está en producción, con usuarios reales y
+            métricas comprobables. No son demos ni pilotos.
+          </p>
         </div>
       </section>
 
-      {/* Cases */}
-      <section className="pb-32 px-6">
-        <div className="max-w-7xl mx-auto space-y-20">
-          {cases.map((c, i) => (
-            <motion.article
-              key={c.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="grid grid-cols-1 lg:grid-cols-3 gap-12"
-            >
-              {/* Header */}
-              <div className="lg:col-span-1">
-                <div className="sticky top-28">
-                  <p className="text-[11px] font-black tracking-[0.2em] text-brand-accent uppercase mb-2">
-                    {c.client}
-                  </p>
-                  <h2 className="font-display text-3xl font-black tracking-tight text-white uppercase mb-4">
-                    {c.title}
-                  </h2>
-                  <p className="text-gray-500 text-[11px] font-bold tracking-wider mb-6">
-                    {c.category}
-                  </p>
-                  <p className="text-gray-600 text-[11px] tracking-wider">
-                    STACK: {c.stack}
-                  </p>
-                  {c.link && (
-                    <a
-                      href={c.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-brand-accent text-[12px] font-bold mt-4 hover:underline"
-                    >
-                      VER EN PRODUCCIÓN
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
-                </div>
+      {/* Expedientes */}
+      <section className="px-4 pb-24 min-[760px]:px-7 min-[760px]:pb-32">
+        <div className="mx-auto max-w-7xl">
+          {cases.map((c, index) => (
+            <article key={c.id} className="border-t border-line py-16 first:border-t-0">
+              <div className="mb-10 font-mono text-[9px] uppercase leading-[1.7] tracking-[0.05em] text-muted">
+                EXPERIMENTO: {c.title.toUpperCase()}
+                <br />
+                CLIENTE: {c.client.toUpperCase()} / TIPO: {c.category.toUpperCase()}
+                <br />
+                RESULTADO: VERIFICADO ✓
               </div>
 
-              {/* Content */}
-              <div className="lg:col-span-2 space-y-8">
-                <div className="p-8 rounded-2xl enterprise-border bg-slate-900/40">
-                  <h3 className="text-[11px] font-black tracking-[0.2em] text-gray-500 uppercase mb-4">
-                    El problema
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed">
-                    {c.challenge}
-                  </p>
-                </div>
-
-                <div className="p-8 rounded-2xl enterprise-border bg-slate-900/40">
-                  <h3 className="text-[11px] font-black tracking-[0.2em] text-gray-500 uppercase mb-4">
-                    La solución
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed">
-                    {c.solution}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {c.metrics.map((metric, j) => (
-                    <div
-                      key={j}
-                      className="p-6 rounded-xl enterprise-border bg-slate-900/40"
-                    >
-                      <p className="text-white font-bold">{metric}</p>
+              <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
+                {/* Encabezado */}
+                <div className="lg:col-span-1">
+                  <div className="lg:sticky lg:top-28">
+                    <div className="mb-3 font-mono text-[10px] font-medium uppercase tracking-[0.05em] text-yellow">
+                      [ {String(index + 1).padStart(2, "0")} ]
                     </div>
-                  ))}
+                    <h2 className="mb-3 font-serif text-4xl font-extrabold uppercase leading-[0.85] tracking-tight text-paper">
+                      {c.title}
+                    </h2>
+                    <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.05em] text-muted">
+                      {c.category}
+                    </p>
+                    <p className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.05em] text-muted">
+                      STACK: {c.stack}
+                    </p>
+                    {c.link && (
+                      <a
+                        href={c.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-5 inline-block border-b border-current pb-1 font-mono text-[10px] font-medium uppercase tracking-[0.05em] text-yellow"
+                      >
+                        VER EN PRODUCCIÓN ↗
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {/* Contenido */}
+                <div className="space-y-10 lg:col-span-2">
+                  <div>
+                    <h3 className="label-telemetry mb-4 text-muted">[ EL PROBLEMA ]</h3>
+                    <p className="max-w-3xl leading-relaxed text-paper/80">
+                      {c.challenge}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="label-telemetry mb-4 text-muted">[ LA SOLUCIÓN ]</h3>
+                    <p className="max-w-3xl leading-relaxed text-paper/80">
+                      {c.solution}
+                    </p>
+                  </div>
+
+                  <div>
+                    {c.metrics.map((metric) => (
+                      <div key={metric} className="border-t border-line py-4 first:border-t-2 first:border-yellow">
+                        <p className="font-serif text-2xl font-extrabold uppercase leading-tight tracking-tight text-yellow md:text-3xl">
+                          {metric}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* Grid filtrable - Catálogo completo */}
-      <section className="pb-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="w-8 h-[2px] bg-brand-accent" />
-            <span className="label-tech text-brand-accent">
-              CATÁLOGO COMPLETO // {gridProjects.length}
-            </span>
-          </div>
-          <h2 className="font-display text-4xl font-black tracking-tight text-white uppercase mb-12">
-            Más Soluciones
+      {/* Catálogo completo */}
+      <section className="bg-paper px-4 py-20 text-ink min-[760px]:px-7 min-[760px]:py-28">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-telemetry mb-6 block text-ink/85">
+            [ CATÁLOGO COMPLETO / {gridProjects.length} ]
+          </span>
+          <h2 className="mb-12 font-serif text-4xl font-extrabold uppercase leading-[0.85] tracking-tight md:text-6xl">
+            MÁS <em className="text-orange-deep not-italic">SOLUCIONES.</em>
           </h2>
           <ProjectGrid projects={gridProjects} />
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-32 px-6 bg-slate-900/20">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+      <section className="px-4 py-20 min-[760px]:px-7 min-[760px]:py-28">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-6 font-serif text-5xl font-extrabold uppercase leading-[0.8] tracking-tight text-paper md:text-6xl">
+            ¿TU EMPRESA PODRÍA SER<br />
+            <em className="text-yellow not-italic">EL PRÓXIMO CASO?</em>
+          </h2>
+          <p className="mb-10 max-w-xl text-lg leading-relaxed text-muted">
+            El diagnóstico inicial es sin costo. En 2 semanas te decimos
+            exactamente dónde podemos generar impacto.
+          </p>
+          <a
+            href={waLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-between gap-6 bg-yellow px-8 py-4 font-mono text-[12px] font-semibold uppercase tracking-[0.05em] text-ink transition-colors duration-[180ms] hover:bg-paper"
           >
-            <h2 className="font-display text-4xl md:text-5xl font-black tracking-tight text-white uppercase mb-6">
-              ¿Tu empresa podría<br />ser el próximo caso?
-            </h2>
-            <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
-              El diagnóstico inicial es sin costo. En 2 semanas te decimos exactamente dónde podemos generar impacto.
-            </p>
-            <Link
-              to="/contacto"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-brand-accent text-brand-bg font-bold text-[13px] rounded-md tracking-wider shadow-lg shadow-brand-accent/20"
-            >
-              COMENZAR DIAGNÓSTICO
-              <ArrowRight size={18} />
-            </Link>
-          </motion.div>
+            COMENZAR DIAGNÓSTICO <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </section>
     </>

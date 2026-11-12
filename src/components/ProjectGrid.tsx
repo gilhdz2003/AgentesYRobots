@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import ProjectCard from "./ProjectCard";
 import type { Project, ProjectCategory } from "../data/projects";
 import { categoryLabels } from "../data/projects";
@@ -26,16 +25,17 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
 
   return (
     <div>
-      {/* Filter buttons */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      {/* Filtros */}
+      <div className="mb-10 flex flex-wrap gap-3">
         {allCategories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActive(cat)}
-            className={`px-4 py-2 rounded-full text-[12px] font-bold tracking-wider border transition-all ${
+            aria-pressed={active === cat}
+            className={`border-2 px-4 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.05em] transition-colors duration-[180ms] ${
               active === cat
-                ? "bg-brand-accent border-brand-accent text-brand-bg"
-                : "border-white/10 text-gray-500 hover:border-brand-accent/40 hover:text-gray-300"
+                ? "border-ink bg-ink text-yellow"
+                : "border-ink text-ink hover:bg-ink hover:text-yellow"
             }`}
           >
             {categoryFilterLabels[cat]}
@@ -44,21 +44,10 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <AnimatePresence mode="popLayout">
-          {filtered.map((project) => (
-            <motion.div
-              key={project.id}
-              layout
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {filtered.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
       </div>
     </div>
   );

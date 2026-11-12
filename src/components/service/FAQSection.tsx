@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronDown } from "lucide-react";
 import type { ServiceFAQ } from "../../types/catalog";
 
 function FAQAccordion({
@@ -11,23 +10,25 @@ function FAQAccordion({
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div>
+    <div className="border-t border-line">
       {faqs.map((faq, i) => (
-        <div key={i} className="border-b border-white/5">
+        <div key={i} className="border-b border-line">
           <button
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
             aria-expanded={openIndex === i}
-            className="w-full flex items-center justify-between py-6 text-left group cursor-pointer"
+            className="group flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left"
           >
-            <span className="text-white font-medium text-sm pr-8 group-hover:text-brand-accent transition-colors">
+            <span className="pr-4 text-[15px] font-medium text-paper/90 transition-colors group-hover:text-yellow">
               {faq.q}
             </span>
-            <ChevronDown
-              size={18}
-              className={`text-gray-500 flex-shrink-0 transition-transform duration-200 ${
-                openIndex === i ? "rotate-180 text-brand-accent" : ""
+            <span
+              aria-hidden="true"
+              className={`flex-shrink-0 inline-block font-mono text-lg leading-none transition-transform duration-200 ${
+                openIndex === i ? "rotate-45 text-yellow" : "text-muted"
               }`}
-            />
+            >
+              +
+            </span>
           </button>
           <AnimatePresence>
             {openIndex === i && (
@@ -38,7 +39,7 @@ function FAQAccordion({
                 transition={{ duration: 0.2 }}
                 className="overflow-hidden"
               >
-                <p className="text-gray-400 text-sm leading-relaxed pb-6 pr-12">
+                <p className="pb-6 pr-12 text-sm leading-relaxed text-muted">
                   {faq.a}
                 </p>
               </motion.div>
@@ -60,13 +61,10 @@ export function FAQSection({
   alternate?: boolean;
 }) {
   return (
-    <section className={`py-32 px-6 ${alternate ? "bg-slate-900/20" : ""}`}>
-      <div className="max-w-3xl mx-auto">
-        <div className="flex items-center gap-2 mb-6">
-          <div className="w-8 h-[2px] bg-brand-accent" />
-          <span className="label-tech text-brand-accent">FAQ</span>
-        </div>
-        <h2 className="font-display text-4xl font-black tracking-tight text-white uppercase mb-12">
+    <section className={`px-4 py-20 min-[760px]:px-7 min-[760px]:py-28 ${alternate ? "hairline-t" : ""}`}>
+      <div className="mx-auto max-w-3xl">
+        <span className="label-telemetry mb-6 block text-muted">[ FAQ ]</span>
+        <h2 className="mb-12 font-serif text-4xl font-extrabold uppercase leading-[0.85] tracking-tight text-paper md:text-5xl">
           {title}
         </h2>
         <FAQAccordion faqs={faqs} />

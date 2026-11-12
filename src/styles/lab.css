@@ -236,7 +236,7 @@
   letter-spacing: -0.035em;
 }
 .lab-capabilities > header h2 em {
-  color: var(--color-orange);
+  color: var(--color-orange-deep);
   font-style: normal;
 }
 .lab-capabilities > header p {
@@ -467,7 +467,7 @@
   letter-spacing: -0.05em;
 }
 .lab-contact h2 em {
-  color: var(--color-orange);
+  color: var(--color-orange-deep);
   font-style: normal;
 }
 .lab-contact > div {

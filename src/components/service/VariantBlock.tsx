@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { FeaturesSection } from "./FeaturesSection";
 import { UseCaseSection } from "./UseCaseSection";
 import { FAQSection } from "./FAQSection";
@@ -13,33 +12,20 @@ export function VariantBlock({
   familySlug: string;
   key?: string;
 }) {
-  const Icon = variant.icon;
   return (
-    <section id={variant.slug} className="scroll-mt-40 border-t border-white/5 first:border-t-0">
+    <section id={variant.slug} className="scroll-mt-40 border-t border-line first:border-t-0">
       {/* Encabezado del sub-tipo */}
-      <div className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center">
-                <Icon className="text-brand-accent" size={24} />
-              </div>
-              <p className="text-[11px] font-black tracking-[0.2em] text-brand-accent uppercase opacity-60">
-                {variant.tagline}
-              </p>
-            </div>
-            <h2 className="font-display text-4xl md:text-5xl font-black tracking-tight text-white uppercase mb-6">
-              {variant.name}
-            </h2>
-            <p className="text-gray-400 text-lg leading-relaxed max-w-2xl">
-              {variant.description}
-            </p>
-          </motion.div>
+      <div className="px-4 py-20 min-[760px]:px-7 min-[760px]:py-24">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-telemetry mb-8 block text-muted">
+            [ {familySlug.replace(/-/g, " ").toUpperCase()} / {variant.tagline.toUpperCase()} ]
+          </span>
+          <h2 className="mb-6 font-serif text-5xl font-extrabold uppercase leading-[0.8] tracking-tight text-paper md:text-7xl">
+            {variant.name}
+          </h2>
+          <p className="max-w-2xl text-lg leading-relaxed text-muted">
+            {variant.description}
+          </p>
         </div>
       </div>
       <FeaturesSection features={variant.features} />

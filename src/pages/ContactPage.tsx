@@ -1,5 +1,3 @@
-import { motion } from "motion/react";
-import { MessageCircle, Mail, Linkedin, ArrowRight } from "lucide-react";
 import SEO, { breadcrumbSchema } from "../components/SEO";
 import { waLink } from "../data/contact";
 import { services } from "../data/services";
@@ -19,150 +17,132 @@ export default function ContactPage() {
         ]}
       />
 
-      {/* Hero */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-[2px] bg-brand-accent" />
-              <span className="label-tech text-brand-accent">CONTACTO</span>
-            </div>
-
-            <h1 className="font-display text-5xl md:text-7xl font-black tracking-tight text-white uppercase mb-8 max-w-4xl">
-              Hablemos de tu<br />
-              <span className="text-brand-accent">operación</span>
-            </h1>
-
-            <p className="text-gray-400 text-lg font-medium leading-relaxed max-w-2xl">
+      {/* Hero gigante estilo Lab */}
+      <section className="bg-paper px-4 pb-16 pt-16 text-ink min-[760px]:px-7 min-[760px]:pb-20 min-[760px]:pt-20">
+        <div className="mx-auto max-w-7xl">
+          <span className="lab-code mb-8 block border-b-2 border-ink pb-5">
+            ABIERTO PARA NUEVOS PROYECTOS / 2026
+          </span>
+          <h1 className="mb-10 font-serif text-[clamp(70px,14vw,200px)] font-extrabold uppercase leading-[0.75] tracking-[-0.05em]">
+            HABLEMOS DE<br />
+            TU <em className="text-orange-deep not-italic">OPERACIÓN.</em>
+          </h1>
+          <div className="grid grid-cols-1 items-end gap-10 md:grid-cols-2">
+            <p className="max-w-[43ch] text-xl leading-relaxed text-ink/85">
               El diagnóstico inicial es sin costo. Cuéntanos qué procesos te
               gustaría automatizar y en 2 semanas te presentamos un plan
               concreto con ROI estimado.
             </p>
-          </motion.div>
+            <a
+              href={waLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-between gap-6 border-2 border-ink bg-yellow px-6 py-5 font-mono text-[12px] font-semibold uppercase tracking-[0.05em] hard-shadow"
+            >
+              INICIAR UN PROYECTO <span aria-hidden="true" className="text-2xl">↗</span>
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* WhatsApp CTA */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Main CTA */}
-            <div>
-              <h2 className="font-display text-3xl font-black tracking-tight text-white uppercase mb-8">
-                Elige cómo empezar
-              </h2>
+      {/* Selector por capacidad */}
+      <section className="px-4 py-20 min-[760px]:px-7 min-[760px]:py-24">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-telemetry mb-8 block text-muted">
+            [ ELIGE CÓMO EMPEZAR / WHATSAPP ]
+          </span>
 
-              <div className="space-y-4">
-                {services.map((service) => (
-                  <motion.a
-                    key={service.slug}
-                    href={waLink(service.slug)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.01 }}
-                    className="flex items-center justify-between p-6 rounded-xl enterprise-border bg-slate-900/40 hover:bg-slate-900/60 hover:border-brand-accent/50 transition-all duration-300 group"
-                  >
-                    <div className="flex items-center gap-4">
-                      <MessageCircle
-                        size={20}
-                        className="text-brand-accent"
-                      />
-                      <span className="text-white font-medium">
-                        {service.title}
-                      </span>
-                    </div>
-                    <ArrowRight
-                      size={16}
-                      className="text-gray-500 group-hover:text-brand-accent transition-colors"
-                    />
-                  </motion.a>
-                ))}
-
-                {/* General inquiry */}
-                <motion.a
-                  href={waLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.01 }}
-                  className="flex items-center justify-between p-6 rounded-xl bg-brand-accent/10 border border-brand-accent/30 hover:border-brand-accent/60 transition-all duration-300 group"
-                >
-                  <div className="flex items-center gap-4">
-                    <MessageCircle size={20} className="text-brand-accent" />
-                    <span className="text-white font-bold">
-                      Consulta general
-                    </span>
-                  </div>
-                  <ArrowRight
-                    size={16}
-                    className="text-brand-accent"
-                  />
-                </motion.a>
-              </div>
-            </div>
-
-            {/* Info */}
-            <div className="space-y-8">
-              <div className="p-8 rounded-2xl enterprise-border bg-slate-900/40">
-                <h3 className="text-white font-bold text-lg mb-4">
-                  ¿Qué esperar?
-                </h3>
-                <ol className="space-y-4 text-gray-400 text-sm leading-relaxed">
-                  <li className="flex gap-4">
-                    <span className="text-brand-accent font-bold flex-shrink-0">
-                      01
-                    </span>
-                    <span>
-                      Escribes por WhatsApp. Respondemos en menos de 24 horas.
-                    </span>
-                  </li>
-                  <li className="flex gap-4">
-                    <span className="text-brand-accent font-bold flex-shrink-0">
-                      02
-                    </span>
-                    <span>
-                      Agendamos una llamada de 30 minutos para entender tu
-                      operación.
-                    </span>
-                  </li>
-                  <li className="flex gap-4">
-                    <span className="text-brand-accent font-bold flex-shrink-0">
-                      03
-                    </span>
-                    <span>
-                      En 2 semanas recibes el diagnóstico con oportunidades
-                      priorizadas y ROI estimado.
-                    </span>
-                  </li>
-                </ol>
-              </div>
-
-              <div className="p-8 rounded-2xl enterprise-border bg-slate-900/40">
-                <h3 className="text-white font-bold text-lg mb-6">
-                  Otros canales
-                </h3>
-                <div className="space-y-4">
-                  <a
-                    href="mailto:hola@agentesyrobots.com"
-                    className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Mail size={18} className="text-brand-accent" />
-                    <span className="text-sm">hola@agentesyrobots.com</span>
-                  </a>
-                  <a
-                    href="https://linkedin.com/company/agentesyrobots"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Linkedin size={18} className="text-brand-accent" />
-                    <span className="text-sm">LinkedIn</span>
-                  </a>
+          <div className="grid grid-cols-1 gap-0 border border-line md:grid-cols-2">
+            {services.map((service, i) => (
+              <a
+                key={service.slug}
+                href={waLink(service.slug)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between gap-6 border-b border-line p-6 transition-colors duration-[180ms] hover:bg-yellow hover:text-ink md:[&:nth-child(odd)]:border-r"
+              >
+                <div className="flex items-center gap-5">
+                  <span className="font-mono text-[10px] font-medium text-yellow group-hover:text-ink">
+                    [ {String(i + 1).padStart(2, "0")} ]
+                  </span>
+                  <span className="font-medium text-paper group-hover:text-ink">
+                    {service.title}
+                  </span>
                 </div>
+                <span
+                  aria-hidden="true"
+                  className="font-mono text-lg text-muted group-hover:text-ink"
+                >
+                  ↗
+                </span>
+              </a>
+            ))}
+
+            {/* Consulta general */}
+            <a
+              href={waLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between gap-6 border-line p-6 transition-colors duration-[180ms] hover:bg-yellow hover:text-ink md:[&:nth-child(odd)]:border-r"
+            >
+              <div className="flex items-center gap-5">
+                <span className="font-mono text-[10px] font-medium text-yellow group-hover:text-ink">
+                  [ {String(services.length + 1).padStart(2, "0")} ]
+                </span>
+                <span className="font-semibold text-paper group-hover:text-ink">
+                  Consulta general
+                </span>
               </div>
+              <span aria-hidden="true" className="font-mono text-lg text-muted group-hover:text-ink">
+                ↗
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Qué esperar + otros canales */}
+      <section className="hairline-t px-4 py-20 min-[760px]:px-7 min-[760px]:py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 lg:grid-cols-2">
+          <div>
+            <span className="label-telemetry mb-8 block text-muted">
+              [ QUÉ ESPERAR ]
+            </span>
+            <ol className="space-y-0">
+              {[
+                "Escribes por WhatsApp. Respondemos en menos de 24 horas.",
+                "Agendamos una llamada de 30 minutos para entender tu operación.",
+                "En 2 semanas recibes el diagnóstico con oportunidades priorizadas y ROI estimado.",
+              ].map((step, i) => (
+                <li key={i} className="flex gap-6 border-t border-line py-6 first:border-t-2 first:border-yellow">
+                  <span className="flex-shrink-0 font-mono text-[10px] font-semibold text-yellow">
+                    [ {String(i + 1).padStart(2, "0")} ]
+                  </span>
+                  <span className="leading-relaxed text-paper/80">{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div>
+            <span className="label-telemetry mb-8 block text-muted">
+              [ OTROS CANALES ]
+            </span>
+            <div className="space-y-0 border-t border-line">
+              <a
+                href="mailto:hola@agentesyrobots.com"
+                className="flex items-center justify-between border-b border-line py-6 font-mono text-[12px] uppercase tracking-[0.05em] text-muted transition-colors hover:text-yellow"
+              >
+                HOLA@AGENTESYROBOTS.COM <span aria-hidden="true">↗</span>
+              </a>
+              <a
+                href="https://linkedin.com/company/agentesyrobots"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between border-b border-line py-6 font-mono text-[12px] uppercase tracking-[0.05em] text-muted transition-colors hover:text-yellow"
+              >
+                LINKEDIN <span aria-hidden="true">↗</span>
+              </a>
             </div>
           </div>
         </div>

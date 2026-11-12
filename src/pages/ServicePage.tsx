@@ -1,6 +1,4 @@
 import { useParams, Link } from "react-router-dom";
-import { motion } from "motion/react";
-import { ArrowRight, ArrowLeft } from "lucide-react";
 import SEO, { serviceSchema, breadcrumbSchema } from "../components/SEO";
 import { PricingSection } from "../components/pricing/PricingSection";
 import { FeaturesSection } from "../components/service/FeaturesSection";
@@ -8,7 +6,8 @@ import { UseCaseSection } from "../components/service/UseCaseSection";
 import { FAQSection } from "../components/service/FAQSection";
 import { VariantNav } from "../components/service/VariantNav";
 import { VariantBlock } from "../components/service/VariantBlock";
-import { getServiceBySlug } from "../data/services";
+import { getServiceBySlug, services } from "../data/services";
+import { waLink } from "../data/contact";
 
 export default function ServicePage() {
   const { slug } = useParams<{ slug: string }>();
@@ -16,23 +15,24 @@ export default function ServicePage() {
 
   if (!service) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center gap-6">
-        <h1 className="font-display text-4xl font-black text-white">
-          Servicio no encontrado
+      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 px-6">
+        <span className="label-telemetry text-muted">[ ERROR 404 ]</span>
+        <h1 className="font-serif text-5xl font-extrabold uppercase tracking-tight text-paper md:text-6xl">
+          CAPACIDAD<br />
+          <em className="text-yellow not-italic">NO ENCONTRADA.</em>
         </h1>
         <Link
           to="/"
-          className="text-brand-accent text-sm font-bold tracking-wider hover:underline"
+          className="border-b border-current pb-1 font-mono text-[10px] font-medium uppercase tracking-[0.05em] text-yellow"
         >
-          Volver al inicio
+          ← VOLVER AL INICIO
         </Link>
       </div>
     );
   }
 
   const isFamily = !!service.variants;
-
-  const Icon = service.icon;
+  const number = String(services.findIndex((s) => s.slug === service.slug) + 1).padStart(2, "0");
 
   const allFaqs = isFamily
     ? [
@@ -73,56 +73,43 @@ export default function ServicePage() {
       />
 
       {/* Hero */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="px-4 pb-20 pt-16 min-[760px]:px-7 min-[760px]:pb-28 min-[760px]:pt-20">
+        <div className="mx-auto max-w-7xl">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-gray-500 hover:text-white text-[12px] font-bold tracking-wider mb-8 transition-colors"
+            className="mb-10 inline-block border-b border-current pb-1 font-mono text-[10px] font-medium uppercase tracking-[0.05em] text-muted transition-colors hover:text-yellow"
           >
-            <ArrowLeft size={14} />
-            TODOS LOS SERVICIOS
+            ← TODAS LAS CAPACIDADES
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 rounded-xl bg-brand-accent/10 flex items-center justify-center">
-                <Icon className="text-brand-accent" size={28} />
-              </div>
-              <div>
-                <p className="text-[11px] font-black tracking-[0.2em] text-brand-accent uppercase opacity-60">
-                  {service.subtitle}
-                </p>
-              </div>
-            </div>
+          <span className="label-telemetry mb-8 block text-muted">
+            [ CAPACIDAD / {number} — {service.subtitle.toUpperCase()} ]
+          </span>
 
-            <h1 className="font-display text-5xl md:text-7xl font-black tracking-tight text-white uppercase mb-8">
-              {service.title}
-            </h1>
+          <h1 className="mb-8 font-serif text-6xl font-extrabold uppercase leading-[0.8] tracking-tight text-paper md:text-8xl">
+            {service.title}
+          </h1>
 
-            <p className="text-gray-400 text-lg font-medium leading-relaxed max-w-2xl">
-              {service.longDescription}
-            </p>
+          <p className="max-w-2xl text-lg leading-relaxed text-muted">
+            {service.longDescription}
+          </p>
 
-            <div className="flex flex-wrap gap-4 mt-10">
-              <Link
-                to="/contacto"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-brand-accent text-brand-bg font-bold text-sm rounded-md tracking-wider shadow-lg shadow-brand-accent/20"
-              >
-                SOLICITAR DIAGNÓSTICO
-                <ArrowRight size={16} />
-              </Link>
-              <a
-                href="#proceso"
-                className="inline-flex items-center gap-3 px-8 py-4 enterprise-border rounded-md text-white font-bold text-sm tracking-wider hover:border-brand-accent/50 transition-colors"
-              >
-                VER PROCESO
-              </a>
-            </div>
-          </motion.div>
+          <div className="mt-10 flex flex-wrap items-center gap-8">
+            <a
+              href={waLink(service.slug)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-between gap-6 bg-yellow px-7 py-4 font-mono text-[11px] font-semibold uppercase tracking-[0.05em] text-ink"
+            >
+              SOLICITAR DIAGNÓSTICO <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href="#proceso"
+              className="border-b border-current pb-1 font-mono text-[10px] font-medium uppercase tracking-[0.05em] text-yellow"
+            >
+              VER PROCESO ↓
+            </a>
+          </div>
         </div>
       </section>
 
@@ -133,37 +120,28 @@ export default function ServicePage() {
       {!isFamily && <FeaturesSection features={service.features!} />}
 
       {/* Process */}
-      <section id="proceso" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="w-8 h-[2px] bg-brand-accent" />
-            <span className="label-tech text-brand-accent">
-              IMPLEMENTACIÓN
-            </span>
-          </div>
-          <h2 className="font-display text-4xl font-black tracking-tight text-white uppercase mb-16">
-            Cómo funciona
+      <section id="proceso" className="hairline-t px-4 py-20 min-[760px]:px-7 min-[760px]:py-28">
+        <div className="mx-auto max-w-7xl">
+          <span className="label-telemetry mb-6 block text-muted">
+            [ IMPLEMENTACIÓN ]
+          </span>
+          <h2 className="mb-14 font-serif text-4xl font-extrabold uppercase leading-[0.85] tracking-tight text-paper md:text-6xl">
+            CÓMO <em className="text-yellow not-italic">FUNCIONA.</em>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {service.process.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-              >
-                <div className="text-[11px] font-black tracking-[0.2em] text-brand-accent mb-4">
-                  PASO {String(step.step).padStart(2, "0")}
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+            {service.process.map((step) => (
+              <div key={step.step} className="border-t-2 border-line pt-6">
+                <div className="mb-4 font-mono text-[10px] font-medium uppercase tracking-[0.05em] text-yellow">
+                  [ {String(step.step).padStart(2, "0")} ]
                 </div>
-                <h3 className="text-white font-bold text-lg mb-3">
+                <h3 className="mb-3 font-serif text-2xl font-bold uppercase tracking-tight text-paper">
                   {step.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-sm leading-relaxed text-muted">
                   {step.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -188,27 +166,27 @@ export default function ServicePage() {
       )}
 
       {/* CTA */}
-      <section className="py-32 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+      <section className="bg-paper px-4 py-20 text-ink min-[760px]:px-7 min-[760px]:py-28">
+        <div className="mx-auto max-w-4xl">
+          <span className="label-telemetry mb-6 block text-ink/85">
+            [ DIAGNÓSTICO SIN COSTO / 2 SEMANAS ]
+          </span>
+          <h2 className="mb-6 font-serif text-5xl font-extrabold uppercase leading-[0.8] tracking-tight md:text-7xl">
+            ¿LISTO PARA<br />
+            <em className="text-orange-deep not-italic">COMENZAR?</em>
+          </h2>
+          <p className="mb-10 max-w-xl text-lg leading-relaxed text-ink/85">
+            El diagnóstico inicial es sin costo. En 2 semanas sabrás exactamente
+            cómo {service.title} puede transformar tu operación.
+          </p>
+          <a
+            href={waLink(service.slug)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-between gap-6 border-2 border-ink bg-yellow px-8 py-4 font-mono text-[12px] font-semibold uppercase tracking-[0.05em] hard-shadow"
           >
-            <h2 className="font-display text-4xl md:text-5xl font-black tracking-tight text-white uppercase mb-6">
-              ¿Listo para<br />comenzar?
-            </h2>
-            <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
-              El diagnóstico inicial es sin costo. En 2 semanas sabrás exactamente cómo {service.title} puede transformar tu operación.
-            </p>
-            <Link
-              to="/contacto"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-brand-accent text-brand-bg font-bold text-[13px] rounded-md tracking-wider shadow-lg shadow-brand-accent/20"
-            >
-              COMENZAR CON {service.title.toUpperCase()}
-              <ArrowRight size={18} />
-            </Link>
-          </motion.div>
+            COMENZAR CON {service.title.toUpperCase()} <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </section>
     </>
