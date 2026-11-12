@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type KeyboardEvent } from "react";
 import { Link } from "react-router-dom";
 import { services } from "../data/services";
 import { waLink } from "../data/contact";
@@ -23,6 +23,26 @@ export default function CapabilitiesCatalog() {
   const [activeSlug, setActiveSlug] = useState(catalog[0].slug);
   const active = catalog.find((item) => item.slug === activeSlug) ?? catalog[0];
 
+  /** Navegación por flechas del tablist (APG): ↑↓/←→ mueven, Home/Extreme. */
+  function onKeyDown(event: KeyboardEvent) {
+    const currentIndex = catalog.findIndex((item) => item.slug === active.slug);
+    let nextIndex: number | null = null;
+    if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+      nextIndex = (currentIndex + 1) % catalog.length;
+    } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+      nextIndex = (currentIndex - 1 + catalog.length) % catalog.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = catalog.length - 1;
+    }
+    if (nextIndex === null) return;
+    event.preventDefault();
+    const next = catalog[nextIndex];
+    setActiveSlug(next.slug);
+    document.getElementById(`catalog-tab-${next.slug}`)?.focus();
+  }
+
   return (
     <section className="lab-capabilities" id="capacidades">
       <header>
@@ -37,13 +57,21 @@ export default function CapabilitiesCatalog() {
         <p>Seis formas de convertir IA en infraestructura de negocio.</p>
       </header>
       <div className="lab-catalog">
-        <div className="lab-catalog__rows" role="tablist" aria-label="Capacidades">
+        <div
+          className="lab-catalog__rows"
+          role="tablist"
+          aria-label="Capacidades"
+          onKeyDown={onKeyDown}
+        >
           {catalog.map((item) => (
             <button
               key={item.slug}
               type="button"
               role="tab"
+              id={`catalog-tab-${item.slug}`}
               aria-selected={item.slug === active.slug}
+              aria-controls="catalog-panel"
+              tabIndex={item.slug === active.slug ? 0 : -1}
               onClick={() => setActiveSlug(item.slug)}
             >
               <span>{item.number}</span>
@@ -53,7 +81,12 @@ export default function CapabilitiesCatalog() {
             </button>
           ))}
         </div>
-        <div className="lab-catalog__detail" role="tabpanel">
+        <div
+          className="lab-catalog__detail"
+          role="tabpanel"
+          id="catalog-panel"
+          aria-labelledby={`catalog-tab-${active.slug}`}
+        >
           <span>CAPACIDAD / {active.number}</span>
           <h3>{active.name}</h3>
           <p>{active.description}</p>

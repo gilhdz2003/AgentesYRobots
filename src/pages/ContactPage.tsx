@@ -20,7 +20,7 @@ export default function ContactPage() {
       {/* Hero gigante estilo Lab */}
       <section className="bg-paper px-4 pb-16 pt-16 text-ink min-[760px]:px-7 min-[760px]:pb-20 min-[760px]:pt-20">
         <div className="mx-auto max-w-7xl">
-          <span className="lab-code mb-8 block border-b-2 border-ink pb-5">
+          <span className="label-telemetry mb-8 block border-b-2 border-ink pb-5">
             ABIERTO PARA NUEVOS PROYECTOS / 2026
           </span>
           <h1 className="mb-10 font-serif text-[clamp(70px,14vw,200px)] font-extrabold uppercase leading-[0.75] tracking-[-0.05em]">

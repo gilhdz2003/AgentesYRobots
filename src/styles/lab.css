@@ -5,10 +5,6 @@
  * Topbar/Dock/Footer viven en componentes Tailwind (T2).
  */
 
-.lab-code {
-  font: 500 10px "Fira Code", monospace;
-  letter-spacing: 0.05em;
-}
 
 /* ===== Hero ===== */
 .lab-hero {

@@ -7,7 +7,7 @@ import { waLink } from "../data/contact";
 export default function LabCTA() {
   return (
     <section className="lab-contact" id="contacto">
-      <span className="lab-code">ABIERTO PARA NUEVOS PROYECTOS / 2026</span>
+      <span className="label-telemetry">ABIERTO PARA NUEVOS PROYECTOS / 2026</span>
       <h2>
         PONLE UN
         <br />

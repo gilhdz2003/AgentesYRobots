@@ -9,7 +9,7 @@ export default function LabHero() {
         +<br />+<br />+
       </div>
       <div className="lab-hero__heading">
-        <span className="lab-code">A&R / SISTEMAS AUTÓNOMOS / 2026</span>
+        <span className="label-telemetry">A&R / SISTEMAS AUTÓNOMOS / 2026</span>
         <h1>
           MENOS<br />
           PROMESAS.

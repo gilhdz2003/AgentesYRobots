@@ -68,8 +68,8 @@ function FAQItem({ q, a }: { q: string; a: string; key?: string }) {
         </span>
         <span
           aria-hidden="true"
-          className={`flex-shrink-0 font-mono text-lg leading-none transition-transform duration-200 ${
-            open ? "rotate-180 text-yellow" : "text-muted"
+          className={`flex-shrink-0 inline-block font-mono text-lg leading-none transition-transform duration-200 ${
+            open ? "rotate-45 text-yellow" : "text-muted"
           }`}
         >
           +
