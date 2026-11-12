@@ -245,7 +245,7 @@ export default function CaseStudiesPage() {
             href={waLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-between gap-6 bg-yellow px-8 py-4 font-mono text-[12px] font-semibold uppercase tracking-[0.05em] text-ink transition-colors duration-[180ms] hover:bg-paper"
+            className="inline-flex items-center justify-between gap-6 border-2 border-ink bg-yellow px-8 py-4 font-mono text-[12px] font-semibold uppercase tracking-[0.05em] text-ink hard-shadow"
           >
             COMENZAR DIAGNÓSTICO <span aria-hidden="true">↗</span>
           </a>

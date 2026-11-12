@@ -217,12 +217,10 @@ export const categoryLabels: Record<ProjectCategory, string> = {
   laboratorio: "Laboratorio",
 };
 
-export const statusConfig: Record<
-  ProjectStatus,
-  { label: string; className: string }
-> = {
-  en_vivo: { label: "● EN VIVO", className: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30" },
-  en_desarrollo: { label: "⚡ EN DESARROLLO", className: "bg-amber-500/15 text-amber-400 border-amber-500/30" },
-  completado: { label: "✅ COMPLETADO", className: "bg-brand-accent/15 text-brand-accent border-brand-accent/30" },
-  laboratorio: { label: "🔬 LABORATORIO", className: "bg-violet-500/15 text-violet-400 border-violet-500/30" },
+/** El estilo de estado vive en ProjectCard (Lab): aquí solo la etiqueta. */
+export const statusConfig: Record<ProjectStatus, { label: string }> = {
+  en_vivo: { label: "EN VIVO" },
+  en_desarrollo: { label: "EN DESARROLLO" },
+  completado: { label: "COMPLETADO" },
+  laboratorio: { label: "LABORATORIO" },
 };

@@ -26,14 +26,6 @@
   --color-orange-deep: oklch(0.52 0.17 45); /* naranja para contexto papel/amarillo (AA) */
   --color-line: oklch(0.42 0.025 95);     /* hairlines y bordes sobre tinta */
   --color-muted: oklch(0.68 0.02 95);     /* microcopy secundario sobre tinta */
-
-  /* Aliases legacy brand-* → paleta Lab (migración: se usan hasta T5) */
-  --color-brand-accent: var(--color-yellow);
-  --color-brand-amber: var(--color-orange);
-  --color-brand-bg: var(--color-ink);
-  --color-brand-card: oklch(0.26 0.02 95);
-  --color-brand-text: var(--color-paper);
-  --color-brand-border: var(--color-line);
 }
 
 @layer base {
@@ -104,36 +96,6 @@
   }
   .hairline-t {
     border-top: 1px solid var(--color-line);
-  }
-
-  /* ===== Legacy (pre-Lab): definiciones vigentes hasta que T5 las retire ===== */
-  .enterprise-border {
-    @apply border border-brand-border;
-  }
-  .glass-premium {
-    @apply bg-brand-card/50 backdrop-blur-md border border-white/5;
-  }
-  .editorial-border {
-    @apply border border-white/10;
-  }
-  .label-tech {
-    @apply text-xs uppercase tracking-[0.4em] font-bold;
-  }
-  .gradient-text {
-    background: linear-gradient(135deg, #ffffff 0%, var(--color-yellow) 50%, var(--color-orange) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .gradient-text-subtle {
-    background: linear-gradient(135deg, #ffffff 30%, var(--color-yellow) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, oklch(0.9 0.19 99 / 0.2) 50%, transparent 100%);
   }
 }
 
