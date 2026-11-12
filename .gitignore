@@ -23,6 +23,11 @@ tsconfig.tsbuildinfo
 planes comerciales*.md
 Survey*.pdf
 .agents/
+.v2c/
+.video_agent/
+.dashboard/
+.zcode/
+screenshots-lab/
 
 # Material estratégico interno (no es parte del catálogo público)
 # agent-readiness: servicio hipotético #7 — dictámenes con pricing, metodología, scoring de competencia

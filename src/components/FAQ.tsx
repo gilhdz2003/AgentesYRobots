@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
@@ -58,21 +57,23 @@ function FAQItem({ q, a }: { q: string; a: string; key?: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border-b border-white/5">
+    <div className="border-b border-line">
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="w-full flex items-center justify-between py-6 text-left group cursor-pointer"
+        className="w-full flex items-center justify-between gap-6 py-6 text-left group cursor-pointer"
       >
-        <span className="text-white font-medium text-sm pr-8 group-hover:text-brand-accent transition-colors">
+        <span className="font-medium text-[15px] pr-4 text-paper/90 group-hover:text-yellow transition-colors">
           {q}
         </span>
-        <ChevronDown
-          size={18}
-          className={`text-gray-500 flex-shrink-0 transition-transform duration-200 ${
-            open ? "rotate-180 text-brand-accent" : ""
+        <span
+          aria-hidden="true"
+          className={`flex-shrink-0 font-mono text-lg leading-none transition-transform duration-200 ${
+            open ? "rotate-180 text-yellow" : "text-muted"
           }`}
-        />
+        >
+          +
+        </span>
       </button>
       <AnimatePresence>
         {open && (
@@ -83,7 +84,7 @@ function FAQItem({ q, a }: { q: string; a: string; key?: string }) {
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <p className="text-gray-400 text-sm leading-relaxed pb-6 pr-12">
+            <p className="text-muted text-sm leading-relaxed pb-6 pr-12">
               {a}
             </p>
           </motion.div>
@@ -95,24 +96,23 @@ function FAQItem({ q, a }: { q: string; a: string; key?: string }) {
 
 export default function FAQ() {
   return (
-    <>
-      <section className="py-32 px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="w-8 h-[2px] bg-brand-accent" />
-            <span className="label-tech text-brand-accent">FAQ // 05</span>
-          </div>
-          <h2 className="font-display text-5xl font-black tracking-tight text-white uppercase mb-6">
-            Preguntas<br />frecuentes
-          </h2>
+    <section className="px-4 py-24 min-[760px]:px-7 min-[760px]:py-28" aria-label="Preguntas frecuentes">
+      <div className="mx-auto max-w-3xl">
+        <span className="label-telemetry block mb-6 text-muted">
+          [ PREGUNTAS FRECUENTES ]
+        </span>
+        <h2 className="mb-10 font-serif text-5xl font-extrabold uppercase leading-[0.85] tracking-tight min-[760px]:text-7xl">
+          PREGUNTAS
+          <br />
+          <em className="text-orange not-italic">SIN RODEOS.</em>
+        </h2>
 
-          <div className="mt-12">
-            {faqs.map((faq) => (
-              <FAQItem key={faq.q} q={faq.q} a={faq.a} />
-            ))}
-          </div>
+        <div className="border-t border-line">
+          {faqs.map((faq) => (
+            <FAQItem key={faq.q} q={faq.q} a={faq.a} />
+          ))}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

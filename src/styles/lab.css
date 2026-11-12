@@ -1,0 +1,637 @@
+/*
+ * Primitivas visuales del concepto Lab — portadas del prototipo
+ * redesigns/kimi-directions/src/styles/lab.css (ganador del ejercicio 5-nov).
+ * Colores vía tokens @theme (index.css); grises one-off como en el prototipo.
+ * Topbar/Dock/Footer viven en componentes Tailwind (T2).
+ */
+
+.lab-code {
+  font: 500 10px "Fira Code", monospace;
+  letter-spacing: 0.05em;
+}
+
+/* ===== Hero ===== */
+.lab-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+  min-height: calc(100vh - 80px);
+  padding: clamp(48px, 6vw, 90px) 28px 26px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-line);
+}
+.lab-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, transparent calc(25% - 1px), oklch(0.4 0.02 95 / 0.35) 25%, transparent calc(25% + 1px)),
+    linear-gradient(90deg, transparent calc(75% - 1px), oklch(0.4 0.02 95 / 0.35) 75%, transparent calc(75% + 1px));
+}
+.lab-hero__registration {
+  position: absolute;
+  top: 25px;
+  left: 8px;
+  color: oklch(0.46 0.025 95);
+  font: 400 13px/38vh "Fira Code", monospace;
+}
+.lab-hero__heading {
+  position: relative;
+  z-index: 1;
+}
+.lab-hero__heading > span {
+  color: var(--color-yellow);
+}
+.lab-hero h1 {
+  margin-top: clamp(40px, 6vh, 80px);
+  font: 800 clamp(78px, 10.5vw, 170px) / 0.74 "Barlow Condensed", sans-serif;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+.lab-hero h1 em {
+  color: var(--color-yellow);
+  font-style: normal;
+}
+.lab-hero__side {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 0 65px clamp(20px, 3vw, 48px);
+}
+.lab-crosshair {
+  position: absolute;
+  top: 0;
+  right: 2%;
+  display: grid;
+  place-items: center;
+  width: clamp(180px, 20vw, 300px);
+  aspect-ratio: 1;
+  border: 1px solid oklch(0.48 0.03 95);
+  border-radius: 50%;
+}
+.lab-crosshair::before,
+.lab-crosshair::after {
+  content: "";
+  position: absolute;
+  background: oklch(0.48 0.03 95);
+}
+.lab-crosshair::before {
+  width: 120%;
+  height: 1px;
+}
+.lab-crosshair::after {
+  width: 1px;
+  height: 120%;
+}
+.lab-crosshair span {
+  color: var(--color-yellow);
+  font: 800 clamp(85px, 10vw, 155px) / 1 "Barlow Condensed", sans-serif;
+}
+.lab-crosshair i {
+  position: absolute;
+  inset: 13%;
+  border: 1px dashed oklch(0.48 0.03 95);
+  border-radius: 50%;
+  animation: lab-spin 30s linear infinite;
+}
+.lab-crosshair i:last-child {
+  inset: -9%;
+  border-style: solid;
+  border-color: oklch(0.4 0.025 95 / 0.5);
+  animation-direction: reverse;
+}
+.lab-hero__side > p {
+  max-width: 31ch;
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.45;
+}
+.lab-hero__side > a {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+  padding: 17px 18px;
+  color: var(--color-ink);
+  background: var(--color-yellow);
+  font: 600 10px "Fira Code", monospace;
+}
+.lab-hero__side > a span {
+  font-size: 18px;
+}
+.lab-hero__foot {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: oklch(0.56 0.02 95);
+  font: 400 8px "Fira Code", monospace;
+}
+.lab-hero__foot span:first-child {
+  color: var(--color-yellow);
+}
+
+/* ===== Simulador de misión ===== */
+.lab-machine {
+  color: var(--color-ink);
+  background: var(--color-yellow);
+  border-bottom: 1px solid var(--color-ink);
+}
+.lab-machine__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  padding: 18px 28px;
+  border-bottom: 1px solid oklch(0.4 0.08 90);
+}
+.lab-machine__controls > span {
+  font: 600 9px "Fira Code", monospace;
+}
+.lab-machine__controls > div {
+  display: flex;
+  gap: 5px;
+}
+.lab-machine__controls button {
+  padding: 9px 15px;
+  border: 1px solid var(--color-ink);
+  font: 600 10px "Fira Code", monospace;
+  transition: color 180ms ease, background 180ms ease;
+}
+.lab-machine__controls button:hover {
+  background: oklch(0.84 0.17 99);
+}
+.lab-machine__controls button.is-active {
+  color: var(--color-yellow);
+  background: var(--color-ink);
+}
+.lab-machine__flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 38px 28px;
+}
+.lab-machine__flow > div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-right: 45px;
+}
+.lab-machine__flow span {
+  font: 500 9px "Fira Code", monospace;
+}
+.lab-machine__flow strong {
+  max-width: 15ch;
+  font: 800 clamp(24px, 2.7vw, 42px) / 0.95 "Barlow Condensed", sans-serif;
+}
+.lab-machine__flow b {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  font: 500 35px "Fira Code", monospace;
+}
+.lab-machine__status {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 11px 28px;
+  color: var(--color-yellow);
+  background: var(--color-ink);
+  font: 400 8px "Fira Code", monospace;
+}
+.lab-machine__status span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.lab-machine__status i {
+  width: 6px;
+  height: 6px;
+  background: var(--color-yellow);
+}
+
+/* ===== Catálogo de capacidades ===== */
+.lab-capabilities {
+  padding: clamp(80px, 9vw, 145px) 28px;
+  color: var(--color-ink);
+  background: var(--color-paper);
+}
+.lab-capabilities > header {
+  display: grid;
+  grid-template-columns: 0.45fr 1fr 0.55fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 75px;
+}
+.lab-capabilities > header > span {
+  align-self: start;
+  font: 500 9px "Fira Code", monospace;
+}
+.lab-capabilities > header h2 {
+  font: 800 clamp(72px, 8.5vw, 135px) / 0.75 "Barlow Condensed", sans-serif;
+  letter-spacing: -0.035em;
+}
+.lab-capabilities > header h2 em {
+  color: var(--color-orange);
+  font-style: normal;
+}
+.lab-capabilities > header p {
+  max-width: 25ch;
+  padding-bottom: 8px;
+  font-size: 19px;
+  line-height: 1.4;
+}
+.lab-catalog {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  border: 2px solid var(--color-ink);
+}
+.lab-catalog__rows {
+  display: grid;
+}
+.lab-catalog__rows button {
+  display: grid;
+  grid-template-columns: 48px 1fr auto 30px;
+  align-items: center;
+  gap: 18px;
+  min-height: 91px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--color-ink);
+  text-align: left;
+  transition: color 180ms ease, background 180ms ease;
+}
+.lab-catalog__rows button:last-child {
+  border-bottom: 0;
+}
+.lab-catalog__rows button:hover,
+.lab-catalog__rows button[aria-selected="true"] {
+  color: var(--color-ink);
+  background: var(--color-yellow);
+}
+.lab-catalog__rows button > span {
+  font: 500 10px "Fira Code", monospace;
+}
+.lab-catalog__rows button strong {
+  font: 700 clamp(25px, 2.5vw, 38px) "Barlow Condensed", sans-serif;
+  text-transform: uppercase;
+}
+.lab-catalog__rows button small {
+  font-size: 12px;
+}
+.lab-catalog__rows button b {
+  font-size: 21px;
+}
+.lab-catalog__detail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  color: var(--color-paper);
+  background: var(--color-ink);
+  overflow: hidden;
+}
+.lab-catalog__detail > span {
+  color: var(--color-yellow);
+  font: 500 9px "Fira Code", monospace;
+}
+.lab-catalog__detail h3 {
+  margin: 35px 0 20px;
+  color: var(--color-yellow);
+  font: 800 clamp(43px, 4.3vw, 67px) / 0.85 "Barlow Condensed", sans-serif;
+  text-transform: uppercase;
+}
+.lab-catalog__detail p {
+  max-width: 36ch;
+  color: oklch(0.78 0.02 95);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.lab-catalog__detail ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 25px;
+}
+.lab-catalog__detail li {
+  color: var(--color-yellow);
+  font: 400 9px "Fira Code", monospace;
+}
+.lab-catalog__detail > a {
+  margin-top: 35px;
+  padding: 14px;
+  color: var(--color-ink);
+  background: var(--color-yellow);
+  text-align: center;
+  font: 600 9px "Fira Code", monospace;
+  transition: background 180ms ease;
+}
+.lab-catalog__detail > a:hover {
+  background: oklch(0.84 0.17 99);
+}
+.lab-catalog__page {
+  display: block;
+  margin-top: 14px;
+  padding-bottom: 6px;
+  color: var(--color-yellow);
+  border-bottom: 1px solid currentColor;
+  text-align: center;
+  font: 500 9px "Fira Code", monospace;
+}
+.lab-catalog__barcode {
+  margin-top: auto;
+  padding-top: 35px;
+  color: oklch(0.54 0.02 95);
+  font: 500 24px "Fira Code", monospace;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+/* ===== Prueba / experimento ===== */
+.lab-proof {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 60px;
+  min-height: 730px;
+  padding: clamp(70px, 8vw, 130px) 28px 70px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-line);
+}
+.lab-proof__label {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  color: oklch(0.62 0.02 95);
+  font: 400 9px/1.7 "Fira Code", monospace;
+}
+.lab-proof h2 {
+  position: relative;
+  z-index: 1;
+  padding-top: 60px;
+  font: 800 clamp(85px, 10vw, 160px) / 0.76 "Barlow Condensed", sans-serif;
+  letter-spacing: -0.04em;
+}
+.lab-proof h2 em {
+  color: var(--color-yellow);
+  font-style: normal;
+}
+.lab-proof__copy {
+  position: relative;
+  z-index: 1;
+  align-self: end;
+  padding-bottom: 60px;
+}
+.lab-proof__copy p {
+  max-width: 37ch;
+  font-size: clamp(18px, 1.6vw, 23px);
+  line-height: 1.5;
+}
+.lab-proof__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 30px;
+}
+.lab-proof__links a {
+  display: inline-block;
+  padding-bottom: 7px;
+  color: var(--color-yellow);
+  border-bottom: 1px solid currentColor;
+  font: 500 10px "Fira Code", monospace;
+}
+.lab-proof__tally {
+  position: absolute;
+  right: -20px;
+  top: 35px;
+  display: flex;
+  align-items: end;
+  gap: 15px;
+  color: oklch(0.28 0.02 95);
+  transform: rotate(-6deg);
+}
+.lab-proof__tally span {
+  font: 800 clamp(210px, 28vw, 440px) / 0.8 "Barlow Condensed", sans-serif;
+}
+.lab-proof__tally small {
+  padding-bottom: 25px;
+  color: oklch(0.45 0.025 95);
+  font: 500 9px "Fira Code", monospace;
+}
+
+/* ===== Principios ===== */
+.lab-principles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  color: var(--color-ink);
+  background: var(--color-yellow);
+}
+.lab-principles article {
+  min-height: 355px;
+  padding: 28px;
+  border-right: 1px solid var(--color-ink);
+}
+.lab-principles article:last-child {
+  border-right: 0;
+}
+.lab-principles article > span {
+  font: 500 10px "Fira Code", monospace;
+}
+.lab-principles h3 {
+  margin: 70px 0 22px;
+  font: 800 clamp(29px, 2.8vw, 43px) / 0.88 "Barlow Condensed", sans-serif;
+}
+.lab-principles p {
+  max-width: 29ch;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* ===== CTA final ===== */
+.lab-contact {
+  padding: clamp(85px, 10vw, 160px) 28px;
+  color: var(--color-ink);
+  background: var(--color-paper);
+}
+.lab-contact > span {
+  display: block;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--color-ink);
+}
+.lab-contact h2 {
+  margin: 60px 0;
+  font: 800 clamp(100px, 14vw, 220px) / 0.72 "Barlow Condensed", sans-serif;
+  letter-spacing: -0.05em;
+}
+.lab-contact h2 em {
+  color: var(--color-orange);
+  font-style: normal;
+}
+.lab-contact > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+}
+.lab-contact > div p {
+  max-width: 43ch;
+  font-size: 20px;
+  line-height: 1.45;
+}
+.lab-contact > div a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 23px;
+  color: var(--color-ink);
+  background: var(--color-yellow);
+  border: 2px solid var(--color-ink);
+  box-shadow: 7px 7px 0 var(--color-ink);
+  font: 600 12px "Fira Code", monospace;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.lab-contact > div a:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 3px 3px 0 var(--color-ink);
+}
+.lab-contact > div a b {
+  font-size: 25px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1120px) {
+  .lab-hero {
+    grid-template-columns: 1fr;
+    padding-bottom: 90px;
+  }
+  .lab-hero__side {
+    min-height: 380px;
+    padding-left: 45%;
+  }
+  .lab-crosshair {
+    left: 5%;
+    right: auto;
+    top: 50px;
+  }
+  .lab-capabilities > header {
+    grid-template-columns: 1fr 2fr;
+  }
+  .lab-capabilities > header p {
+    display: none;
+  }
+  .lab-catalog {
+    grid-template-columns: 1fr;
+  }
+  .lab-catalog__detail {
+    min-height: 430px;
+  }
+  .lab-principles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lab-principles article {
+    border-bottom: 1px solid var(--color-ink);
+  }
+}
+@media (max-width: 760px) {
+  .lab-hero {
+    min-height: 900px;
+    padding-inline: 18px;
+  }
+  .lab-hero h1 {
+    font-size: clamp(62px, 19.5vw, 104px);
+    line-height: 0.78;
+  }
+  .lab-hero__side {
+    min-height: 390px;
+    padding: 250px 0 30px;
+  }
+  .lab-crosshair {
+    width: 200px;
+    left: auto;
+    right: 5%;
+    top: 25px;
+  }
+  .lab-hero__foot {
+    left: 18px;
+    right: 18px;
+  }
+  .lab-hero__foot span:nth-child(2) {
+    display: none;
+  }
+  .lab-machine__controls {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-inline: 18px;
+  }
+  .lab-machine__controls > div {
+    width: 100%;
+  }
+  .lab-machine__controls button {
+    flex: 1;
+    padding-inline: 6px;
+  }
+  .lab-machine__flow {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding-inline: 18px;
+  }
+  .lab-machine__flow > div {
+    padding: 0 40px 20px 0;
+    border-bottom: 1px solid oklch(0.5 0.08 90);
+  }
+  .lab-machine__flow b {
+    top: 10%;
+    transform: rotate(90deg);
+  }
+  .lab-machine__status span:nth-child(2) {
+    display: none;
+  }
+  .lab-capabilities {
+    padding-inline: 18px;
+  }
+  .lab-capabilities > header {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .lab-catalog__rows button {
+    grid-template-columns: 32px 1fr 24px;
+    gap: 10px;
+    padding-inline: 15px;
+  }
+  .lab-catalog__rows button small {
+    display: none;
+  }
+  .lab-proof {
+    grid-template-columns: 1fr;
+    min-height: 720px;
+    padding-inline: 18px;
+  }
+  .lab-proof h2 {
+    font-size: clamp(85px, 23vw, 130px);
+  }
+  .lab-proof__copy {
+    padding-bottom: 0;
+  }
+  .lab-principles {
+    grid-template-columns: 1fr;
+  }
+  .lab-principles article {
+    min-height: 270px;
+    border-right: 0;
+  }
+  .lab-principles h3 {
+    margin-top: 45px;
+  }
+  .lab-contact {
+    padding-inline: 18px;
+  }
+  .lab-contact h2 {
+    font-size: clamp(95px, 27vw, 150px);
+  }
+  .lab-contact > div {
+    grid-template-columns: 1fr;
+  }
+}

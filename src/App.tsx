@@ -8,14 +8,13 @@ import { HelmetProvider } from "react-helmet-async";
 import { MotionConfig } from "motion/react";
 import Topbar from "./components/Topbar";
 import Dock from "./components/Dock";
-import Hero from "./components/Hero";
-import Solutions from "./components/Solutions";
-import Process from "./components/Process";
-import Stats from "./components/Stats";
-import SocialProof from "./components/SocialProof";
+import LabHero from "./components/LabHero";
+import MissionSimulator from "./components/MissionSimulator";
+import CapabilitiesCatalog from "./components/CapabilitiesCatalog";
+import ProofSection from "./components/ProofSection";
+import PrinciplesSection from "./components/PrinciplesSection";
 import FAQ, { faqJsonLd } from "./components/FAQ";
-import CTA from "./components/CTA";
-import PortfolioSection from "./components/PortfolioSection";
+import LabCTA from "./components/LabCTA";
 import Footer from "./components/Footer";
 import SEO, { websiteSchema } from "./components/SEO";
 import ScrollToTop from "./components/ScrollToTop";
@@ -41,14 +40,13 @@ function HomePage() {
   return (
     <>
       <SEO jsonLd={[ORG_JSON_LD, websiteSchema(), faqJsonLd]} />
-      <Hero />
-      <Solutions />
-      <Process />
-      <Stats />
-      <SocialProof />
-      <PortfolioSection />
+      <LabHero />
+      <MissionSimulator />
+      <CapabilitiesCatalog />
+      <ProofSection />
+      <PrinciplesSection />
       <FAQ />
-      <CTA />
+      <LabCTA />
     </>
   );
 }
