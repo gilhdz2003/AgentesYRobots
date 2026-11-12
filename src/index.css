@@ -1,33 +1,106 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Karla:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 @import "tailwindcss";
 
+/*
+ * Dirección visual "Lab" — ganadora del ejercicio de redesign (5-nov-2026).
+ * Fuente de verdad: redesigns/kimi-directions/src/styles/lab.css
+ * Brutalismo técnico: tinta + amarillo señal, esquinas rectas, sombras duras.
+ */
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", serif;
-  --font-display: "Space Grotesk", sans-serif;
+  /* Tipografía Lab: display condensado, cuerpo humanista, telemetría mono */
+  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Barlow Condensed", sans-serif;
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-mono: "Fira Code", ui-monospace, monospace;
 
-  --color-brand-accent: #38bdf8;
-  --color-brand-amber: #FF7513; /* naranja de marca del logo A&R — color de ACCIÓN del sitio */
-  --color-brand-bg: #020617;
-  --color-brand-card: #0f172a;
-  --color-brand-text: #f8fafc;
-  --color-brand-border: #1e293b;
+  /* Animaciones Lab expuestas como utilidades (animate-lab-blink / animate-lab-spin) */
+  --animate-lab-blink: lab-blink 1.8s steps(2) infinite;
+  --animate-lab-spin: lab-spin 30s linear infinite;
+
+  /* Paleta Lab (OKLCH, del prototipo) */
+  --color-ink: oklch(0.19 0.018 95);      /* fondo tinta / texto sobre papel-amarillo */
+  --color-paper: oklch(0.95 0.018 95);    /* papel claro / texto sobre tinta */
+  --color-yellow: oklch(0.9 0.19 99);     /* amarillo señal: CTAs, énfasis, acción */
+  --color-orange: oklch(0.7 0.19 47);     /* acento secundario (em de titulares) */
+  --color-line: oklch(0.42 0.025 95);     /* hairlines y bordes sobre tinta */
+  --color-muted: oklch(0.68 0.02 95);     /* microcopy secundario sobre tinta */
+
+  /* Aliases legacy brand-* → paleta Lab (migración: se usan hasta T5) */
+  --color-brand-accent: var(--color-yellow);
+  --color-brand-amber: var(--color-orange);
+  --color-brand-bg: var(--color-ink);
+  --color-brand-card: oklch(0.26 0.02 95);
+  --color-brand-text: var(--color-paper);
+  --color-brand-border: var(--color-line);
 }
 
 @layer base {
   body {
-    @apply bg-brand-bg text-brand-text font-sans antialiased selection:bg-brand-accent/30;
+    @apply bg-ink text-paper font-sans antialiased selection:bg-yellow selection:text-ink;
   }
 
   /* Navegación por teclado visible en todo el sitio (WCAG AA) */
   :focus-visible {
-    outline: 2px solid var(--color-brand-amber);
-    outline-offset: 3px;
-    border-radius: 2px;
+    outline: 3px solid var(--color-yellow);
+    outline-offset: 4px;
+  }
+
+  section[id] {
+    scroll-margin-top: 96px; /* topbar fijo ~80px + respiro */
+  }
+
+  /* Respeto a reduced-motion: mata blink/spin/transiciones (patrón del prototipo) */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
+/* ===== Utilidades Lab ===== */
 @layer utilities {
+  /* Microcopy de telemetría: Fira Code pequeño, uppercase con tracking */
+  .label-telemetry {
+    @apply font-mono uppercase;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Marco brutalista: borde grueso tinta, esquinas rectas */
+  .lab-frame {
+    @apply border-2 border-ink;
+  }
+
+  .lab-frame-paper {
+    @apply border-2 border-paper;
+  }
+
+  /* Sombra dura — firma Lab. Hover: el botón se hunde y la sombra se encoge */
+  .hard-shadow {
+    box-shadow: 7px 7px 0 var(--color-ink);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+  .hard-shadow:hover {
+    transform: translate(4px, 4px);
+    box-shadow: 3px 3px 0 var(--color-ink);
+  }
+
+  .hard-shadow-yellow {
+    box-shadow: 6px 6px 0 oklch(0.9 0.19 99 / 0.32);
+  }
+
+  /* Separadores hairline 1px sobre tinta */
+  .hairline-b {
+    border-bottom: 1px solid var(--color-line);
+  }
+  .hairline-t {
+    border-top: 1px solid var(--color-line);
+  }
+
+  /* ===== Legacy (pre-Lab): definiciones vigentes hasta que T5 las retire ===== */
   .enterprise-border {
     @apply border border-brand-border;
   }
@@ -40,23 +113,29 @@
   .label-tech {
     @apply text-xs uppercase tracking-[0.4em] font-bold;
   }
-
   .gradient-text {
-    background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #F59E0B 100%);
+    background: linear-gradient(135deg, #ffffff 0%, var(--color-yellow) 50%, var(--color-orange) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .gradient-text-subtle {
-    background: linear-gradient(135deg, #ffffff 30%, #38bdf8 100%);
+    background: linear-gradient(135deg, #ffffff 30%, var(--color-yellow) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .section-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.2) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, oklch(0.9 0.19 99 / 0.2) 50%, transparent 100%);
   }
+}
+
+/* ===== Animaciones Lab (del prototipo) ===== */
+@keyframes lab-blink {
+  50% { opacity: 0.25; }
+}
+
+@keyframes lab-spin {
+  to { transform: rotate(360deg); }
 }

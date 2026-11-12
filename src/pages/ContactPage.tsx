@@ -1,22 +1,8 @@
 import { motion } from "motion/react";
 import { MessageCircle, Mail, Linkedin, ArrowRight } from "lucide-react";
 import SEO, { breadcrumbSchema } from "../components/SEO";
+import { waLink } from "../data/contact";
 import { services } from "../data/services";
-
-const WA_NUMBER = "5218117991300";
-
-const serviceOptions = services.map((s) => ({
-  label: s.title,
-  slug: s.slug,
-}));
-
-function waLink(serviceSlug?: string) {
-  const selected = serviceOptions.find((s) => s.slug === serviceSlug);
-  const serviceText = selected
-    ? `Me interesa conocer más sobre ${selected.label}`
-    : "Me interesa conocer más sobre sus servicios de IA";
-  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(serviceText)}`;
-}
 
 export default function ContactPage() {
   return (
@@ -71,7 +57,7 @@ export default function ContactPage() {
               </h2>
 
               <div className="space-y-4">
-                {serviceOptions.map((service) => (
+                {services.map((service) => (
                   <motion.a
                     key={service.slug}
                     href={waLink(service.slug)}
@@ -86,7 +72,7 @@ export default function ContactPage() {
                         className="text-brand-accent"
                       />
                       <span className="text-white font-medium">
-                        {service.label}
+                        {service.title}
                       </span>
                     </div>
                     <ArrowRight
