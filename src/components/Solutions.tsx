@@ -5,8 +5,9 @@ import { services } from "../data/services";
 import { fadeInUp, scaleIn, staggerContainer, sectionTransition } from "../utils/animations";
 
 export default function Solutions() {
+  // id="capacidades": ancla del dock y del hero (T3 la conserva al reemplazar)
   return (
-    <section className="py-32 px-6 bg-slate-900/20" id="services">
+    <section className="py-32 px-6 bg-slate-900/20" id="capacidades">
       <div className="max-w-7xl mx-auto">
         <motion.div
           variants={fadeInUp}

@@ -35,6 +35,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-ink text-paper font-sans antialiased selection:bg-yellow selection:text-ink;
   }

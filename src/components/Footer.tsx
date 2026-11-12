@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 
-const services = [
+/**
+ * Footer Lab: hairline superior, microcopy de telemetría y mapa de sitio
+ * completo (internal linking / SEO). El dock inferior es la navegación
+ * principal; el footer es el índice exhaustivo.
+ */
+const capabilities = [
   { label: "BB One Hardware", to: "/servicios/bb-one" },
   { label: "Coworkers Digitales", to: "/servicios/coworkers-digitales" },
   { label: "Security Testing", to: "/servicios/security-testing" },
@@ -9,75 +14,89 @@ const services = [
   { label: "AI Training", to: "/servicios/ai-training" },
 ];
 
-const support = [
+const company = [
   { label: "Nosotros", to: "/nosotros" },
-  { label: "Casos de Estudio", to: "/casos" },
+  { label: "Casos de estudio", to: "/casos" },
   { label: "Contacto", to: "/contacto" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="py-24 px-6 border-t border-white/5 bg-brand-bg">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+    <footer className="hairline-t bg-ink px-4 py-14 min-[760px]:px-7 min-[760px]:py-16">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="md:col-span-2">
-          <Link to="/" className="inline-block mb-8">
-            <div className="font-display text-2xl font-black text-white tracking-tighter">
-              AGENTES<span className="text-brand-accent">&</span>ROBOTS
-            </div>
+          <Link to="/" className="inline-flex items-center gap-3" aria-label="Agentes&Robots — inicio">
+            <img
+              src="/logo-ar.png"
+              alt="Logotipo de Agentes&Robots"
+              width={42}
+              height={42}
+              className="h-[42px] w-[42px] object-contain"
+            />
+            <span className="font-serif text-lg text-paper">
+              AGENTES<span className="text-muted font-normal">&</span>ROBOTS
+            </span>
           </Link>
-          <p className="text-gray-400 text-sm font-medium leading-relaxed max-w-sm mb-10">
-            Ingeniería de IA para la automatización empresarial. Infraestructura inteligente para la era de los agentes autónomos.
+          <p className="mt-7 max-w-sm text-[15px] leading-relaxed text-muted">
+            Ingeniería de IA para la automatización empresarial.
+            Infraestructura inteligente para la era de los agentes autónomos.
           </p>
-          <div className="flex gap-4">
+          <div className="mt-8 flex gap-6 font-mono text-[9px] font-medium uppercase tracking-[0.05em]">
             <a
               href="https://linkedin.com/company/agentesyrobots"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn de Agentes&Robots"
-              className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-brand-accent transition-colors cursor-pointer"
+              className="text-muted transition-colors hover:text-yellow"
             >
-              in
+              LinkedIn ↗
             </a>
             <a
               href="https://github.com/agentesyrobots"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub de Agentes&Robots"
-              className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-brand-accent transition-colors cursor-pointer"
+              className="text-muted transition-colors hover:text-yellow"
             >
-              gh
+              GitHub ↗
             </a>
           </div>
         </div>
 
-        <div>
-          <h4 className="text-[12px] font-black text-white uppercase tracking-[0.2em] mb-8">Servicios</h4>
-          <ul className="space-y-4">
-            {services.map((item) => (
-              <li key={item.label}>
-                <Link to={item.to} className="text-sm font-medium text-gray-500 hover:text-brand-accent transition-colors">
+        <nav aria-label="Capacidades">
+          <h4 className="label-telemetry mb-7 text-muted">[ Capacidades ]</h4>
+          <ul className="space-y-3.5">
+            {capabilities.map((item) => (
+              <li key={item.to}>
+                <Link
+                  to={item.to}
+                  className="text-sm font-medium text-paper/70 transition-colors hover:text-yellow"
+                >
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
-        <div>
-          <h4 className="text-[12px] font-black text-white uppercase tracking-[0.2em] mb-8">Empresa</h4>
-          <ul className="space-y-4">
-            {support.map((item) => (
-              <li key={item.label}>
-                <Link to={item.to} className="text-sm font-medium text-gray-500 hover:text-brand-accent transition-colors">
+        <nav aria-label="Empresa">
+          <h4 className="label-telemetry mb-7 text-muted">[ Empresa ]</h4>
+          <ul className="space-y-3.5">
+            {company.map((item) => (
+              <li key={item.to}>
+                <Link
+                  to={item.to}
+                  className="text-sm font-medium text-paper/70 transition-colors hover:text-yellow"
+                >
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
       </div>
-      <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/5 text-[11px] font-bold tracking-widest text-gray-600 uppercase">
-        © 2026 Agentes&Robots. Todos los derechos reservados.
+
+      <div className="mx-auto mt-14 max-w-7xl border-t border-line pt-7 font-mono text-[8px] uppercase tracking-[0.05em] text-muted flex flex-wrap items-center justify-between gap-4">
+        <span>Agentes&Robots © 2026</span>
+        <span>HECHO PARA OPERAR, NO PARA IMPRESIONAR.</span>
       </div>
     </footer>
   );

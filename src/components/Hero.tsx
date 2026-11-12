@@ -109,7 +109,7 @@ export default function Hero() {
 
           <div className="flex flex-wrap gap-5">
             <motion.a
-              href="#services"
+              href="#capacidades"
               whileHover={{ scale: 1.02 }}
               className="px-8 py-4 bg-brand-amber text-brand-bg font-bold tracking-wide rounded-md"
             >

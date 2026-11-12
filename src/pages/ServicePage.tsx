@@ -65,7 +65,7 @@ export default function ServicePage() {
           }),
           breadcrumbSchema([
             { name: "Inicio", url: "/" },
-            { name: "Servicios", url: "/#services" },
+            { name: "Servicios", url: "/#capacidades" },
             { name: service.title, url: `/servicios/${service.slug}` },
           ]),
           ...(faqJsonLd ? [faqJsonLd] : []),

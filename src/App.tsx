@@ -6,7 +6,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { MotionConfig } from "motion/react";
-import Navbar from "./components/Navbar";
+import Topbar from "./components/Topbar";
+import Dock from "./components/Dock";
 import Hero from "./components/Hero";
 import Solutions from "./components/Solutions";
 import Process from "./components/Process";
@@ -58,9 +59,15 @@ export default function App() {
       <MotionConfig reducedMotion="user">
         <BrowserRouter>
           <ScrollToTop />
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-grow pt-20">
+          <div className="flex min-h-screen flex-col pb-[150px] min-[760px]:pb-[88px]">
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[2000] focus:border-2 focus:border-ink focus:bg-paper focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:font-semibold focus:uppercase focus:text-ink"
+            >
+              Saltar al contenido
+            </a>
+            <Topbar />
+            <main id="main-content" tabIndex={-1} className="flex-grow pt-20">
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/servicios/:slug" element={<ServicePage />} />
@@ -70,6 +77,7 @@ export default function App() {
               </Routes>
             </main>
             <Footer />
+            <Dock />
           </div>
         </BrowserRouter>
       </MotionConfig>

@@ -2,13 +2,12 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     // Deep-link con hash (p.ej. /servicios/coworkers-digitales#voice-agents):
     // scroll al sub-tipo en vez de competir con el fragment llevando la vista al top.
-    const hash = window.location.hash;
-
+    // Usa el hash de useLocation (misma fuente que las deps del efecto).
     if (!hash) {
       window.scrollTo(0, 0);
       return;
@@ -36,7 +35,9 @@ export default function ScrollToTop() {
     scrollToTarget();
 
     return () => cancelAnimationFrame(raf);
-  }, [pathname]);
+    // hash en deps: clickear un ancla del dock estando ya en el home
+    // (p.ej. / → /#capacidades) no cambia pathname y el efecto debe reaccionar.
+  }, [pathname, hash]);
 
   return null;
 }
