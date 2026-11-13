@@ -1,9 +1,10 @@
 # Deploy agentesyrobots.com en Hostinger
 
-> **Fecha**: 25 de Abril, 2026
+> **Fecha**: 25 de Abril, 2026 · **Actualizada**: 13 de Nov, 2026 (diseño Lab; paquete .zip + `scripts/verify-deploy.sh`; prod ya corre una versión previa indexable del sitio — este deploy la reemplaza)
 > **Plan**: Hostinger Business (Apache + cPanel)
 > **Metodo**: Build local → Subir dist/ via File Manager
 > **Tiempo estimado**: 10-15 minutos
+> **Ruta del proyecto**: `~/Documents/Proyectos Claude Code/Proyectos 2026/Core Business/AgentesYRobots/agentesyrobots/`
 
 ---
 
@@ -21,7 +22,7 @@
 En tu terminal local, dentro de la carpeta del proyecto:
 
 ```bash
-cd "/home/gilbertohernandez/Documents/Proyectos Claude Code/Proyectos 2026/ProjectJarvis/Agentes&Robots"
+cd "/home/gilbertohernandez/Documents/Proyectos Claude Code/Proyectos 2026/Core Business/AgentesYRobots/agentesyrobots"
 
 # Generar build de produccion
 npm run build
@@ -31,14 +32,18 @@ Esto crea/actualiza la carpeta `dist/` con los archivos finales:
 
 ```
 dist/
-├── .htaccess          # SPA routing + cache + security headers
-├── index.html         # Entry point
-├── favicon.svg
-├── robots.txt         # SEO crawlers (incluye AI bots)
-├── sitemap.xml        # Sitemap para Google
-└── assets/
-    ├── index-93VngHlX.js    # JS bundle (~455 KB)
-    └── index-CBH3Io9N.css   # CSS (~33 KB)
+├── .htaccess          # SPA routing + cache + security headers (OCULTO)
+├── index.html         # Entry point (sin noindex — indexable)
+├── favicon.ico        # Favicon legacy
+├── favicon-32.png     # Favicon PNG
+├── apple-touch-icon.png  # iOS home screen
+├── icon-192.png       # PWA/Android
+├── icon-512.png       # PWA/Android
+├── og-image.png       # Tarjeta social 1200x630 (og:image / twitter:image)
+├── logo-ar.png        # Logo completo
+├── robots.txt         # SEO crawlers (incluye AI bots para GEO)
+├── sitemap.xml        # 10 URLs: home, casos, nosotros, contacto + 6 servicios
+└── assets/            # JS/CSS con hash (cache busting)
 ```
 
 > **Nota**: Los hashes en los nombres de archivos cambian con cada build. Eso es intencional — Vite los genera para "cache busting" (los navegadores siempre cargan la versión más reciente).
@@ -73,7 +78,19 @@ En el File Manager:
 
 ## Paso 4: Subir los Archivos
 
-### Opcion A: File Manager (Recomendado para primera vez)
+### Opcion A0: Un solo .zip (lo más rápido)
+
+```bash
+# Empaqueta el contenido de dist/ (incluye el .htaccess oculto)
+cd dist && zip -r ../agentesyrobots-deploy.zip . && cd ..
+```
+
+1. File Manager → `/public_html/` → **Upload** → subir `agentesyrobots-deploy.zip`
+2. Click derecho sobre el zip → **Extract** → destino `/public_html/`
+3. Borrar el `.zip` del servidor
+4. Activar "Show Hidden Files" y confirmar que `.htaccess` quedó en `/public_html/`
+
+### Opcion A: File Manager (archivo por archivo)
 
 1. En el File Manager, navegar a `/public_html/`
 2. Click en **Upload** (botón arriba)
@@ -86,12 +103,13 @@ En el File Manager:
 /public_html/
 ├── .htaccess          ← SIEMPRE incluir este (archivo oculto!)
 ├── index.html
-├── favicon.svg
+├── favicon.ico + favicon-32.png + apple-touch-icon.png + icon-192/512.png
+├── og-image.png
+├── logo-ar.png
 ├── robots.txt
 ├── sitemap.xml
 ├── assets/
-│   ├── index-93VngHlX.js
-│   └── index-CBH3Io9N.css
+│   └── (JS/CSS con hash)
 └── .well-known/       ← (existente de Hostinger, no tocar)
 ```
 
@@ -111,7 +129,7 @@ sftp USER@agentesyrobots.com
 cd public_html
 
 # Subir todo el contenido de dist/
-put -r /home/gilbertohernandez/Documents/Proyectos\ Claude\ Code/Proyectos\ 2026/ProjectJarvis/Agentes\&Robots/dist/*
+put -r "/home/gilbertohernandez/Documents/Proyectos Claude Code/Proyectos 2026/Core Business/AgentesYRobots/agentesyrobots/dist/"*
 ```
 
 ### Opcion C: Git Deploy (Para actualizaciones futuras)
@@ -149,26 +167,36 @@ Luego para updates futuros solo haces `git pull && npm run build && cp -r dist/*
 
 ## Paso 6: Verificar el Deploy
 
-Abrir navegador y probar:
+Verificación automática (HTTP, assets, meta, headers) desde la carpeta del proyecto:
+
+```bash
+bash scripts/verify-deploy.sh
+```
+
+Y a ojo en el navegador:
 
 | URL | Que verificar |
 |-----|---------------|
-| `https://agentesyrobots.com` | Landing page carga completo, animaciones funcionan |
+| `https://agentesyrobots.com` | Home Lab: hero "MENOS PROMESAS. MÁS AGENTES TRABAJANDO.", dock inferior, simulador y catálogo responden |
+| `https://agentesyrobots.com/casos` | Caso **pentesting-konectify** visible (nuevo 23-Sep) |
 | `https://agentesyrobots.com/nosotros` | Pagina "Nosotros" carga (NO error 404) |
 | `https://agentesyrobots.com/contacto` | Pagina "Contacto" carga |
 | `https://agentesyrobots.com/servicios/bb-one` | Pagina de servicio carga |
+| `https://agentesyrobots.com/servicios/security-testing#agent-security` | UseCase pentest Konectify visible |
 | `https://agentesyrobots.com/robots.txt` | Muestra el archivo robots.txt |
-| `https://agentesyrobots.com/sitemap.xml` | Muestra el sitemap |
+| `https://agentesyrobots.com/sitemap.xml` | Muestra el sitemap (10 URLs) |
 
 ### Checklist post-deploy
 
 - [ ] Home carga correctamente
-- [ ] Navegacion entre paginas funciona (click en links del navbar)
+- [ ] Navegacion entre paginas funciona (dock inferior + links del footer)
 - [ ] **Recarga directa** en sub-rutas funciona (ej: entrar directamente a `/contacto` NO da 404)
-- [ ] Imagenes e iconos cargan (favicon, logos)
-- [ ] Animaciones se ejecutan (scroll animations, hovers)
-- [ ] HTTPS activo (candado verde en browser)
-- [ ] Fonts cargan (Playfair Display, Space Grotesk, Inter)
+- [ ] Imagenes e iconos cargan (favicon, logo)
+- [ ] Interacciones responden (simulador de misión, tabs del catálogo, acordeones FAQ)
+- [ ] CTAs abren WhatsApp con texto precargado
+- [ ] HTTPS activo (candado en browser)
+- [ ] Fonts cargan (Barlow Condensed, Karla, Fira Code)
+- [ ] Si ves el diseño anterior: recarga forzada (Ctrl+Shift+R) — `index.html` puede venir de caché
 
 ### Si las sub-rutas dan 404:
 
@@ -185,6 +213,19 @@ El `.htaccess` no se subio o no se aplico. Solucion:
 ---
 
 ## Paso 7: Registrar en Google (SEO)
+
+> **CONTEXTO (verificado 13-Nov-2026 con curl)**: prod YA corre una versión previa del sitio real, indexable (`index, follow`, sub-rutas 200) — el coming-soon con `noindex` ya no existe. Este deploy **reemplaza el diseño anterior por el diseño Lab**. De paso corrige las tarjetas sociales: `og-image.png` respondía 422 en prod.
+
+### Checklist del deploy Lab
+
+- [ ] `view-source:https://agentesyrobots.com` sin `noindex` (debe decir `index, follow`)
+- [ ] La home muestra el diseño Lab (no el hero anterior con imagen)
+- [ ] Caso pentesting-konectify visible en `/casos`
+- [ ] UseCase Konectify en `/servicios/security-testing#agent-security`
+- [ ] `https://agentesyrobots.com/og-image.png` responde 200 (antes 422)
+- [ ] Archivos del diseño anterior fuera del servidor (`hero-bb-node.webp`, JS/CSS viejos en `assets/`)
+- [ ] **Search Console**: confirmar propiedad + sitemap enviado (ver abajo)
+- [ ] Opcional: URL Inspection → Request Indexing en home para acelerar el refresco del snippet
 
 1. Ir a **[Google Search Console](https://search.google.com/search-console)**
 2. Agregar propiedad → `agentesyrobots.com`
@@ -203,7 +244,7 @@ Cuando hagas cambios al proyecto:
 ```bash
 # 1. Hacer cambios en el codigo localmente
 # 2. Build de produccion
-cd "/home/gilbertohernandez/Documents/Proyectos Claude Code/Proyectos 2026/ProjectJarvis/Agentes&Robots"
+cd "/home/gilbertohernandez/Documents/Proyectos Claude Code/Proyectos 2026/Core Business/AgentesYRobots/agentesyrobots"
 npm run build
 
 # 3. Subir contenido de dist/ a Hostinger (reemplazar archivos existentes)
