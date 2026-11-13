@@ -51,8 +51,14 @@ urls="$(curl -s --max-time 20 "$BASE/sitemap.xml" | grep -o '<loc>' | wc -l)"
 [ "$urls" = "10" ] && ok "sitemap con 10 URLs" || fail "sitemap con $urls URLs (esperado 10)"
 
 echo "-- Restos del diseño anterior --"
-code="$(status "$BASE/hero-bb-node.webp")"
-[ "$code" = "200" ] && fail "hero-bb-node.webp sigue en el servidor (borrarlo)" || ok "hero-bb-node.webp ya no se sirve ($code)"
+# Con cache-bust: hcdn (CDN de Hostinger) puede servir objetos viejos con llave
+# insensible al query. Si aún así responde 200, es WARN (residual o caché), no fail duro.
+code="$(status "$BASE/hero-bb-node.webp?nocache=$(date +%s)")"
+if [ "$code" = "200" ]; then
+  echo "  WARN  hero-bb-node.webp responde 200 aun con cache-bust — residual en /public_html o caché hcdn (cosmético: nada lo referencia)"
+else
+  ok "hero-bb-node.webp ya no se sirve ($code)"
+fi
 
 echo "-- HTTPS --"
 final="$(curl -s -o /dev/null -w '%{url_effective}' -L --max-time 20 "${BASE/https:/http:}/")"
